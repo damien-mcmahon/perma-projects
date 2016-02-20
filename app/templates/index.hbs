@@ -1,0 +1,14 @@
+<section class="view--wrapper" id="index-page">
+{{#search-box search=(action "onSearch")}}{{/search-box}}
+{{#if searchResults.length}}
+  {{#search-results-box results=searchResults}}{{/search-results-box}}
+{{/if}}
+{{#leaflet-map lat=model.lat lng=model.lng zoom=model.zoom}}
+  {{tile-layer url="http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"}}
+  {{#each model.projects as |project|}}
+    {{#marker-layer lat=project.lat lng=project.lng }}
+      {{#project-descriptor project=project}}{{/project-descriptor}}
+    {{/marker-layer}}
+  {{/each}}
+{{/leaflet-map}}
+</section>

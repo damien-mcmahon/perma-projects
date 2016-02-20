@@ -1,0 +1,10 @@
+.leaflet-container {
+  border: 1px solid orange;
+  height: 100px;
+  width: 100px;
+}
+
+.leaflet-map-pane {
+  width: 100%;
+  border: 1px solid red;
+}

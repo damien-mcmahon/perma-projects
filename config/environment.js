@@ -4,8 +4,11 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'projects',
     environment: environment,
+    contentSecurityPolicy: { 'connect-src': "'self' https://auth.firebase.com wss://*.firebaseio.com" },
+    firebase: 'https://perma-projects.firebaseio.com/',
     baseURL: '/',
     locationType: 'auto',
+    mapboxAPIKey: 'pk.eyJ1IjoibWFjb3RvIiwiYSI6ImNpamp5ZnZhbzAwNDh3Nmx4OGFhZWY4djEifQ.giUHCGhkiwGAGX4aa7RLpw',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
