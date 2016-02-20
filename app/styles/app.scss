@@ -4,3 +4,8 @@
 @import 'components/search-results-box';
 
 @import 'views/index';
+
+html,
+body {
+  min-width: 320px;
+}

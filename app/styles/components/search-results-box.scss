@@ -1,4 +1,24 @@
 .search-results-box--wrapper {
   background: #FFF;
   border: 1px solid #CCC;
+
+  .is-hidden & {
+    display: none;
+  }
+
+  .search-results-box--list{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .search-results-box--item {
+    border-bottom: 1px solid #EEE;
+    padding: 5px;
+  }
+
+  .search-result--place-name{
+    font-size: 22px;
+  }
+
 }

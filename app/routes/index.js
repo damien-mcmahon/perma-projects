@@ -3,9 +3,9 @@ import Ember from 'ember';
 export default Ember.Route.extend({
   model() {
     return {
-      lat: 51.45,
-      lng: -0.1,
-      zoom: 5,
+      lat: 51,
+      lng: 0,
+      zoom: 8,
       projects: [{
         lat: 52,
         lng: -1.43,

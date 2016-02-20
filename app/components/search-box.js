@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  searchTerm: '136 Garratt Lane',
+  searchTerm: '',
   actions: {
     search() {
       let searchAddress = this.get('searchTerm');

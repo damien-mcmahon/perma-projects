@@ -1,19 +1,19 @@
 #index-page {
   .search-box--wrapper {
     position: absolute;
-    top: 10vh;
+    top: 10%;
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;
     width: 50vw;
-    height: 10vh;
+    height: auto;
   }
 
   .search-results-box--wrapper {
     position: absolute;
-    top: 15%;
+    top: 20%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     z-index: 10;
     width: 50vw;
   }
