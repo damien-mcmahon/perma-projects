@@ -5,7 +5,8 @@ export default Ember.Component.extend({
   classNameBindings: ['isHidden'],
   actions: {
     select(coords) {
-      this.get('onselect')(coords);
+      let [lng, lat] = coords;
+      this.get('onselect')([lat,lng]);
       this.set('isHidden', true);
     }
   }

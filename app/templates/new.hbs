@@ -1,5 +1,59 @@
+<section class="view--wrapper" id="new-project-page">
+  <section class="new-project--wrapper">
+    <form name="new-project">
+      <div class="form-input--wrapper">
+        <label for="projectTitle">Title:</label>
+        {{input
+          type="text"
+          placeholder="Your Project Name here"
+          value=model.title
+          id="projectTitle"
+        }}
+      </div>
+      <div class="form-input--wrapper">
+        <label for="projectDescription">Description:</label>
+        {{textarea
+          placeholder="Enter a description here"
+          value=model.description
+          id="projectDescription"
+        }}
+      </div>
+      <div class="form-input--wrapper">
+        <label for="projectLocation">Location:</label>
+        {{#search-box search=(action "onSearch")}}{{/search-box}}
+
+        {{#if searchResults.length}}
+          {{#search-results-box
+            results=searchResults
+            onselect=(action "selectAddress")}}
+          {{/search-results-box}}
+        {{/if}}
+        {{#if locationData}}
+          {{input
+            type="text"
+            value=locationData.lat
+            id="projectLatitude"
+          }}
+          {{input
+            type="text"
+            value=locationData.lng
+            id="projectLongitude"
+          }}
+        {{/if}}
+      </div>
+    </form>
+  </section>
 {{#leaflet-map
-  lat=startLocation.lat
-  lng=startLocation.lng
+  lat=mapLocation.lat
+  lng=mapLocation.lng
   zoom=this.zoomLevel}}
+  {{tile-layer url=url}}
+  {{#if locationData}}
+    {{#marker-layer
+      lat=locationData.lat
+      lng=locationData.lng
+      clickable=false}}
+    {{/marker-layer}}
+  {{/if}}
 {{/leaflet-map}}
+</section>

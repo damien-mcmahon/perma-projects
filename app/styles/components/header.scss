@@ -3,6 +3,31 @@
   top: 0;
   left: 0;
   width: 100vw;
+  height: 5vw;
   z-index: 1000;
   background: #FFF;
+  border-bottom: 1px solid #DDD;
+  padding: 0 10px;
+
+  .app--header--name {
+    max-width: 30%;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+
+    a {
+      text-decoration: none;
+    }
+  }
+
+  .app--header--subtitle {
+    max-width: 30%;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+  }
+
+  .app--header--nav {
+    position: absolute;
+    right: 100px;
+    top: 10px;
+  }
 }

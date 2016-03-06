@@ -1,7 +1,9 @@
 <header class="app--header">
-  <h1>Perma Projects</h1>
-  <h2>Permaculture Projects from around the world</h2>
-  <nav>
+  <h1 class="app--header--name">
+    {{#link-to "index"}}Perma Projects{{/link-to}}
+  </h1>
+  <h2 class="app--header--subtitle">Permaculture Projects from around the world</h2>
+  <nav class="app--header--nav">
     {{#if session.isAuthenticated}}
       Logged in as {{session.currentUser.displayName}}
       {{#link-to "new"}}Add your Project{{/link-to}}

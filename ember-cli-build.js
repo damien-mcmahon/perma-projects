@@ -12,6 +12,11 @@ module.exports = function(defaults) {
         'images/marker-icon.png',
         'images/marker-shadow.png'
       ]
+    },
+
+    autoprefixer: {
+      browsers: ['last 2 versions'],
+      cascade: false
     }
   });
 

@@ -1,0 +1,13 @@
+#new-project-page {
+  display: flex;
+
+  .new-project--wrapper {
+    width: 50%;
+    height: 100%;
+  }
+
+  .leaflet-container {
+    width: 50%;
+    height: 100vh;
+  }
+}

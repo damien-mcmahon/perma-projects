@@ -4,7 +4,8 @@ const SEARCH_QUERY_ZOOM_LEVEL = 12;
 const MAP_STYLES = [
   {label: 'Default', url: 'http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png'},
   {label: 'Landscape', url: 'http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png'},
-  {label: 'Landscape', url: 'http://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png'}
+  {label: 'Outdoors', url: 'http://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png'},
+  {label: 'Terrain', url: 'http://tile.stamen.com/terrain/{z}/{x}/{y}.jpg'}
 ]
 const DEFAULTS = {
   LOCATION: {
@@ -18,7 +19,7 @@ export default Ember.Controller.extend({
   mapbox: Ember.inject.service(),
   searchResults: [],
   mapStyles: MAP_STYLES,
-  selectedStyle: MAP_STYLES[0],
+  selectedStyle: MAP_STYLES[1],
   startLocation: {
     lat: DEFAULTS.LOCATION.lat,
     lng: DEFAULTS.LOCATION.lng

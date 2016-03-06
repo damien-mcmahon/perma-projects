@@ -5,8 +5,12 @@
 @import 'components/search-results-box';
 
 @import 'views/index';
+@import 'views/new';
 
 html,
 body {
   min-width: 320px;
+  font-size: 62.5%;
+  padding: 0;
+  margin: 0;
 }

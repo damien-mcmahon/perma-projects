@@ -1,6 +1,5 @@
 <section class="view--wrapper" id="index-page">
-  {{#search-box search=(action "onSearch")}}
-  {{/search-box}}
+  {{#search-box search=(action "onSearch")}}{{/search-box}}
 
   {{#if searchResults.length}}
     {{#search-results-box
@@ -16,7 +15,8 @@
     {{tile-layer url=selectedStyle.url}}
     {{#each model.projects as |project|}}
       {{#marker-layer lat=project.lat lng=project.lng }}
-        {{#project-descriptor project=project}}{{/project-descriptor}}
+        {{#project-descriptor project=project}}
+        {{/project-descriptor}}
       {{/marker-layer}}
     {{/each}}
   {{/leaflet-map}}
