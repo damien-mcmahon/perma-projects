@@ -1,41 +1,24 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-  model() {
-    return {
-      lat: 51,
-      lng: 0,
-      zoom: 8,
-      projects: [{
-        lat: 52,
-        lng: -1.43,
-        title: 'My Test Project',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        startDate: '2016-04-01T09:00:00',
-        endDate: '2016-04-02T:19:00:00',
-        contactDetails: {
-          email: 'test@example.com',
-          phone: '07000000000'
-        },
-        tags: ['planting', ''],
-        volunteersNeeded: true
-      }, {
-        lat: 51.90,
-        lng: -0.43,
-        title: 'My Test Project 2',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        startDate: '2016-05-01T09:00:00',
-        endDate: '2016-05-02T:19:00:00',
-        contactDetails: {
-          email: 'test2@example.com',
-          phone: '07000000000'
-        },
-        tags: ['planting', 'earthworks'],
-        volunteersNeeded: true
-      }]
-    };
+  beforeModel() {
+    return this.get('session').fetch().catch((err)=>{
+      console.log("ERR", err);
+    })
   },
-  init() {
-    this._super.apply(this,arguments);
+  model() {
+    return this.store.query('project', {
+      limitToLast: 50
+    });
+  },
+  actions: {
+    signIn(provider){
+      this.get('session').open('firebase', {
+        provider: provider
+      });
+    },
+    signOut(){
+      this.get('session').close();
+    }
   }
 });

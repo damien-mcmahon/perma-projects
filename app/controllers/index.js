@@ -6,12 +6,24 @@ const MAP_STYLES = [
   {label: 'Landscape', url: 'http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png'},
   {label: 'Landscape', url: 'http://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png'}
 ]
+const DEFAULTS = {
+  LOCATION: {
+    lat: 52,
+    lng: -1.4
+  },
+  ZOOM: 5
+};
 
 export default Ember.Controller.extend({
   mapbox: Ember.inject.service(),
   searchResults: [],
   mapStyles: MAP_STYLES,
   selectedStyle: MAP_STYLES[0],
+  startLocation: {
+    lat: DEFAULTS.LOCATION.lat,
+    lng: DEFAULTS.LOCATION.lng
+  },
+  zoomLevel: DEFAULTS.ZOOM,
   actions: {
     onSearch(searchQuery) {
       let mapBox = this.get('mapbox');

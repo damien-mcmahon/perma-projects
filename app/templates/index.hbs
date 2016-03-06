@@ -1,14 +1,23 @@
 <section class="view--wrapper" id="index-page">
-{{#search-box search=(action "onSearch")}}{{/search-box}}
-{{#if searchResults.length}}
-  {{#search-results-box results=searchResults onselect=(action "selectAddress")}}{{/search-results-box}}
-{{/if}}
-{{#leaflet-map lat=model.lat lng=model.lng zoom=model.zoom}}
-  {{tile-layer url=selectedStyle.url}}
-  {{#each model.projects as |project|}}
-    {{#marker-layer lat=project.lat lng=project.lng }}
-      {{#project-descriptor project=project}}{{/project-descriptor}}
-    {{/marker-layer}}
-  {{/each}}
-{{/leaflet-map}}
+  {{#search-box search=(action "onSearch")}}
+  {{/search-box}}
+
+  {{#if searchResults.length}}
+    {{#search-results-box
+      results=searchResults
+      onselect=(action "selectAddress")}}
+    {{/search-results-box}}
+  {{/if}}
+
+  {{#leaflet-map
+    lat=startLocation.lat
+    lng=startLocation.lng
+    zoom=this.zoomLevel}}
+    {{tile-layer url=selectedStyle.url}}
+    {{#each model.projects as |project|}}
+      {{#marker-layer lat=project.lat lng=project.lng }}
+        {{#project-descriptor project=project}}{{/project-descriptor}}
+      {{/marker-layer}}
+    {{/each}}
+  {{/leaflet-map}}
 </section>
