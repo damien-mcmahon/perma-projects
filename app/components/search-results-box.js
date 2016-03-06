@@ -8,6 +8,10 @@ export default Ember.Component.extend({
       let [lng, lat] = coords;
       this.get('onselect')([lat,lng]);
       this.set('isHidden', true);
+      setTimeout(()=> {
+        this.set('results', {});
+        this.set('isHidden', false);
+      }, 100);
     }
   }
 });

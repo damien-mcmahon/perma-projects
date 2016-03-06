@@ -1,16 +1,14 @@
 <section class="view--wrapper" id="index-page">
-  {{#search-box search=(action "onSearch")}}{{/search-box}}
-
-  {{#if searchResults.length}}
-    {{#search-results-box
-      results=searchResults
-      onselect=(action "selectAddress")}}
-    {{/search-results-box}}
-  {{/if}}
+  {{#search-box
+    search=(action "onSearch")
+    searching=(mut isSearching)
+    results=(mut searchResults)
+    onSelect=(action "selectAddress")
+  }}{{/search-box}}
 
   {{#leaflet-map
-    lat=startLocation.lat
-    lng=startLocation.lng
+    lat=mapLocation.lat
+    lng=mapLocation.lng
     zoom=this.zoomLevel}}
     {{tile-layer url=selectedStyle.url}}
     {{#each model.projects as |project|}}

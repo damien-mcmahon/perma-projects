@@ -1,4 +1,14 @@
 <div class="search-box--wrapper">
-  {{input type="search" class="search-box--query" value=searchTerm }}
-  <button class="search-box--submit" {{action "search"}}>Search</button>
+  {{input type="search" class="search-box--query" value=searchTerm
+    key-press="setSearch" }}
+  <button
+    class="search-box--submit"
+    {{action "search"}}
+    disabled={{isSearching}}>Search</button>
+  {{#if attrs.results.length}}
+    {{#search-results-box
+      results=attrs.results
+      onselect=(action "resultSelected")}}
+    {{/search-results-box}}
+  {{/if}}
 </div>
