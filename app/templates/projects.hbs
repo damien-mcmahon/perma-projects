@@ -1,1 +1,7 @@
-{{outlet}}
+<section id="projects-page" class="view--wrapper">
+  <h1>Your Projects</h1>
+  {{#each model as |project|}}
+    <h1>{{project.title}}</h1>
+    {{#link-to 'project' project.id}}View{{/link-to}}
+  {{/each}}
+</section>

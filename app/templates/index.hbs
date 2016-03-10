@@ -6,7 +6,7 @@
     onSelect=(action "selectAddress")
   }}{{/search-box}}
   {{#leaflet-map
-    zoomControl=false
+    scrollWheelZoom=false
     lat=mapLocation.lat
     lng=mapLocation.lng
     zoom=this.zoomLevel}}

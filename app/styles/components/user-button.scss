@@ -1,0 +1,21 @@
+$user-button-spacing: $APP_BASE_SPACING;
+
+.user-button--wrapper {
+  border: 1px solid #CCC;
+  padding: ($user-button-spacing/4);
+  border-radius: .5rem;
+  display: inline-block;
+
+  .user-button--profile-pic {
+    height: 3rem;
+    width: 3rem;
+    vertical-align: middle;
+  }
+
+  .user-button--name {
+    margin: 0;
+    font-size: 1rem;
+    display: inline-block;
+
+  }
+}
