@@ -9,6 +9,7 @@ Router.map(function() {
   this.route('login');
   this.route('new');
   this.route('project');
+  this.route('about');
 });
 
 export default Router;

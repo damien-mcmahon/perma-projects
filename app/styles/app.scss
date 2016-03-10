@@ -1,16 +1,41 @@
+//VARIABLES
+@import 'variables/measurements';
+
+//ELEMENTS
+@import 'elements/forms';
+
+//COMPONENTS
 @import 'components/header';
 @import 'components/leaflet';
 @import 'components/project-descriptor';
 @import 'components/search-box';
 @import 'components/search-results-box';
 
+//VIEWS
 @import 'views/index';
 @import 'views/new';
 
 html,
-body {
-  min-width: 320px;
-  font-size: 62.5%;
+body,
+main {
   padding: 0;
   margin: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  min-width: 320px;
+  padding-top: ($APP_HEADER_HEIGHT + $APP_BASE_SPACING);
+  font-family: 'Lato', sans-serif;
+}
+
+/* apply a natural box layout model to all elements, but allowing components to change */
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
 }

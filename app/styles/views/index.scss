@@ -1,24 +1,28 @@
+$index-page--search-box-bg: #F0F0F0;
+$index-page--search-box-border-colour: #CCC;
+
 #index-page {
   position: relative;
   z-index: 10;
-
+  border: 1px solid orange;
+  margin: 0;
 
   .search-box--wrapper {
     position: absolute;
-    top: 20vh;
+    top: 0vh;
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;
     width: 50vw;
     height: auto;
-    border: 1px solid #CCC;
-    background: #F0F0F0;
+    border: 1px solid $index-page--search-box-border-colour;
+    background: $index-page--search-box-bg;
     box-shadow: 5px 5px 5px rgba(0,0,0,.25);
   }
 
   .leaflet-container{
     position: absolute;
-    top: 12.5vh;
+    top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;

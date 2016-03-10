@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   searchTerm: '',
   isSearching: false,
-  didReceiveAttrs(attrs){
+  didReceiveAttrs(attrs) {
     this._super(...arguments);
     this.set('isSearching', attrs.newAttrs.searching);
   },

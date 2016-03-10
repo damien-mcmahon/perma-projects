@@ -1,0 +1,19 @@
+$form-spacing: $APP_BASE_SPACING;
+$form-border-colour: #DDD;
+
+.form-input--wrapper {
+  padding: $form-spacing;
+  width: 100%;
+
+  label {
+    display: block;
+    margin-bottom: $form-spacing;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    padding: ($form-spacing / 2);
+    border: 1px solid $form-border-colour;
+  }
+}

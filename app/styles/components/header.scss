@@ -1,16 +1,22 @@
+$app-header-height: $APP_HEADER_HEIGHT;
+$app-header-bg: #FFF;
+$app-header-border-colour: #DDD;
+$app-header-spacing: $APP_BASE_SPACING;
+
 .app--header{
   position: absolute;
   top: 0;
   left: 0;
   width: 100vw;
-  height: 5vw;
+  height: $app-header-height;
   z-index: 1000;
-  background: #FFF;
-  border-bottom: 1px solid #DDD;
-  padding: 0 10px;
+  background: $app-header-bg;
+  border-bottom: 1px solid $app-header-border-colour;
+  padding: 0 ($app-header-spacing * 2);
 
   .app--header--name {
     max-width: 30%;
+    margin: 0;
     font-size: 1.5rem;
     text-transform: uppercase;
 
@@ -20,8 +26,9 @@
   }
 
   .app--header--subtitle {
-    max-width: 30%;
-    font-size: 1.2rem;
+    max-width: 40%;
+    margin-bottom: 0;
+    font-size: 1rem;
     text-transform: uppercase;
   }
 

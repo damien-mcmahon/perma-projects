@@ -1,3 +1,6 @@
+$search-results-hover-bg: #00C;
+$search-results-hover-colour: #FFF;
+
 .search-results-box--wrapper {
   position: absolute;
   top: 102.5%;
@@ -20,6 +23,12 @@
   .search-results-box--item {
     border-bottom: 1px solid #EEE;
     padding: 5px;
+
+    &:hover {
+      background: $search-results-hover-bg;
+      color: $search-results-hover-colour;
+      cursor: pointer;
+    }
   }
 
   .search-result--place-name{

@@ -18,7 +18,7 @@ const TEST_SEARCH_RESULTS = {"type":"FeatureCollection","query":["102","purlewen
 
 export default Ember.Controller.extend({
   mapbox: Ember.inject.service(),
-  searchResults: TEST_SEARCH_RESULTS.features,
+  searchResults: [],
   mapStyles: MAP_STYLES,
   selectedStyle: MAP_STYLES[1],
   mapLocation: {
