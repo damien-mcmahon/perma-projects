@@ -6,8 +6,9 @@ export default DS.Model.extend({
   createdAt: DS.attr('date'),
   userId: DS.attr('string'),
   userName: DS.attr('string'),
-  isPublic: DS.attr('boolean'),
-  email: DS.attr('string'),
+  locationIsPublic: DS.attr('boolean',{defaultValue: true}),
+  url: DS.attr('string'),
   facebookUrl: DS.attr('string'),
-  twitter: DS.attr('string')
+  twitter: DS.attr('string'),
+  location: DS.attr()
 });

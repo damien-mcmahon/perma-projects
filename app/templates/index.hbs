@@ -5,14 +5,14 @@
     results=(mut searchResults)
     onSelect=(action "selectAddress")
   }}{{/search-box}}
-
   {{#leaflet-map
+    zoomControl=false
     lat=mapLocation.lat
     lng=mapLocation.lng
     zoom=this.zoomLevel}}
     {{tile-layer url=selectedStyle.url}}
-    {{#each model.projects as |project|}}
-      {{#marker-layer lat=project.lat lng=project.lng }}
+    {{#each model as |project|}}
+      {{#marker-layer lat=project.location.lat lng=project.location.lng }}
         {{#project-descriptor project=project}}
         {{/project-descriptor}}
       {{/marker-layer}}

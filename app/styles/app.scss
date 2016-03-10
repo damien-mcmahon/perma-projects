@@ -28,10 +28,9 @@ html {
 
 body {
   min-width: 320px;
-  padding-top: ($APP_HEADER_HEIGHT + $APP_BASE_SPACING);
+  padding-top: $APP_HEADER_HEIGHT;
   font-family: 'Lato', sans-serif;
 }
-
 /* apply a natural box layout model to all elements, but allowing components to change */
 html {
   box-sizing: border-box;

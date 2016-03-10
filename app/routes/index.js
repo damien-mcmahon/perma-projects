@@ -7,7 +7,7 @@ export default Ember.Route.extend({
     })
   },
   model() {
-    return this.store.query('project', {
+    return this.store.query('project',{
       limitToLast: 50
     });
   },

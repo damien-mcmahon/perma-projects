@@ -6,11 +6,10 @@
   <nav class="app--header--nav">
     {{#link-to "about"}}About{{/link-to}}
     {{#if session.isAuthenticated}}
+      {{#link-to "new"}}New Projects{{/link-to}}
       Logged in as {{session.currentUser.displayName}}
-      {{#link-to "new"}}Add your Project{{/link-to}}
       <button {{action "signOut"}}>Sign Out</button>
     {{else}}
-
       <button {{action "signIn" "facebook"}}>Sign in with Facebook</button>
     {{/if}}
   </nav>

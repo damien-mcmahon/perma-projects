@@ -1,15 +1,16 @@
 $index-page--search-box-bg: #F0F0F0;
 $index-page--search-box-border-colour: #CCC;
+$index-page-spacing: $APP_BASE_SPACING;
 
 #index-page {
   position: relative;
   z-index: 10;
-  border: 1px solid orange;
   margin: 0;
+  padding: 0;
 
   .search-box--wrapper {
     position: absolute;
-    top: 0vh;
+    top: $index-page-spacing;
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;

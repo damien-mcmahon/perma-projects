@@ -1,6 +1,6 @@
 <section class="view--wrapper" id="new-project-page">
   <section class="new-project--wrapper">
-    <form name="new-project">
+    <form name="new-project" onsubmit={{action "addProject"}}>
       <div class="form-input--wrapper">
         <label for="projectTitle">Title:</label>
         {{input
@@ -20,14 +20,12 @@
       </div>
       <div class="form-input--wrapper">
         <label for="projectLocation">Location:</label>
-        {{#search-box search=(action "onSearch")}}{{/search-box}}
+        {{#search-box
+          search=(action "onSearch")
+          results=(mut searchResults)
+          onSelect=(action "selectAddress")
+        }}{{/search-box}}
 
-        {{#if searchResults.length}}
-          {{#search-results-box
-            results=searchResults
-            onselect=(action "selectAddress")}}
-          {{/search-results-box}}
-        {{/if}}
         {{#if locationData}}
           {{input
             type="text"
@@ -40,20 +38,50 @@
             id="projectLongitude"
           }}
         {{/if}}
+        {{input
+          type="checkbox"
+          checked=model.locationIsPublic
+        }}Share location?
+      </div>
+      <div class="form-input--wrapper">
+        <label for="website">Website</label>
+        {{input type="url" value=model.url placeholder="https://www.yourproject.com"}}
+      </div>
+      <div class="form-input--wrapper">
+        <label for="facebookUrl">Facebook Page</label>
+        {{input type="url" value=model.facebookUrl placeholder="https://facebook.com/yourproject"}}
+      </div>
+      <div class="form-input--wrapper">
+        <label for="twitter">Twitter</label>
+        {{input type="text" value=model.twitter placeholder="@yourproject"}}
+      </div>
+      <div class="form-input--wrapper">
+        <button class="button" type="submit">Add {{model.title}} to Perma Projects</button>
       </div>
     </form>
   </section>
 {{#leaflet-map
   lat=mapLocation.lat
   lng=mapLocation.lng
-  zoom=this.zoomLevel}}
+  zoom=this.zoomLevel
+  onDrag=(action "mapDragging")
+  onDragend=(action "updateLocation")
+  }}
   {{tile-layer url=url}}
-  {{#if locationData}}
-    {{#marker-layer
-      lat=locationData.lat
-      lng=locationData.lng
-      clickable=false}}
+  {{#if isDragging}}
+  {{#marker-layer
+    lat=centerPoint.lat
+    lng=centerPoint.lng
+    clickable=false}}
     {{/marker-layer}}
+  {{else}}
+    {{#if locationData}}
+      {{#marker-layer
+        lat=locationData.lat
+        lng=locationData.lng
+        clickable=false}}
+      {{/marker-layer}}
+    {{/if}}
   {{/if}}
 {{/leaflet-map}}
 </section>

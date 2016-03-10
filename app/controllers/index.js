@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const SEARCH_QUERY_ZOOM_LEVEL = 12;
+const SEARCH_QUERY_ZOOM_LEVEL = 10;
 const MAP_STYLES = [
   {label: 'Default', url: 'http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png'},
   {label: 'Landscape', url: 'http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png'},
