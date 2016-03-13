@@ -37,8 +37,8 @@ export default Ember.Controller.extend({
       });
     },
 
-    selectAddress(addressCoords) {
-      let [lat,lng] = addressCoords;
+    selectAddress(address) {
+      let [lng,lat] = address.center;
       this.set('mapLocation.lat', lat);
       this.set('mapLocation.lng', lng);
       this.set('zoomLevel', SEARCH_QUERY_ZOOM_LEVEL);

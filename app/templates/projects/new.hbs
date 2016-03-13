@@ -10,7 +10,7 @@
           id="projectTitle"
         }}
       </div>
-      <div class="form-input--wrapper">
+      <div class="form-input--wrapper project--description">
         <label for="projectDescription">Description:</label>
         {{textarea
           placeholder="Enter a description here"
@@ -43,6 +43,34 @@
           checked=model.locationIsPublic
         }}Share location?
       </div>
+      {{#if model.address_1}}
+      <div class="address-wrapper">
+        <div class="form-input--wrapper">
+          <label for="address_1">Address Line 1: </label>
+          {{input type="text" value=model.address_1}}
+        </div>
+        <div class="form-input--wrapper">
+          <label for="address_2">Address Line 2: </label>
+          {{input type="text" value=model.address_2}}
+        </div>
+        <div class="form-input--wrapper address--city">
+          <label for="city">City: </label>
+          {{input type="text" value=model.city}}
+        </div>
+        <div class="form-input--wrapper address--county">
+          <label for="county">County: </label>
+          {{input type="text" value=model.county}}
+        </div>
+        <div class="form-input--wrapper address--country">
+          <label for="country">Country: </label>
+          {{input type="text" value=model.country}}
+        </div>
+        <div class="form-input--wrapper address--postcode">
+          <label for="postCode">Post/Zip Code: </label>
+          {{input type="text" value=model.postCode}}
+        </div>
+      </div>
+      {{/if}}
       <div class="form-input--wrapper">
         <label for="website">Website</label>
         {{input type="url" value=model.url placeholder="https://www.yourproject.com"}}

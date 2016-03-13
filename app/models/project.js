@@ -10,5 +10,12 @@ export default DS.Model.extend({
   url: DS.attr('string'),
   facebookUrl: DS.attr('string'),
   twitter: DS.attr('string'),
-  location: DS.attr()
+  location: DS.attr(),
+  userIsProjectOwner: DS.attr('boolean'),
+  address_1: DS.attr('string'),
+  address_2: DS.attr('string'),
+  city: DS.attr('string'),
+  county: DS.attr('string'),
+  country: DS.attr('string'),
+  postCode: DS.attr('string', { defaultValue: ''})
 });

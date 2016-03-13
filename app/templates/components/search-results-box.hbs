@@ -1,7 +1,7 @@
 <div class="search-results-box--wrapper">
   <ul class="search-results-box--list">
   {{#each results as |result|}}
-    <li class="search-results-box--item" {{action "select" result.center}}>
+    <li class="search-results-box--item" {{action "select" result}}>
       <h2 class="search-result--place-name">{{result.place_name}}</h2>
     </li>
   {{/each}}
