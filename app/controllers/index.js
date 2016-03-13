@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 const SEARCH_QUERY_ZOOM_LEVEL = 10;
+const COUNTRY_LEVEL_ZOOM = 5;
 const MAP_STYLES = [
   {label: 'Default', url: 'http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png'},
   {label: 'Landscape', url: 'http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png'},
@@ -32,6 +33,7 @@ export default Ember.Controller.extend({
       let mapBox = this.get('mapbox');
       this.set('isSearching', true);
       mapBox.query(searchQuery).then((results) => {
+
         this.set('isSearching', false);
         this.set('searchResults', results.features);
       });
@@ -39,9 +41,16 @@ export default Ember.Controller.extend({
 
     selectAddress(address) {
       let [lng,lat] = address.center;
-      this.set('mapLocation.lat', lat);
-      this.set('mapLocation.lng', lng);
-      this.set('zoomLevel', SEARCH_QUERY_ZOOM_LEVEL);
+      let zoomLevel = address.properties.short_code ?
+        COUNTRY_LEVEL_ZOOM : SEARCH_QUERY_ZOOM_LEVEL;
+
+      this.setProperties({
+        mapLocation: {
+          lat: lat,
+          lng: lng
+        },
+        zoomLevel: zoomLevel
+      });
     }
   }
 });
