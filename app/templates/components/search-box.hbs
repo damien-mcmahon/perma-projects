@@ -8,7 +8,8 @@
   {{#if attrs.results.length}}
     {{#search-results-box
       results=attrs.results
-      onselect=(action "resultSelected")}}
+      onselect=(action "resultSelected")
+      onclose=(action "closeSearch")}}
     {{/search-results-box}}
   {{/if}}
 </div>

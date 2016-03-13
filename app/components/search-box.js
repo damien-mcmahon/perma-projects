@@ -23,6 +23,12 @@ export default Ember.Component.extend({
     resultSelected(result){
       this.set('searchTerm', '');
       this.get('onSelect')(result);
+    },
+    closeSearch() {
+      this.setProperties({
+        searchTerm: '',
+        isSearching: false
+      });
     }
   }
 });

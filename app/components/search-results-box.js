@@ -11,6 +11,13 @@ export default Ember.Component.extend({
         this.set('results', {});
         this.set('isHidden', false);
       }, 100);
+    },
+    closeList(){
+      this.setProperties({
+        results: {},
+        isHidden: true
+      });
+      this.get('onclose')();
     }
   }
 });
