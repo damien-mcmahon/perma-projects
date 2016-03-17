@@ -1,1 +1,110 @@
-{{outlet}}
+<section class="view--wrapper" id="new-project-page">
+<section class="new-project--wrapper">
+  <form name="update-project" onsubmit={{action "updateProject"}}>
+    <div class="form-input--wrapper">
+      <label for="projectTitle">Title:</label>
+      {{input
+        type="text"
+        placeholder="Your Project Name here"
+        value=model.title
+        id="projectTitle"
+      }}
+    </div>
+    <div class="form-input--wrapper project--description">
+      <label for="projectDescription">Description:</label>
+      {{textarea
+        placeholder="Enter a description here"
+        value=model.description
+        id="projectDescription"
+      }}
+    </div>
+    <div class="form-input--wrapper">
+      <label for="projectLocation">Location:</label>
+        {{#search-box
+          search=(action "onSearch")
+          results=(mut searchResults)
+          onSelect=(action "selectAddress")
+        }}{{/search-box}}
+        {{input
+          type="text"
+          value=model.location.lat
+          id="projectLatitude"
+        }}
+        {{input
+          type="text"
+          value=model.location.lng
+          id="projectLongitude"
+        }}
+      {{input
+        type="checkbox"
+        checked=model.locationIsPublic
+      }}Share location?
+    </div>
+    {{#if model.address_1}}
+    <div class="address-wrapper">
+      <div class="form-input--wrapper">
+        <label for="address_1">Address Line 1: </label>
+        {{input type="text" value=model.address_1}}
+      </div>
+      <div class="form-input--wrapper">
+        <label for="address_2">Address Line 2: </label>
+        {{input type="text" value=model.address_2}}
+      </div>
+      <div class="form-input--wrapper address--city">
+        <label for="city">City: </label>
+        {{input type="text" value=model.city}}
+      </div>
+      <div class="form-input--wrapper address--county">
+        <label for="county">County: </label>
+        {{input type="text" value=model.county}}
+      </div>
+      <div class="form-input--wrapper address--country">
+        <label for="country">Country: </label>
+        {{input type="text" value=model.country}}
+      </div>
+      <div class="form-input--wrapper address--postcode">
+        <label for="postCode">Post/Zip Code: </label>
+        {{input type="text" value=model.postCode}}
+      </div>
+    </div>
+    {{/if}}
+    <div class="form-input--wrapper">
+      <label for="website">Website</label>
+      {{input type="url" value=model.url placeholder="https://www.yourproject.com"}}
+    </div>
+    <div class="form-input--wrapper">
+      <label for="facebookUrl">Facebook Page</label>
+      {{input type="url" value=model.facebookUrl placeholder="https://facebook.com/yourproject"}}
+    </div>
+    <div class="form-input--wrapper">
+      <label for="twitter">Twitter</label>
+      {{input type="text" value=model.twitter placeholder="@yourproject"}}
+    </div>
+    <div class="form-input--wrapper">
+      <button class="button" type="submit">Update {{model.title}}</button>
+    </div>
+  </form>
+</section>
+{{#leaflet-map
+lat=model.location.lat
+lng=model.location.lng
+zoom=this.zoomLevel
+}}
+{{tile-layer url=url}}
+{{#if isDragging}}
+{{#marker-layer
+  lat=centerPoint.lat
+  lng=centerPoint.lng
+  clickable=false}}
+  {{/marker-layer}}
+{{else}}
+  {{#if model.location}}
+    {{#marker-layer
+      lat=model.location.lat
+      lng=model.location.lng
+      clickable=false}}
+    {{/marker-layer}}
+  {{/if}}
+{{/if}}
+{{/leaflet-map}}
+</section>

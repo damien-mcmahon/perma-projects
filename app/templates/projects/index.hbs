@@ -7,5 +7,6 @@
     <h1>{{project.title}}</h1>
     {{#link-to 'project' project.id}}View{{/link-to}}
     {{#link-to 'project.edit' project.id }}Edit{{/link-to}}
+    <a {{action "deleteProject" project}}>Delete</a>
   {{/each}}
 </section>

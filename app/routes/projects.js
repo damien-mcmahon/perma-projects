@@ -7,5 +7,12 @@ export default Ember.Route.extend({
       orderBy: 'userId',
       equalTo: user.id
     });
+  },
+  actions: {
+    deleteProject(project){
+      if(confirm("Do you want to delete this project ?")){
+        project.destroyRecord();
+      }
+    }
   }
 });

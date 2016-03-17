@@ -135,7 +135,7 @@ export default Ember.Controller.extend({
       });
 
       newProject.save();
-      transitionTo('index');
+      this.transitionToRoute('projects');
     }
   }
 });
