@@ -75,13 +75,19 @@
         <label for="website">Website</label>
         {{input type="url" value=model.url placeholder="https://www.yourproject.com"}}
       </div>
-      <div class="form-input--wrapper">
+      <div class="form-input--wrapper -facebook-page">
         <label for="facebookUrl">Facebook Page</label>
-        {{input type="url" value=model.facebookUrl placeholder="https://facebook.com/yourproject"}}
+        <div class="input--with-label">
+          <span class="input--label">https://facebook.com/</span>
+          {{input type="url" value=model.facebookUrl placeholder="yourproject"}}
+        </div>
       </div>
       <div class="form-input--wrapper">
         <label for="twitter">Twitter</label>
-        {{input type="text" value=model.twitter placeholder="@yourproject"}}
+        <div class="input--with-label -twitter-name">
+          <span class="input--label">@</span>
+          {{input type="text" value=model.twitter placeholder="yourproject"}}
+        </div>
       </div>
       <div class="form-input--wrapper">
         <button class="button" type="submit">Add {{model.title}} to Perma Projects</button>
@@ -93,23 +99,17 @@
   lng=mapLocation.lng
   zoom=this.zoomLevel
   onDrag=(action "mapDragging")
-  onDragend=(action "updateLocation")
   }}
   {{tile-layer url=url}}
-  {{#if isDragging}}
-  {{#marker-layer
-    lat=centerPoint.lat
-    lng=centerPoint.lng
-    clickable=false}}
+  {{#if locationData}}
+    {{#marker-layer
+      lat=locationData.lat
+      lng=locationData.lng
+      clickable=false}}
+      {{#if model.title}}
+        {{#project-descriptor project=(mut model)}}{{/project-descriptor}}
+      {{/if}}
     {{/marker-layer}}
-  {{else}}
-    {{#if locationData}}
-      {{#marker-layer
-        lat=locationData.lat
-        lng=locationData.lng
-        clickable=false}}
-      {{/marker-layer}}
-    {{/if}}
   {{/if}}
 {{/leaflet-map}}
 </section>

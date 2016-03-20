@@ -19,11 +19,11 @@
     min-width: 60px;
     border: 1px solid #DDD;
     border-radius: 5px;
-    background: none;
+    background: #CCC;
     margin: 0 auto;
 
     [disabled="disable"]{
-      border: 1px solid red;
+      opacity: .5;
     }
   }
 }

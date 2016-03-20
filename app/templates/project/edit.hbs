@@ -73,12 +73,18 @@
       {{input type="url" value=model.url placeholder="https://www.yourproject.com"}}
     </div>
     <div class="form-input--wrapper">
-      <label for="facebookUrl">Facebook Page</label>
-      {{input type="url" value=model.facebookUrl placeholder="https://facebook.com/yourproject"}}
+      <label for="facebookUrl">Facebook Page:</label>
+      <div class="input--with-label">
+        <span class="input--label">https://facebook.com/</span>
+        {{input type="url" value=model.facebookUrl placeholder="yourproject"}}
+      </div>
     </div>
     <div class="form-input--wrapper">
-      <label for="twitter">Twitter</label>
-      {{input type="text" value=model.twitter placeholder="@yourproject"}}
+      <label for="twitter">Twitter:</label>
+      <div class="input--with-label">
+        <span class="input--label">@</span>
+        {{input type="text" value=model.twitter placeholder="yourproject"}}
+      </div>
     </div>
     <div class="form-input--wrapper">
       <button class="button" type="submit">Update {{model.title}}</button>
