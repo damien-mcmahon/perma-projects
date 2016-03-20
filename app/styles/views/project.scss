@@ -1,5 +1,5 @@
-$facebook-bg-colour: #3a5795;
-$twitter-bg-colour: #55acee;
+$facebook-bg-colour: $FACEBOOK_BG;
+$twitter-bg-colour: $TWITTER_BG;
 
 .-facebook-page {
   .input--label {

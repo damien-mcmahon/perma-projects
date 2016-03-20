@@ -8,7 +8,7 @@ $button-bg: #9CCC65;
 
 .button {
   display: inline-block;
-  padding: $button-spacing ($button-spacing * 2);
+  padding: $button-spacing;
   border: 1px solid $button-border-colour;
   margin: 0 ($button-spacing / 4);
   text-decoration: none;

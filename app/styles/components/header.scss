@@ -4,6 +4,7 @@ $app-header-bg: #FFF;
 $app-header-border-colour: #DDD;
 $app-header-spacing: $APP_BASE_SPACING;
 $app-header-z-index: 100;
+$app-header-signin-bg: $FACEBOOK_BG;
 
 .app--header{
   position: absolute;
@@ -57,5 +58,9 @@ $app-header-z-index: 100;
       text-transform: uppercase;
       text-decoration: none
     }
+  }
+  .app--header--sign-in {
+    background: $app-header-signin-bg;
+    text-transform: uppercase;
   }
 }
