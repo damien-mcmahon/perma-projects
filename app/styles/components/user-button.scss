@@ -1,21 +1,61 @@
 $user-button-spacing: $APP_BASE_SPACING;
+$user-menu-bg: #FFF;
+$user-menu-border-colour: #CCC;
+$user-menu-profile-pic-size: 3rem;
+$user-menu-shadow: rgba(0,0,0,.2);
 
-.user-button--wrapper {
-  border: 1px solid #CCC;
-  padding: ($user-button-spacing/4);
-  border-radius: .5rem;
-  display: inline-block;
+.user--menu-wrapper {
+  position: relative;
 
-  .user-button--profile-pic {
-    height: 3rem;
-    width: 3rem;
-    vertical-align: middle;
+  &:hover {
+    .user--menu {
+      display: block;
+    }
   }
 
-  .user-button--name {
-    margin: 0;
-    font-size: 1rem;
-    display: inline-block;
+  .user-button--wrapper {
+    display: block;
+    padding: ($user-button-spacing/4);
+    border: 1px solid $user-menu-border-colour;
+    border-radius: .5rem;
+    background: $user-menu-bg;
+    cursor: pointer;
 
+    &:active,
+    &:focus {
+      outline: none;
+    }
+
+    .user-button--profile-pic {
+      height: $user-menu-profile-pic-size;
+      width: $user-menu-profile-pic-size;
+      vertical-align: middle;
+      border-radius: 100%;
+    }
+
+    .user-button--name {
+      display: inline-block;
+      margin: 0;
+      font-size: 1rem;
+    }
+  }
+
+  .user--menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    padding: $user-button-spacing;
+    margin: 0;
+    background: $user-menu-bg;
+    border: 1px solid $user-menu-border-colour;
+    display:none;
+    box-shadow: 0 2px 2px $user-menu-shadow;
+
+    a {
+      display: block;
+      margin: $user-button-spacing;
+      text-transform: uppercase;
+    }
   }
 }

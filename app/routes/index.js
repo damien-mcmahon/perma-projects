@@ -10,15 +10,5 @@ export default Ember.Route.extend({
     return this.store.query('project', {
       limitToLast: 50
     });
-  },
-  actions: {
-    signIn(provider) {
-      this.get('session').open('firebase', {
-        provider: provider
-      });
-    },
-    signOut() {
-      this.get('session').close();
-    }
   }
 });

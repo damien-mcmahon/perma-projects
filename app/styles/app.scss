@@ -36,6 +36,13 @@ body {
 html {
   box-sizing: border-box;
 }
+
 *, *:before, *:after {
   box-sizing: inherit;
+}
+
+.view--wrapper {
+  max-width: 960px;
+  padding: $APP_BASE_SPACING;
+  margin: 0 auto;
 }

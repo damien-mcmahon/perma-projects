@@ -1,18 +1,22 @@
 <header class="app--header">
-  <h1 class="app--header--name">
-    {{#link-to "index"}}Perma Projects{{/link-to}}
-  </h1>
-  <h2 class="app--header--subtitle">Permaculture Projects from around the world</h2>
-  <nav class="app--header--nav">
-    {{#link-to "about"}}About{{/link-to}}
-    {{#if session.isAuthenticated}}
-      {{#link-to "projects"}}Your Projects{{/link-to}}
-      {{#user-button user=session.currentUser}}{{/user-button}}
-      <button {{action "signOut"}}>Sign Out</button>
-    {{else}}
+  <div class="header--content-wrapper">
+    <div class="app--header--name-wrapper">
+      <h1 class="app--header--name">
+        {{#link-to "index"}}Perma Projects{{/link-to}}
+      </h1>
+      <h2 class="app--header--subtitle">
+        Permaculture Projects from around the world
+      </h2>
+    </div>
+    <nav class="app--header--nav">
+      {{#link-to "about" class="app--header--nav-link"}}About{{/link-to}}
+      {{#if session.isAuthenticated}}
+      {{#user-button user=session.currentUser signOut=(action 'signOut')}}{{/user-button}}
+      {{else}}
       <button {{action "signIn" "facebook"}}>Sign in with Facebook</button>
-    {{/if}}
-  </nav>
+      {{/if}}
+    </nav>
+  </div>
 </header>
 <main class="app--main">
   {{outlet}}

@@ -7,6 +7,7 @@ $app-header-z-index: 100;
 
 .app--header{
   position: absolute;
+  display: flex;
   top: 0;
   left: 0;
   width: 100vw;
@@ -16,6 +17,17 @@ $app-header-z-index: 100;
   background: $app-header-bg;
   border-bottom: 1px solid $app-header-border-colour;
   padding: 0 ($app-header-spacing * 2);
+
+  .header--content-wrapper {
+    display: flex;
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .app--header--name-wrapper {
+    flex: 1;
+  }
 
   .app--header--name {
     max-width: 30%;
@@ -36,8 +48,14 @@ $app-header-z-index: 100;
   }
 
   .app--header--nav {
-    position: absolute;
-    right: 100px;
-    top: 10px;
+    display: inline-flex;
+    align-items: center;
+
+    .app--header--nav-link {
+      display: inline-block;
+      margin: $app-header-spacing;
+      text-transform: uppercase;
+      text-decoration: none
+    }
   }
 }
