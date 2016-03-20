@@ -1,12 +1,21 @@
 <section id="projects-page" class="view--wrapper">
   <h1>Your Projects</h1>
   <nav>
-    {{#link-to "projects.new"}}Add Project{{/link-to}}
+    {{#link-to "projects.new" class="button"}}Add Project{{/link-to}}
   </nav>
   {{#each model as |project|}}
-    <h1>{{project.title}}</h1>
-    {{#link-to 'project' project.id}}View{{/link-to}}
-    {{#link-to 'project.edit' project.id }}Edit{{/link-to}}
-    <a {{action "deleteProject" project}}>Delete</a>
+    <div class="projects--project-wrapper">
+      <h1>{{project.title}}</h1>
+      <p>{{project.description}}</p>
+      {{#link-to 'project' project.id class="button"}}
+        View
+      {{/link-to}}
+      {{#link-to
+        'project.edit' project.id
+        class="button"}}
+        Edit
+      {{/link-to}}
+      <a class="button" {{action "deleteProject" project}}>Delete</a>
+  </div>
   {{/each}}
 </section>

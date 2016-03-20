@@ -1,0 +1,10 @@
+$project-spacing: $APP_BASE_SPACING;
+$project-border-colour: #DDD;
+
+#projects-page {
+  .projects--project-wrapper {
+    padding: $project-spacing;
+    margin: $project-spacing 0;
+    border: 1px solid $project-border-colour;
+  }
+}

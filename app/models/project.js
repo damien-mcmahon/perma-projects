@@ -17,5 +17,7 @@ export default DS.Model.extend({
   city: DS.attr('string'),
   county: DS.attr('string'),
   country: DS.attr('string'),
-  postCode: DS.attr('string', { defaultValue: ''})
+  postCode: DS.attr('string', { defaultValue: ''}),
+  likes: DS.attr('number'),
+  views: DS.attr('number')
 });

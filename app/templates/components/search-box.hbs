@@ -2,7 +2,7 @@
   {{input type="search" class="search-box--query" value=searchTerm
     key-press="setSearch" }}
   <button
-    class="search-box--submit"
+    class="button search-box--submit"
     {{action "search"}}
     disabled={{isSearching}}>Search</button>
   {{#if attrs.results.length}}

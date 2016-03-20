@@ -1,0 +1,29 @@
+$button-spacing: $APP_BASE_SPACING;
+$button-border-colour: #558B2F;
+$button-border-radius: .5rem;
+$button-colour: #FFF;
+$button-hover-colour: #FFF;
+$button-bg: #9CCC65;
+
+
+.button {
+  display: inline-block;
+  padding: $button-spacing ($button-spacing * 2);
+  border: 1px solid $button-border-colour;
+  margin: 0 ($button-spacing / 4);
+  text-decoration: none;
+  border-radius: $button-border-radius;
+  background: $button-bg;
+  color: $button-colour;
+  cursor: pointer;
+
+  &:hover {
+    background: $button-border-colour;
+    color: $button-hover-colour;
+  }
+
+  &:active,
+  &:focus {
+    background: darken($button-border-colour, 10%);
+  }
+}

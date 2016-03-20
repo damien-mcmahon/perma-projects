@@ -3,6 +3,8 @@
 
 //ELEMENTS
 @import 'elements/forms';
+@import 'elements/buttons';
+@import 'elements/links';
 
 //COMPONENTS
 @import 'components/header';
@@ -15,6 +17,7 @@
 //VIEWS
 @import 'views/index';
 @import 'views/new';
+@import 'views/projects';
 
 html,
 body,
