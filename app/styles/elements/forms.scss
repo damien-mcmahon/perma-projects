@@ -19,9 +19,11 @@ $form-default-label-size: 1.2em;
   textarea {
     width: 100%;
     padding: ($form-spacing / 2);
+    margin: ($form-spacing / 4) 0;
     border: 1px solid $form-border-colour;
     font-size: $form-default-font-size;
     line-height: 1.5;
+    border-radius: $form-border-radius;
   }
 
   .input--with-label {
@@ -34,7 +36,7 @@ $form-default-label-size: 1.2em;
       display: inline-block;
       border: 1px solid $form-border-colour;
       padding: ($form-spacing / 2) $form-spacing;
-      border-right: none;
+      margin: ($form-spacing / 4) 0;
       border-top-left-radius: $form-border-radius;
       border-bottom-left-radius: $form-border-radius;
       font-size: $form-default-label-size;
@@ -43,6 +45,7 @@ $form-default-label-size: 1.2em;
 
     input {
       border-left: none;
+      border-radius: 0;
       border-top-right-radius: $form-border-radius;
       border-bottom-right-radius: $form-border-radius;
     }

@@ -1,0 +1,23 @@
+$facebook-bg-colour: #3a5795;
+$twitter-bg-colour: #55acee;
+
+.-facebook-page {
+  .input--label {
+    background: $facebook-bg-colour;
+    border: 1px solid $facebook-bg-colour;
+  }
+}
+
+.-twitter-name {
+  .input--label {
+    background: $twitter-bg-colour;
+    border: 1px solid $twitter-bg-colour;
+  }
+}
+
+.-facebook-page,
+.-twitter-name {
+  .input--label {
+    color: white;
+  }
+}
