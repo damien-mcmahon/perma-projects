@@ -29,8 +29,11 @@ $app-header-nav-margin: 5rem;
   }
 
   .app--header--name-wrapper {
+    display: inline-flex;
+    flex-wrap: wrap;
     flex: 1;
     overflow: hidden;
+    min-width: 20rem;
   }
 
   .app--header--logo {
@@ -41,8 +44,9 @@ $app-header-nav-margin: 5rem;
 
   .app--header--name {
     display: inline-block;
-    max-width: 30%;
-    margin: 0;
+    max-width: 100%;
+    margin: $app-header-spacing 0;
+    flex: 3;
     font-size: 1.5rem;
     text-transform: uppercase;
 
@@ -68,7 +72,8 @@ $app-header-nav-margin: 5rem;
       display: inline-block;
       margin: $app-header-spacing;
       text-transform: uppercase;
-      text-decoration: none
+      text-decoration: none;
+      font-size: 1.2rem;
     }
   }
   .app--header--sign-in {
