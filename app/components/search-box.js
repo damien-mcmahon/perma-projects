@@ -13,6 +13,7 @@ export default Ember.Component.extend({
         this.set('isSearching', false);
       }
     },
+
     search() {
       let searchAddress = this.get('searchTerm');
       this.set('isSearching', true);
@@ -20,13 +21,14 @@ export default Ember.Component.extend({
         this.get('search')(searchAddress);
       }
     },
+
     resultSelected(result){
       this.set('searchTerm', '');
       this.get('onSelect')(result);
     },
+
     closeSearch() {
       this.setProperties({
-        searchTerm: '',
         isSearching: false
       });
     }

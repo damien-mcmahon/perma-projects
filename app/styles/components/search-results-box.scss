@@ -1,5 +1,6 @@
 $search-results-hover-bg: #00C;
 $search-results-hover-colour: #FFF;
+$search-results-spacing: $APP_BASE_SPACING;
 
 .search-results-box--wrapper {
   position: absolute;
@@ -33,6 +34,10 @@ $search-results-hover-colour: #FFF;
 
   .search-result--place-name{
     font-size: 1.3rem;
+  }
+  .search-result-box--close {
+    text-align: center;
+    padding: $search-results-spacing;
   }
 
 }

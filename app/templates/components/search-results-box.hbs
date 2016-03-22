@@ -5,6 +5,8 @@
         <h2 class="search-result--place-name">{{result.place_name}}</h2>
       </li>
     {{/each}}
-    <li {{action "closeList"}}>Close List</li>
+    <li class="search-result-box--close">
+      <button class="button" {{action "closeList"}}>Close List</button>
+    </li>
   </ul>
 </div>

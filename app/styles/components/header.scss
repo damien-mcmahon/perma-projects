@@ -5,6 +5,7 @@ $app-header-border-colour: #DDD;
 $app-header-spacing: $APP_BASE_SPACING;
 $app-header-z-index: 100;
 $app-header-signin-bg: $FACEBOOK_BG;
+$app-header-nav-margin: 5rem;
 
 .app--header {
   position: absolute;
@@ -18,7 +19,7 @@ $app-header-signin-bg: $FACEBOOK_BG;
   background: $app-header-bg;
   border-bottom: 1px solid $app-header-border-colour;
   padding: 0 ($app-header-spacing * 2);
-  overflow: hidden;
+
 
   .header--content-wrapper {
     display: flex;
@@ -29,6 +30,7 @@ $app-header-signin-bg: $FACEBOOK_BG;
 
   .app--header--name-wrapper {
     flex: 1;
+    overflow: hidden;
   }
 
   .app--header--logo {
@@ -56,8 +58,11 @@ $app-header-signin-bg: $FACEBOOK_BG;
   }
 
   .app--header--nav {
-    display: inline-flex;
+    display: flex;
     align-items: center;
+    flex: 1;
+    justify-content: flex-end;
+    margin-right: $app-header-nav-margin;
 
     .app--header--nav-link {
       display: inline-block;
@@ -73,7 +78,7 @@ $app-header-signin-bg: $FACEBOOK_BG;
   }
 
   .app--header--facebook-like {
-    height: 3rem;
-    width: 5rem;
+    width: 0rem;
+    margin: $app-header-spacing;
   }
 }
