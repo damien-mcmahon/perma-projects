@@ -2,6 +2,9 @@
 @import 'variables/measurements';
 @import 'variables/colours';
 
+//MIXINS
+@import 'mixins/mq';
+
 //ELEMENTS
 @import 'elements/forms';
 @import 'elements/buttons';
@@ -31,10 +34,11 @@ main {
 
 html {
   font-size: 62.5%;
+  min-width: $APP_MIN_SIZE;
 }
 
 body {
-  min-width: 320px;
+  min-width: $APP_MIN_SIZE;
   padding-top: $APP_HEADER_HEIGHT;
   font-family: 'Lato', sans-serif;
 }
