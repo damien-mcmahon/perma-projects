@@ -24,7 +24,6 @@ $app-header-nav-margin: 5rem;
     padding: 0 ($app-header-spacing * 2);
   }
 
-
   .header--content-wrapper {
     display: flex;
     width: 100%;
@@ -85,7 +84,8 @@ $app-header-nav-margin: 5rem;
     flex: 1;
     justify-content: flex-end;
 
-    @include mq($APP_SMALL_SCREEN_BREAKPOINT) {
+
+    @include mq($APP_DESKTOP_SCREEN_BREAKPOINT) {
       margin-right: $app-header-nav-margin;
     }
 
@@ -103,14 +103,14 @@ $app-header-nav-margin: 5rem;
     text-transform: uppercase;
   }
 
-
-
   .app--header--facebook-like {
-    width: 0rem;
-    margin: $app-header-spacing;
     display: none;
-    @include mq($APP_SMALL_SCREEN_BREAKPOINT) {
-      display: initial;
+
+    @include mq($APP_DESKTOP_SCREEN_BREAKPOINT) {
+      margin: $app-header-spacing;
+      width: 5rem;
+      height: 5rem;
+      display: block;
     }
   }
 }
