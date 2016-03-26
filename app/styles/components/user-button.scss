@@ -1,8 +1,12 @@
 $user-button-spacing: $APP_BASE_SPACING;
 $user-menu-bg: #FFF;
 $user-menu-border-colour: #CCC;
-$user-menu-profile-pic-size: 3rem;
+$user-menu-profile-pic-size: 2rem;
+$user-menu-profile-pic-larger-size: 3rem;
 $user-menu-shadow: rgba(0,0,0,.2);
+$user-button-text-colour: #111;
+$user-button-link-hover-bg: #00C;
+$user-button-link-hover-colour: #FFF;
 
 .user--menu-wrapper {
   position: relative;
@@ -29,14 +33,24 @@ $user-menu-shadow: rgba(0,0,0,.2);
     .user-button--profile-pic {
       height: $user-menu-profile-pic-size;
       width: $user-menu-profile-pic-size;
+      margin: ($APP_BASE_SPACING / 2) 0;
       vertical-align: middle;
       border-radius: 100%;
+      transition: all .5s;
+
+      @include mq($APP_SMALL_SCREEN_BREAKPOINT) {
+        height: $user-menu-profile-pic-larger-size;
+        width: $user-menu-profile-pic-larger-size;
+        margin: 0;
+      }
+
     }
 
     .user-button--name {
       display: inline-block;
       margin: 0;
       font-size: 1rem;
+      font-weight: 300;
     }
   }
 
@@ -45,7 +59,7 @@ $user-menu-shadow: rgba(0,0,0,.2);
     top: 100%;
     left: 0;
     width: 100%;
-    padding: $user-button-spacing;
+    padding: 0;
     margin: 0;
     background: $user-menu-bg;
     border: 1px solid $user-menu-border-colour;
@@ -54,9 +68,17 @@ $user-menu-shadow: rgba(0,0,0,.2);
 
     a {
       display: block;
-      margin: $user-button-spacing;
+      margin: $user-button-spacing 0;
+      padding: $user-button-spacing;
       text-transform: uppercase;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
+      color:$user-button-text-colour;
+      cursor: pointer;
+
+      &:hover {
+        background: $user-button-link-hover-bg;
+        color: $user-button-link-hover-colour;
+      }
     }
   }
 }

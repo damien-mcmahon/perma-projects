@@ -6,6 +6,7 @@ $app-header-spacing: $APP_BASE_SPACING;
 $app-header-z-index: 100;
 $app-header-signin-bg: $FACEBOOK_BG;
 $app-header-nav-margin: 5rem;
+$app-header-name-colour: #111;
 
 .app--header {
   position: absolute;
@@ -34,7 +35,7 @@ $app-header-nav-margin: 5rem;
   .app--header--name-wrapper {
     display: inline-flex;
     overflow: hidden;
-    width: 50%;
+    width: 55%;
     align-items: center;
 
     @include mq($APP_SMALL_SCREEN_BREAKPOINT) {
@@ -60,14 +61,15 @@ $app-header-nav-margin: 5rem;
     text-transform: uppercase;
 
     @include mq($APP_SMALL_SCREEN_BREAKPOINT) {
-      a{
-        font-size: 1.5rem;
+      a {
+        font-size: 1.4rem;
       }
     }
 
     a {
       font-size: 1.2rem;
       text-decoration: none;
+      color: $app-header-name-colour;
     }
   }
 
@@ -76,6 +78,7 @@ $app-header-nav-margin: 5rem;
     margin: 0;
     font-size: 1rem;
     text-transform: uppercase;
+    font-weight: 300;
   }
 
   .app--header--nav {
@@ -95,6 +98,11 @@ $app-header-nav-margin: 5rem;
       text-transform: uppercase;
       text-decoration: none;
       font-size: 1.2rem;
+      color: $app-header-name-colour;
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
   .app--header--sign-in {
