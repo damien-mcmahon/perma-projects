@@ -39,6 +39,16 @@ export default Ember.Controller.extend({
       });
     },
 
+    setLocation(coords) {
+      this.setProperties({
+        mapLocation: {
+          lat: coords.latitude,
+          lng: coords.longitude
+        },
+        zoomLevel: SEARCH_QUERY_ZOOM_LEVEL
+      });
+    },
+
     selectAddress(address) {
       let [lng,lat] = address.center;
       let zoomLevel = address.properties.short_code ?

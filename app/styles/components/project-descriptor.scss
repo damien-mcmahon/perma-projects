@@ -1,1 +1,30 @@
-.project-descriptor--wrapper {}
+.project-descriptor--wrapper {
+  .project--icon {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 ($APP_BASE_SPACING / 4) 0 0;
+    height: 2.5rem;
+  }
+
+  .project--title {
+    display: inline-block;
+    margin: 0;
+    a {
+      word-wrap: break-word;
+      white-space: normal;
+      font-size: 1.2rem;
+    }
+  }
+
+  .project--description {
+    font-size: 1.2rem;
+    line-height: 1.5;
+  }
+}
+
+.leaflet-popup-content-wrapper {
+  z-index: 120;
+  position: relative;
+  background: rgba(255,255,255,.9);
+  min-width: 20rem;
+}

@@ -1,8 +1,11 @@
 <div class="project-descriptor--wrapper">
-  <h2>
-    {{#link-to 'project' project.id}}
-      {{project.title}}
-    {{/link-to}}
-  </h2>
-  <p>{{project.description}}</p>
+  <header class="project--header">
+    <img class="project--icon" src="images/perma-site.svg" />
+    <h2 class="project--title">
+      {{#link-to 'project' project.id}}
+        {{project.title}}
+      {{/link-to}}
+    </h2>
+  </header>
+  <p class="project--description">{{project.description}}</p>
 </div>

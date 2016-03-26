@@ -8,24 +8,36 @@ $index-page-spacing: $APP_BASE_SPACING;
   margin: 0;
   padding: 0;
 
-  .search-box--wrapper {
-    position: absolute;
-    top: $index-page-spacing;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
-    width: 50vw;
-    height: auto;
-    border: 1px solid $index-page--search-box-border-colour;
-    background: $index-page--search-box-bg;
-    box-shadow: 5px 5px 5px rgba(0,0,0,.25);
-  }
-
-  .leaflet-container{
+  .leaflet-container {
     position: absolute;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
+  }
+
+  .multibox--wrapper {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: $index-page-spacing;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    height: auto;
+    padding: 0 $APP_BASE_SPACING / 2;
+    background: $index-page--search-box-bg;
+    border: 1px solid $index-page--search-box-border-colour;
+    box-shadow: 0 3px 5px rgba(0,0,0,.25);
+  }
+
+  .current-location--wrapper {
+    z-index: 10;
+    position: absolute;
+    right: $APP_BASE_SPACING;
+
+    .button {
+      box-shadow: 0 2px 2px rgba(0,0,0,.25);
+    }
   }
 }

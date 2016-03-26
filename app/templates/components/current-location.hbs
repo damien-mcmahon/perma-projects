@@ -1,5 +1,5 @@
 <div class="current-location--wrapper">
-  <button class="button" {{action "getUserLocation"}}>
+  <button class="button" {{action "getUserLocation"}} disabled={{isSearching}}>
     {{fa-icon "location-arrow"}}
   </button>
 </div>

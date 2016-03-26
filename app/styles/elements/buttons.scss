@@ -25,5 +25,15 @@ $button-bg: #9CCC65;
   &:active,
   &:focus {
     background: darken($button-border-colour, 10%);
+    outline: none;
+  }
+
+  &[disabled] {
+    opacity: .75;
+    &:hover {
+      background: $button-bg;
+      color: $button-colour;
+      cursor: not-allowed;
+    }
   }
 }
