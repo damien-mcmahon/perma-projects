@@ -1,24 +1,44 @@
-<section id="project-page" class="view--wrapper">
-  <h1>{{model.title}}</h1>
-  <p>{{model.description}}</p>
-  <ul>
-
-  {{#if model.url}}
-    <li>
-      <a href="{{model.url}}" target="_blank">{{model.title}} Website</a>
-    </li>
+<section id="project-show-page" class="view--wrapper">
+  <section class="project-show--main">
+    <h1 class="project-show--title">{{model.title}}</h1>
+    <p class="project-show--description">{{model.description}}</p>
+  </section>
+  <section class="project-show--details">
+    <h2 class="project-show--section-title">Contact Details</h2>
+    <ul class="project-show--contact-list">
+    {{#if model.url}}
+      <li class="project-show--contact-item">
+        <a href="{{model.url}}" target="_blank">
+          {{fa-icon "globe"}} Website
+        </a>
+      </li>
+    {{/if}}
+    {{#if model.facebookUrl}}
+      <li class="project-show--contact-item -facebook-page">
+        <a
+          href="https://facebook.com/{{model.facebookUrl}}" target="_blank">
+          {{fa-icon "facebook" }} Facebook Page
+        </a>
+      </li>
+    {{/if}}
+    {{#if model.twitter}}
+      <li class="project-show--contact-item -twitter-page">
+        <a href="https://twitter.com/{{model.twitter}}" target="_blank">
+          {{fa-icon "twitter"}} @{{model.twitter}}</a>
+      </li>
+    {{/if}}
+    </ul>
+  </section>
+  {{#if model.address_1}}
+    <section class="project-show--details">
+      <h2 class="project-show--section-title">Address Details</h2>
+      <div class="project-show--address-wrapper">
+        <p class="project-show--address--1">{{model.address_1}}</p>
+        <p class="project-show--address--2">{{model.address_2}}</p>
+        <p class="project-show--address--city">{{model.city}}</p>
+        <p class="project-show--address--county">{{model.county}}</p>
+        <p class="project-show--address--post-code">{{model.postCode}}</p>
+      </div>
+    </section>
   {{/if}}
-
-  {{#if model.facebookUrl}}
-    <li>
-      <a href="{{model.facebookUrl}}" target="_blank">{{model.title}} Facebook Page</a>
-    </li>
-  {{/if}}
-
-  {{#if model.twitter}}
-    <li>
-      <a href="{{model.twitter}}" target="_blank">@{{model.twitter}}</a>
-    </li>
-  {{/if}}
-  </ul>
 </section>
