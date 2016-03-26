@@ -25,25 +25,10 @@
           results=(mut searchResults)
           onSelect=(action "selectAddress")
         }}{{/search-box}}
-
-        {{#if locationData}}
-          {{input
-            type="text"
-            value=locationData.lat
-            id="projectLatitude"
-          }}
-          {{input
-            type="text"
-            value=locationData.lng
-            id="projectLongitude"
-          }}
-        {{/if}}
-        {{input
-          type="checkbox"
-          checked=model.locationIsPublic
-        }}Share location?
+        <input type="checkbox" onclick={{action "setLocationPrivate"}}
+        checked="checked"/>Share location?
       </div>
-      {{#if model.address_1}}
+      {{#if (and model.address_1 model.locationIsPublic)}}
       <div class="address-wrapper">
         <div class="form-input--wrapper">
           <label for="address_1">Address Line 1: </label>
@@ -79,7 +64,7 @@
         <label for="facebookUrl">Facebook Page</label>
         <div class="input--with-label">
           <span class="input--label">https://facebook.com/</span>
-          {{input type="url" value=model.facebookUrl placeholder="yourproject"}}
+          {{input type="text" value=model.facebookUrl placeholder="yourproject"}}
         </div>
       </div>
       <div class="form-input--wrapper">
@@ -100,16 +85,23 @@
   zoom=this.zoomLevel
   onDrag=(action "mapDragging")
   }}
-  {{tile-layer url=url}}
+  {{tile-layer url=url detectRetina=true}}
   {{#if locationData}}
-    {{#marker-layer
-      lat=locationData.lat
-      lng=locationData.lng
-      clickable=false}}
-      {{#if model.title}}
+    {{#if model.locationIsPublic}}
+      {{#marker-layer
+        lat=locationData.lat
+        lng=locationData.lng
+        popupOpen=true
+      }}
+        {{#if model.title}}
+          {{#project-descriptor project=(mut model)}}{{/project-descriptor}}
+        {{/if}}
+      {{/marker-layer}}
+    {{else}}
+      {{#circle-marker-layer location=privacyCircle radius=privacyCircleRadius}}
         {{#project-descriptor project=(mut model)}}{{/project-descriptor}}
-      {{/if}}
-    {{/marker-layer}}
+      {{/circle-marker-layer}}
+    {{/if}}
   {{/if}}
 {{/leaflet-map}}
 </section>

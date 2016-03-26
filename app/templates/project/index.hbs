@@ -29,16 +29,15 @@
     {{/if}}
     </ul>
   </section>
-  {{#if model.address_1}}
-    <section class="project-show--details">
-      <h2 class="project-show--section-title">Address Details</h2>
-      <div class="project-show--address-wrapper">
-        <p class="project-show--address--1">{{model.address_1}}</p>
-        <p class="project-show--address--2">{{model.address_2}}</p>
-        <p class="project-show--address--city">{{model.city}}</p>
-        <p class="project-show--address--county">{{model.county}}</p>
-        <p class="project-show--address--post-code">{{model.postCode}}</p>
-      </div>
-    </section>
-  {{/if}}
+  <section class="project-show--details">
+    <h2 class="project-show--section-title">Address Details</h2>
+    <div class="project-show--address-wrapper">
+      <p class="project-show--address--1">{{model.address_1}}</p>
+      <p class="project-show--address--2">{{model.address_2}}</p>
+      <p class="project-show--address--city">{{model.city}}</p>
+      <p class="project-show--address--county">{{model.county}}</p>
+      <p class="project-show--address--post-code">{{model.postCode}}</p>
+      <p class="project-show--address--post-code">{{model.country}}</p>
+    </div>
+  </section>
 </section>

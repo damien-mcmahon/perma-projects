@@ -14,11 +14,18 @@
     lat=mapLocation.lat
     lng=mapLocation.lng
     zoom=this.zoomLevel}}
-    {{tile-layer url=selectedStyle.url}}
+    {{tile-layer url=selectedStyle.url detectRetina=true}}
     {{#each model as |project|}}
-      {{#marker-layer lat=project.location.lat lng=project.location.lng }}
-        {{#project-descriptor project=project}}{{/project-descriptor}}
-      {{/marker-layer}}
+      {{#if project.locationIsPublic}}
+        {{#marker-layer lat=project.location.lat lng=project.location.lng }}
+          {{#project-descriptor project=project}}{{/project-descriptor}}
+          {{/marker-layer}}
+
+      {{else}}
+        {{#circle-layer location=project.location radius=privacyCircleRadius}}
+          {{#project-descriptor project=project}}{{/project-descriptor}}
+        {{/circle-layer}}
+      {{/if}}
     {{/each}}
   {{/leaflet-map}}
   {{#current-location onFind=(action "setLocation")}}{{/current-location}}

@@ -10,6 +10,7 @@ const DEFAULTS = {
 };
 
 const MINIMUM_ZOOM_LEVEL = 11;
+const PRIVACY_ROUNDING = 3;
 
 export default Ember.Controller.extend({
   mapbox: Ember.inject.service(),
@@ -22,6 +23,8 @@ export default Ember.Controller.extend({
   locationData: null,
   isDragging: false,
   searchResults: null,
+  privacyCircle: {},
+  privacyCircleRadius: 200,
   url: 'http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png',
   extractAddress(context) {
     let CITY_REG_EX = /place\.(\d+)/gi;
@@ -84,7 +87,6 @@ export default Ember.Controller.extend({
       this.set('isSearching', true);
       let mapBox = this.get('mapbox');
       mapBox.query(searchQuery).then((results) => {
-        console.log("ADDRESS DEETS: ", results);
         this.setProperties({
           isSearching: false,
           searchResults: results.features
@@ -115,12 +117,49 @@ export default Ember.Controller.extend({
         'model.country': addressDetails.country
       });
     },
+    setLocationPrivate(event) {
+      let isChecked = event.target.checked;
+
+      if(!isChecked) {
+        //show a circle on the map
+        let currentCoords = this.get('locationData');
+
+        this.setProperties({
+          privacyCircle: {
+            lat: currentCoords.lat.toFixed(PRIVACY_ROUNDING),
+            lng: currentCoords.lng.toFixed(PRIVACY_ROUNDING)
+          }
+        })
+      } else {
+        this.setProperties({
+          privacyCircle:{}
+        });
+      }
+
+      this.set('model.locationIsPublic', isChecked);
+
+    },
+
     addProject(event){
       event.preventDefault();
       let user = this.get('session.currentUser');
       let newProject = this.get('model');
       let locationData = this.get('locationData');
+      let locationIsPublic = newProject.get('locationIsPublic');
       let userEmail = user.email ? user.email : '';
+
+      if(!locationIsPublic) {
+        newProject.setProperties({
+          address_1: '',
+          address_2: '',
+          postCode: ''
+        });
+      }
+
+      let projectLat = locationIsPublic ?
+        locationData.lat : locationData.lat.toFixed(PRIVACY_ROUNDING);
+      let projectLng = locationIsPublic ?
+        locationData.lng : locationData.lng.toFixed(PRIVACY_ROUNDING);
 
       newProject.userId = user.id;
       newProject.setProperties({
@@ -129,8 +168,8 @@ export default Ember.Controller.extend({
         email: userEmail,
         createdAt: new Date().getTime(),
         location: {
-          lat: locationData.lat,
-          lng: locationData.lng
+          lat: projectLat,
+          lng: projectLng
         }
       });
 

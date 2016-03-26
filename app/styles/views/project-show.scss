@@ -1,0 +1,67 @@
+$project-contact-item-colour: #FFF;
+$project-contact-item-bg: #AAA;
+$project-contact-fb-bg: $FACEBOOK_BG;
+$project-contact-twitter-bg: $TWITTER_BG;
+$project-section-border-colour: #DDD;
+
+#project-show-page {
+  .project-show--title {
+    font-size: 2rem;
+  }
+
+  .project-show--description {
+    line-height: 1.5;
+    margin: ($APP_BASE_SPACING * 3) 0;
+  }
+
+  .project-show--details {
+    border-top: 1px solid $project-section-border-colour;
+    padding: $APP_BASE_SPACING 0;
+  }
+
+  .project-show--contact-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .project-show--contact-item {
+    display:inline-block;
+    border-radius: 1rem;
+    background: $project-contact-item-bg;
+    padding: $APP_BASE_SPACING / 2 $APP_BASE_SPACING;
+    margin: $APP_BASE_SPACING / 4;
+
+    a {
+      color: $project-contact-item-colour;
+      font-size: 1.1rem;
+      font-weight: 300;
+    }
+
+    &.-facebook-page {
+      background: $project-contact-fb-bg;
+    }
+
+    &.-twitter-page {
+      background: $project-contact-twitter-bg;
+    }
+
+    .fa {
+      display: inline-block;
+      margin-right: $APP_BASE_SPACING;
+      font-size: 2rem;
+      vertical-align: middle;
+    }
+  }
+
+  .project-show--address-wrapper {
+    .project-show--section-title {
+      margin-bottom: 0;
+    }
+
+    p {
+      margin: 0;
+    }
+  }
+
+}
