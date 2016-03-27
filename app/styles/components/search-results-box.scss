@@ -1,15 +1,17 @@
 $search-results-hover-bg: #00C;
 $search-results-hover-colour: #FFF;
 $search-results-spacing: $APP_BASE_SPACING;
+$search-results-box-title-colour:#AAA;
 
 .search-results-box--wrapper {
   position: absolute;
-  top: 102.5%;
+  top: 100%;
   background: #FFF;
   width: 100%;
   border: 1px solid #CCC;
   z-index: 10;
   box-shadow: 5px 5px 5px rgba(0,0,0,.25);
+  left: 0;
 
   .is-hidden & {
     display: none;
@@ -19,6 +21,13 @@ $search-results-spacing: $APP_BASE_SPACING;
     margin: 0;
     padding: 0;
     list-style: none;
+  }
+
+  .search-results-box--section-title {
+    text-transform: uppercase;
+    color:$search-results-box-title-colour;
+    margin: ($APP_BASE_SPACING/4);
+    font-weight: 300;
   }
 
   .search-results-box--item {
@@ -32,9 +41,12 @@ $search-results-spacing: $APP_BASE_SPACING;
     }
   }
 
-  .search-result--place-name{
+  .search-result--place-name,
+  .search-result--project-name {
     font-size: 1.3rem;
+    font-weight: 300;
   }
+
   .search-result-box--close {
     text-align: center;
     padding: $search-results-spacing;

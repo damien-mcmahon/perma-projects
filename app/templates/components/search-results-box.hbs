@@ -1,12 +1,23 @@
 <div class="search-results-box--wrapper">
-  <ul class="search-results-box--list">
-    {{#each results as |result|}}
-      <li class="search-results-box--item" {{action "select" result}}>
-        <h2 class="search-result--place-name">{{result.place_name}}</h2>
-      </li>
-    {{/each}}
-    <li class="search-result-box--close">
+  {{#each-in results as |type results|}}
+    <h2 class="search-results-box--section-title">{{type}}</h2>
+      <ul class="search-results-box--list">
+        {{#each results as |result|}}
+          <li class="search-results-box--item" {{action "select" result type}}>
+            {{#if (eq type 'projects')}}
+            <h2 class="search-result--project-name">{{result.title}}</h2>
+            {{else}}
+            <h2 class="search-result--place-name">{{result.place_name}}</h2>
+            {{/if}}
+          </li>
+        {{else}}
+          <li class="search-results-box--item">No Result Found</li>
+        {{/each}}
+      </ul>
+  {{/each-in}}
+  {{#if showCloseButton}}
+    <div class="search-result-box--close">
       <button class="button" {{action "closeList"}}>Close List</button>
-    </li>
-  </ul>
+    </div>
+  {{/if}}
 </div>

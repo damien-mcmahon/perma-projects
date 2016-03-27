@@ -17,10 +17,11 @@ const DEFAULTS = {
 };
 
 const PRIVACY_CIRCLE_RADIUS = 100;
+const PROJECTS_TO_SEARCH_COUNT = 10;
 
 export default Ember.Controller.extend({
   mapbox: Ember.inject.service(),
-  searchResults: [],
+  searchResults: {projects: [], places: []},
   mapStyles: MAP_STYLES,
   selectedStyle: MAP_STYLES[1],
   mapLocation: {
@@ -34,10 +35,37 @@ export default Ember.Controller.extend({
     onSearch(searchQuery) {
       let mapBox = this.get('mapbox');
       this.set('isSearching', true);
-      mapBox.query(searchQuery).then((results) => {
 
+      mapBox.query(searchQuery).then((results) => {
         this.set('isSearching', false);
-        this.set('searchResults', results.features);
+        this.set('searchResults', {
+          places: results.features,
+          projects: this.get('searchResults.projects')
+        });
+      });
+
+      let projectsFound = this.store.query('project', {
+        orderBy: 'title',
+        startAt: searchQuery.charAt(0),
+        limitToFirst: PROJECTS_TO_SEARCH_COUNT
+      })
+
+      projectsFound.then((results) => {
+        let content = results.get('content');
+        if(content) {
+          let actualResults = content.filter((result) => {
+            let recordTitle = result.record.get('title').toLowerCase();
+            let cleanedSearchQuery = searchQuery.toLowerCase();
+            return recordTitle.indexOf(cleanedSearchQuery) >= 0;
+          });
+
+          let mappedResults = actualResults.map((res) => res.record);
+
+          this.set('searchResults', {
+            places: this.get('searchResults.places'),
+            projects: mappedResults
+          });
+        }
       });
     },
 
@@ -51,10 +79,20 @@ export default Ember.Controller.extend({
       });
     },
 
-    selectAddress(address) {
-      let [lng,lat] = address.center;
-      let zoomLevel = address.properties.short_code ?
+    selectAddress(result, type) {
+
+      let lat,lng,zoomLevel;
+
+      if(type === 'places') {
+        [lng,lat] = result.center;
+        zoomLevel = result.properties.short_code ?
         COUNTRY_LEVEL_ZOOM : SEARCH_QUERY_ZOOM_LEVEL;
+      } else {
+        let loc = result.get('location');
+        lat = loc.lat;
+        lng = loc.lng;
+        zoomLevel = SEARCH_QUERY_ZOOM_LEVEL;
+      }
 
       this.setProperties({
         mapLocation: {

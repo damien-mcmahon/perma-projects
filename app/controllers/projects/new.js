@@ -67,7 +67,7 @@ export default Ember.Controller.extend({
         });
       }
     },
-    
+
     updateLocation(event) {
       let currentZoomLevel = event.target.getZoom();
       let projectTitle = this.get('model.title');
@@ -165,7 +165,6 @@ export default Ember.Controller.extend({
       let projectLng = locationIsPublic ?
         locationData.lng : locationData.lng.toFixed(PRIVACY_ROUNDING);
 
-      newProject.userId = user.id;
       newProject.setProperties({
         userId: user.id,
         userName: user.displayName,
@@ -177,8 +176,12 @@ export default Ember.Controller.extend({
         }
       });
 
-      newProject.save();
-      this.transitionToRoute('projects');
+      if(user.id) {
+        newProject.save();
+        this.transitionToRoute('projects');
+      } else {
+        alert("You need to be logged in");
+      }
     }
   }
 });

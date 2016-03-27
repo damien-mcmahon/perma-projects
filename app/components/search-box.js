@@ -3,9 +3,22 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   searchTerm: '',
   isSearching: false,
+  hasSearchResults: false,
   didReceiveAttrs(attrs) {
     this._super(...arguments);
-    this.set('isSearching', attrs.newAttrs.searching);
+    let newAttrs = attrs.newAttrs;
+    this.set('isSearching', newAttrs.searching);
+
+    if(newAttrs.results) {
+      let results = newAttrs.results.value;
+      let resultKeys = results ? Object.keys(results) : [];
+
+      resultKeys.map((key) => {
+        if(results[key] && results[key].length) {
+          this.set('hasSearchResults', true);
+        }
+      });
+    }
   },
   actions: {
     setSearch(){
@@ -22,9 +35,9 @@ export default Ember.Component.extend({
       }
     },
 
-    resultSelected(result){
+    resultSelected(result, type){
       this.set('searchTerm', '');
-      this.get('onSelect')(result);
+      this.get('onSelect')(result, type);
     },
 
     closeSearch() {

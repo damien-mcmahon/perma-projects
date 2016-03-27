@@ -5,9 +5,9 @@
     class="button search-box--submit"
     {{action "search"}}
     disabled={{isSearching}}>Search</button>
-  {{#if attrs.results.length}}
+  {{#if hasSearchResults}}
     {{#search-results-box
-      results=attrs.results
+      results=(mut attrs.results)
       onselect=(action "resultSelected")
       onclose=(action "closeSearch")}}
     {{/search-results-box}}
