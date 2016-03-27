@@ -1,11 +1,18 @@
 <div class="search-results-box--wrapper">
   {{#each-in results as |type results|}}
-    <h2 class="search-results-box--section-title">{{type}}</h2>
+    <h2 class="search-results-box--section-title">
+      {{#if (eq type 'projects')}}
+        <img class="search-results-box--icon" src="images/perma-site.svg" />
+      {{else if (eq type 'places')}}
+        {{fa-icon 'map-signs'}}
+      {{/if}}
+      {{type}}</h2>
       <ul class="search-results-box--list">
         {{#each results as |result|}}
           <li class="search-results-box--item" {{action "select" result type}}>
             {{#if (eq type 'projects')}}
-            <h2 class="search-result--project-name">{{result.title}}</h2>
+            <h2 class="search-result--project-name">
+              {{result.title}}</h2>
             {{else}}
             <h2 class="search-result--place-name">{{result.place_name}}</h2>
             {{/if}}

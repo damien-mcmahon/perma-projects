@@ -30,6 +30,12 @@ $search-results-box-title-colour:#AAA;
     font-weight: 300;
   }
 
+  .search-results-box--icon {
+    height: 2rem;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
   .search-results-box--item {
     border-bottom: 1px solid #EEE;
     padding: 5px;
