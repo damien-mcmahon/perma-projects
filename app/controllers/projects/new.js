@@ -67,6 +67,7 @@ export default Ember.Controller.extend({
         });
       }
     },
+    
     updateLocation(event) {
       let currentZoomLevel = event.target.getZoom();
       let projectTitle = this.get('model.title');
@@ -109,8 +110,11 @@ export default Ember.Controller.extend({
         zoomLevel: DEFAULTS.ADDRESS_ZOOM
       });
 
+      let addressLine1 = address.address ?
+        `${address.address} ${address.text}` : `${address.text}`;
+
       this.setProperties({
-        'model.address_1': `${address.address} ${address.text}`,
+        'model.address_1': addressLine1,
         'model.city': addressDetails.city,
         'model.county': addressDetails.county,
         'model.postCode': addressDetails.postcode,
@@ -140,7 +144,7 @@ export default Ember.Controller.extend({
 
     },
 
-    addProject(event){
+    addProject(event) {
       event.preventDefault();
       let user = this.get('session.currentUser');
       let newProject = this.get('model');
