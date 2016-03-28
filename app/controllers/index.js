@@ -101,6 +101,27 @@ export default Ember.Controller.extend({
         },
         zoomLevel: zoomLevel
       });
+    },
+
+    getProjectsForBounds(event) {
+      let bounds = event.target.getBounds();
+      let southWest = bounds.getSouthWest();
+      let northEast = bounds.getNorthEast();
+
+      this.store.query('project', {
+        orderBy: 'lat',
+        startAt: southWest.lat,
+        endAt: northEast.lat,
+      }).then((res) => {
+          let onScreenLocations = res.filter((result) => {
+            let resultLng = result.get('lng');
+            let minLng = southWest.lng;
+            let maxLng = northEast.lng;
+            return (resultLng >= minLng && resultLng <= maxLng);
+          });
+
+          this.set('model', onScreenLocations);
+      });
     }
   }
 });

@@ -92,22 +92,24 @@
   </form>
 </section>
 {{#leaflet-map
-lat=model.location.lat
-lng=model.location.lng
+lat=model.lat
+lng=model.lng
 zoom=this.zoomLevel
 }}
 {{tile-layer url=url}}
 {{#if isDragging}}
-{{#marker-layer
-  lat=centerPoint.lat
-  lng=centerPoint.lng
-  clickable=false}}
+  {{#marker-layer
+    lat=centerPoint.lat
+    lng=centerPoint.lng
+    popupOpen=true
+    clickable=false}}
+    {{#project-descriptor project=(mut model)}}{{/project-descriptor}}
   {{/marker-layer}}
 {{else}}
-  {{#if model.location}}
+  {{#if model.lat}}
     {{#marker-layer
-      lat=model.location.lat
-      lng=model.location.lng
+      lat=model.lat
+      lng=model.lng
       clickable=false}}
     {{/marker-layer}}
   {{/if}}

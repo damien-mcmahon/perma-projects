@@ -53,18 +53,22 @@ export default Ember.Controller.extend({
       mapBox.query(searchQuery).then((results) => {
         this.setProperties({
           isSearching: false,
-          searchResults: results.features
+          searchResults: {
+            places: results.features
+          }
         });
       });
     },
     selectAddress(address) {
       let [lng, lat] = address.center;
       let addressDetails = this.extractAddress(address.context);
-      console.log("ADD: ", addressDetails);
       let model = this.get('model');
 
+      let addressLine1 = address.address ?
+        `${address.address} ${address.text}` : `${address.text}`;
+
       model.setProperties({
-        'address_1': `${address.address} ${address.text}`,
+        'model.address_1': addressLine1,
         'city': addressDetails.city,
         'county': addressDetails.county,
         'postCode': addressDetails.postcode,

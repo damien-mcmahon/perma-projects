@@ -10,7 +10,8 @@ export default DS.Model.extend({
   url: DS.attr('string'),
   facebookUrl: DS.attr('string'),
   twitter: DS.attr('string'),
-  location: DS.attr(),
+  lat: DS.attr('number'),
+  lng: DS.attr('number'),
   userIsProjectOwner: DS.attr('boolean'),
   address_1: DS.attr('string'),
   address_2: DS.attr('string'),
@@ -19,5 +20,8 @@ export default DS.Model.extend({
   country: DS.attr('string'),
   postCode: DS.attr('string', { defaultValue: ''}),
   likes: DS.attr('number'),
-  views: DS.attr('number')
+  views: DS.attr('number'),
+  location: Ember.computed('lat', 'lng', function() {
+    return { lat: this.get('lat'), lng: this.get('lng')};
+  })
 });

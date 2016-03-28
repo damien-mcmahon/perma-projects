@@ -90,7 +90,9 @@ export default Ember.Controller.extend({
       mapBox.query(searchQuery).then((results) => {
         this.setProperties({
           isSearching: false,
-          searchResults: results.features
+          searchResults: {
+            places: results.features
+          }
         });
       });
     },
@@ -170,10 +172,8 @@ export default Ember.Controller.extend({
         userName: user.displayName,
         email: userEmail,
         createdAt: new Date().getTime(),
-        location: {
-          lat: projectLat,
-          lng: projectLng
-        }
+        lat: projectLat,
+        lng: projectLng
       });
 
       if(user.id) {

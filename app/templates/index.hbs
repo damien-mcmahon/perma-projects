@@ -13,14 +13,14 @@
     scrollWheelZoom=false
     lat=mapLocation.lat
     lng=mapLocation.lng
+    onMoveend=(action "getProjectsForBounds")
     zoom=this.zoomLevel}}
     {{tile-layer url=selectedStyle.url detectRetina=true}}
     {{#each model as |project|}}
       {{#if project.locationIsPublic}}
-        {{#marker-layer lat=project.location.lat lng=project.location.lng }}
+        {{#marker-layer lat=project.lat lng=project.lng }}
           {{#project-descriptor project=project}}{{/project-descriptor}}
           {{/marker-layer}}
-
       {{else}}
         {{#circle-layer location=project.location radius=privacyCircleRadius}}
           {{#project-descriptor project=project}}{{/project-descriptor}}
