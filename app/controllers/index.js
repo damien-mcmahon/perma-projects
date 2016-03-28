@@ -113,14 +113,10 @@ export default Ember.Controller.extend({
         startAt: southWest.lat,
         endAt: northEast.lat,
       }).then((res) => {
-          let onScreenLocations = res.filter((result) => {
-            let resultLng = result.get('lng');
-            let minLng = southWest.lng;
-            let maxLng = northEast.lng;
-            return (resultLng >= minLng && resultLng <= maxLng);
-          });
-
-          this.set('model', onScreenLocations);
+        let onScreenLocations = res.filter((result) => {
+          return bounds.contains(L.latLng(result.get('location')));
+        });
+        this.set('model', onScreenLocations);
       });
     }
   }
