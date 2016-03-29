@@ -78,7 +78,7 @@ export default Ember.Controller.extend({
         equalTo: slugTitle
       }).then((results) => {
         if(results.content.length) {
-          model.set('slugTitle', `${slugTitle}-${results.length}`);
+          model.set('slugTitle', `${slugTitle}-${results.content.length}`);
         } else {
           model.set('slugTitle', slugTitle);
         }
