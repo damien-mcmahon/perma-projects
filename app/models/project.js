@@ -23,5 +23,6 @@ export default DS.Model.extend({
   views: DS.attr('number'),
   location: Ember.computed('lat', 'lng', function() {
     return { lat: this.get('lat'), lng: this.get('lng')};
-  })
+  }),
+  slugTitle: DS.attr('string')
 });

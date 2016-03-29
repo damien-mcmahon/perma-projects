@@ -10,10 +10,10 @@ const MAP_STYLES = [
 ];
 const DEFAULTS = {
   LOCATION: {
-    lat: 52,
-    lng: -1.4
+    lat: 51.47685,
+    lng: 0
   },
-  ZOOM: 5
+  ZOOM: 8
 };
 
 const PRIVACY_CIRCLE_RADIUS = 100;

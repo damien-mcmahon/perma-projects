@@ -7,11 +7,11 @@
     <div class="projects--project-wrapper">
       <h1>{{project.title}}</h1>
       <p>{{project.description}}</p>
-      {{#link-to 'project' project.id class="button"}}
+      {{#link-to 'project' project.slugTitle class="button"}}
         View
       {{/link-to}}
       {{#link-to
-        'project.edit' project.id
+        'project.edit' project.slugTitle
         class="button"}}
         Edit
       {{/link-to}}

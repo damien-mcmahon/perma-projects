@@ -26,6 +26,20 @@ export default Ember.Controller.extend({
   privacyCircle: {},
   privacyCircleRadius: 200,
   url: 'http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png',
+  slugerizeTitle(unsafeTitle) {
+    const STRIP_CHARS_REGEX = /[^a-z0-9\-\s]/gi;
+    const DASH_STRIP_REGEX = /^-|-$/g;
+    const STRIP_REPLACE_VALS = '';
+    const SPLIT_CHAR = ' ';
+    const JOIN_CHAR = '-';
+
+    return unsafeTitle
+      .toLowerCase()
+      .replace(STRIP_CHARS_REGEX, STRIP_REPLACE_VALS)
+      .replace(DASH_STRIP_REGEX, STRIP_REPLACE_VALS)
+      .split(SPLIT_CHAR)
+      .join(JOIN_CHAR);
+  },
   extractAddress(context) {
     let CITY_REG_EX = /place\.(\d+)/gi;
     let COUNTY_REG_EX = /region\.(\d+)/gi;
@@ -54,6 +68,23 @@ export default Ember.Controller.extend({
     return address;
   },
   actions: {
+    checkAndSluggerizeTitle() {
+      let model = this.get('model');
+      let title = model.get('title');
+      let slugTitle = this.slugerizeTitle(title);
+
+      this.store.query('project', {
+        orderBy: 'slugTitle',
+        equalTo: slugTitle
+      }).then((results) => {
+        if(results.content.length) {
+          model.set('slugTitle', `${slugTitle}-${results.length}`);
+        } else {
+          model.set('slugTitle', slugTitle);
+        }
+      });
+    },
+
     mapDragging(event) {
       let mapCenter = event.target.getCenter();
       let currentZoomLevel = event.target.getZoom();
@@ -135,7 +166,7 @@ export default Ember.Controller.extend({
             lat: currentCoords.lat.toFixed(PRIVACY_ROUNDING),
             lng: currentCoords.lng.toFixed(PRIVACY_ROUNDING)
           }
-        })
+        });
       } else {
         this.setProperties({
           privacyCircle:{}
