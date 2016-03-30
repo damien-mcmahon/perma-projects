@@ -6,6 +6,7 @@
         searching=(mut isSearching)
         results=(mut searchResults)
         onSelect=(action "selectAddress")
+        placeholderText="Search For Projects or Places"
       }}{{/search-box}}
     </div>
   </div>
@@ -14,7 +15,8 @@
     lat=mapLocation.lat
     lng=mapLocation.lng
     onMoveend=(action "getProjectsForBounds")
-    zoom=this.zoomLevel}}
+    zoom=this.zoomLevel
+    worldCopyJump=true}}
     {{tile-layer url=selectedStyle.url detectRetina=true}}
     {{#each model as |project|}}
       {{#if project.locationIsPublic}}

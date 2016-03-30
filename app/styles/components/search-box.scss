@@ -1,29 +1,18 @@
 .search-box--wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
   height: 100%;
   min-width: 300px;
+  width: 50vw;
+  padding: $APP_BASE_SPACING 0;
 
-  input[type="search"] {
-    padding: 10px 5px;
-    color: #222;
-    font-size: 2rem;
-    margin: 5px;
-    border: 1px solid #DDD;
-    width: 75%;
+  .search-box--query {
+    flex: 1 0 50%;
+    margin-right: $APP_BASE_SPACING;
   }
 
   .search-box--submit {
-    padding: 10px 5px;
-    font-size: 1.5rem;
-    width: 15%;
-    min-width: 60px;
-    border: 1px solid #DDD;
-    border-radius: 5px;
-    background: #CCC;
-    margin: 0 auto;
-
-    [disabled="disable"]{
-      opacity: .5;
-    }
   }
 }

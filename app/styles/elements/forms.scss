@@ -4,50 +4,55 @@ $form-border-radius: .5rem;
 $form-default-font-size: 1.3em;
 $form-default-label-size: 1.2em;
 
+
 .form-input--wrapper {
   padding: $form-spacing;
   width: 100%;
+}
 
-  label {
-    display: block;
-    margin-bottom: $form-spacing;
-    font-size: $form-default-font-size;
-    line-height: 1.5;
+label {
+  display: block;
+  margin-bottom: $form-spacing;
+  font-size: $form-default-font-size;
+  line-height: 1.5;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: ($form-spacing / 2);
+  margin: ($form-spacing / 4) 0;
+  border: 1px solid $form-border-colour;
+  font-size: $form-default-font-size;
+  line-height: 1.5;
+  border-radius: $form-border-radius;
+
+  &:focus {
+    outline: none;
   }
+}
 
-  input,
-  textarea {
-    width: 100%;
-    padding: ($form-spacing / 2);
-    margin: ($form-spacing / 4) 0;
+.input--with-label {
+  display: inline-flex;
+  width: 100%;
+  overflow: hidden;
+  border-radius: $form-border-radius;
+
+  .input--label {
+    display: inline-block;
     border: 1px solid $form-border-colour;
-    font-size: $form-default-font-size;
-    line-height: 1.5;
-    border-radius: $form-border-radius;
+    padding: ($form-spacing / 2) $form-spacing;
+    margin: ($form-spacing / 4) 0;
+    border-top-left-radius: $form-border-radius;
+    border-bottom-left-radius: $form-border-radius;
+    font-size: $form-default-label-size;
+    line-height: ($form-default-font-size * 1.5);
   }
 
-  .input--with-label {
-    display: inline-flex;
-    width: 100%;
-    overflow: hidden;
-    border-radius: $form-border-radius;
-
-    .input--label {
-      display: inline-block;
-      border: 1px solid $form-border-colour;
-      padding: ($form-spacing / 2) $form-spacing;
-      margin: ($form-spacing / 4) 0;
-      border-top-left-radius: $form-border-radius;
-      border-bottom-left-radius: $form-border-radius;
-      font-size: $form-default-label-size;
-      line-height: ($form-default-font-size * 1.5);
-    }
-
-    input {
-      border-left: none;
-      border-radius: 0;
-      border-top-right-radius: $form-border-radius;
-      border-bottom-right-radius: $form-border-radius;
-    }
+  input {
+    border-left: none;
+    border-radius: 0;
+    border-top-right-radius: $form-border-radius;
+    border-bottom-right-radius: $form-border-radius;
   }
 }

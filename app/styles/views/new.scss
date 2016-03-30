@@ -15,6 +15,8 @@ $new-page--address-padding: $APP_BASE_SPACING / 4;
 
   .search-box--wrapper {
     position: relative;
+    display:inline-flex;
+    width: 100%;
   }
 
   .project--description textarea {
@@ -27,6 +29,9 @@ $new-page--address-padding: $APP_BASE_SPACING / 4;
       margin: 0;
       padding-top: $new-page--address-padding;
       padding-bottom: $new-page--address-padding;
+    }
+    label {
+      margin-bottom: 0;
     }
 
     .address--city,

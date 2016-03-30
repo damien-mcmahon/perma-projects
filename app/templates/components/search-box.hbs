@@ -1,6 +1,6 @@
 <div class="search-box--wrapper">
-  {{input type="search" class="search-box--query" value=searchTerm
-    key-press="setSearch" }}
+  {{input type="text" class="search-box--query" value=searchTerm
+    key-press="setSearch" placeholder=placeholderText}}
   <button
     class="button search-box--submit"
     {{action "search"}}

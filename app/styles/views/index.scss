@@ -1,4 +1,4 @@
-$index-page--search-box-bg: #F0F0F0;
+$index-page--search-box-bg: #FFF;
 $index-page--search-box-border-colour: #CCC;
 $index-page-spacing: $APP_BASE_SPACING;
 
@@ -13,7 +13,7 @@ $index-page-spacing: $APP_BASE_SPACING;
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100vh;
+    height: 92.5vh;
   }
 
   .multibox--wrapper {
@@ -25,10 +25,16 @@ $index-page-spacing: $APP_BASE_SPACING;
     transform: translateX(-50%);
     z-index: 10;
     height: auto;
-    padding: 0 $APP_BASE_SPACING / 2;
+    padding: 0 $APP_BASE_SPACING;
     background: $index-page--search-box-bg;
-    border: 1px solid $index-page--search-box-border-colour;
     box-shadow: 0 3px 5px rgba(0,0,0,.25);
+    border-radius: ($APP_BASE_SPACING / 2);
+
+    input {
+      font-size: 1.8rem;
+      border: none;
+      font-weight: 300;
+    }
   }
 
   .current-location--wrapper {

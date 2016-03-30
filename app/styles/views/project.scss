@@ -5,6 +5,7 @@ $twitter-bg-colour: $TWITTER_BG;
   .input--label {
     background: $facebook-bg-colour;
     border: 1px solid $facebook-bg-colour;
+    min-width: 130px;
   }
 }
 

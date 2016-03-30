@@ -4,6 +4,7 @@ export default Ember.Component.extend({
   searchTerm: '',
   isSearching: false,
   hasSearchResults: false,
+  placeholderText: '',
   didReceiveAttrs(attrs) {
     this._super(...arguments);
     let newAttrs = attrs.newAttrs;
@@ -35,8 +36,13 @@ export default Ember.Component.extend({
       }
     },
 
-    resultSelected(result, type){
-      this.set('searchTerm', '');
+    resultSelected(result, type) {
+
+      this.setProperties({
+        'searchTerm': '',
+        'hasSearchResults': false
+      });
+
       this.get('onSelect')(result, type);
     },
 
