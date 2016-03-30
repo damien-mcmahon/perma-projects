@@ -7,4 +7,19 @@ $project-border-colour: #DDD;
     margin: $project-spacing 0;
     border: 1px solid $project-border-colour;
   }
+
+  .projects--project-title {
+    display: inline-flex;
+    align-items: center;
+    margin: 0;
+    font-size: 2rem;
+    text-transform: uppercase;
+  }
+
+  .projects--view-counter {
+    display: inline-block;
+    color: #AAA;
+    font-size: 1.2rem;
+    margin-left: $APP_BASE_SPACING;
+  }
 }

@@ -109,6 +109,12 @@ $app-header-name-colour: #111;
     background: $app-header-signin-bg;
     border-color: $app-header-signin-bg;
     text-transform: uppercase;
+
+    .fa-facebook-square {
+      font-size: 2.5rem;
+      margin-right: 1vh;
+      vertical-align: middle;
+    }
   }
 
   .app--header--facebook-like {

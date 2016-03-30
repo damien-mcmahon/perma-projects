@@ -22,7 +22,7 @@ export default Ember.Component.extend({
     }
   },
   actions: {
-    setSearch(){
+    setSearch() {
       if(this.get('searchTerm').length){
         this.set('isSearching', false);
       }
