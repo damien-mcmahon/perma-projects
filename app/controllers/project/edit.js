@@ -6,7 +6,7 @@ const DEFAULTS = {
     lat: 52,
     lng: -1.4
   },
-  ZOOM: 5,
+  ZOOM: 12,
   ADDRESS_ZOOM: 12
 };
 

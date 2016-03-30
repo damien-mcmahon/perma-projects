@@ -6,7 +6,7 @@ export default DS.Model.extend({
   createdAt: DS.attr('date'),
   userId: DS.attr('string'),
   userName: DS.attr('string'),
-  locationIsPublic: DS.attr('boolean',{defaultValue: true}),
+  locationIsPublic: DS.attr('boolean', {defaultValue: true}),
   url: DS.attr('string'),
   facebookUrl: DS.attr('string'),
   twitter: DS.attr('string'),
@@ -24,5 +24,7 @@ export default DS.Model.extend({
   location: Ember.computed('lat', 'lng', function() {
     return { lat: this.get('lat'), lng: this.get('lng')};
   }),
-  slugTitle: DS.attr('string')
+  slugTitle: DS.attr('string'),
+  isWWOOFSite: DS.attr('boolean'),
+  isOpenForVisitors: DS.attr('boolean')
 });

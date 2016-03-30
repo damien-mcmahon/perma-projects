@@ -25,16 +25,6 @@
           results=(mut searchResults)
           onSelect=(action "selectAddress")
         }}{{/search-box}}
-        {{input
-          type="text"
-          value=model.location.lat
-          id="projectLatitude"
-        }}
-        {{input
-          type="text"
-          value=model.location.lng
-          id="projectLongitude"
-        }}
       {{input
         type="checkbox"
         checked=model.locationIsPublic
@@ -95,8 +85,9 @@
 lat=model.lat
 lng=model.lng
 zoom=this.zoomLevel
+
 }}
-{{tile-layer url=url}}
+{{tile-layer url=url detectRetina=true}}
 {{#if isDragging}}
   {{#marker-layer
     lat=centerPoint.lat
