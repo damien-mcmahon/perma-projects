@@ -20,6 +20,8 @@
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.2.0",
+    "broccoli-manifest": "0.0.7",
+    "broccoli-merge-trees": "^1.1.1",
     "ember-ajax": "0.7.1",
     "ember-cli": "2.3.0",
     "ember-cli-app-version": "^1.0.0",
@@ -45,5 +47,8 @@
     "emberfire": "1.6.5",
     "loader.js": "^4.0.0",
     "torii": "0.6.1"
+  },
+  "dependencies": {
+    "broccoli-merge-trees": "^1.1.1"
   }
 }
