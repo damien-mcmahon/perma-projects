@@ -10,7 +10,7 @@ const DEFAULTS = {
   ADDRESS_ZOOM: 12
 };
 
-const MINIMUM_ZOOM_LEVEL = 10;
+const MINIMUM_ZOOM_LEVEL = 11;
 
 
 export default Ember.Controller.extend({
@@ -21,7 +21,6 @@ export default Ember.Controller.extend({
   isSearching: false,
   isDragging: false,
   updateLocationWhenDragging: false,
-
   extractAddress(context) {
     let CITY_REG_EX = /place\.(\d+)/gi;
     let COUNTY_REG_EX = /region\.(\d+)/gi;

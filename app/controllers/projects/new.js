@@ -68,6 +68,43 @@ export default Ember.Controller.extend({
 
     return address;
   },
+
+  getDetailsFromPlace(place){
+    let postCodeDetails = {};
+    place.context.map((contextItem) => {
+      const CONTEXT_POSTCODE_REG = /postcode/i;
+      const CONTEXT_REGION_REG = /region/i;
+      const CONTEXT_COUNTRY_REG = /country/i;
+
+      if(CONTEXT_COUNTRY_REG.test(contextItem.id)) {
+        postCodeDetails.country = contextItem.text
+      }
+
+      if(CONTEXT_POSTCODE_REG.test(contextItem.id)) {
+        postCodeDetails.postCode = contextItem.text
+      }
+
+      if(CONTEXT_REGION_REG.test(contextItem.id)) {
+        postCodeDetails.region = contextItem.text
+      }
+    });
+    return postCodeDetails;
+  },
+  getPostcodeFromCoord(results) {
+    let postCodeFeature = results.features.filter((feature) => {
+      const ADDRESS_REG_EX = /address/gi;
+      return ADDRESS_REG_EX.test(feature.id);
+    });
+
+    if(!postCodeFeature.length) {
+      postCodeFeature = results.features.filter((feature)=> {
+        const POSTCODE_REG_EX = /postcode/gi;
+        return POSTCODE_REG_EX.test(feature.id);
+      });
+    }
+
+    return this.getDetailsFromPlace(postCodeFeature[0]);
+  },
   actions: {
     checkAndSluggerizeTitle() {
       let model = this.get('model');
@@ -104,8 +141,9 @@ export default Ember.Controller.extend({
       if(!this.updateLocationWhenDragging) return;
 
       let currentZoomLevel = event.target.getZoom();
-      let projectTitle = this.get('model.title');
+      let project = this.get('model');
       let updateCenter = event.target.getCenter();
+      let mapBox = this.get('mapbox');
 
       this.set('isDragging', false);
 
@@ -113,6 +151,21 @@ export default Ember.Controller.extend({
         this.set('locationData', {
           lat: updateCenter.lat,
           lng: updateCenter.lng
+        });
+      }
+
+      //if there's no address do a reverse geocode and grab the nearest region & country
+      if(!project.get('county') && !project.get('country')){
+        mapBox.query(`${updateCenter.lng.toFixed(3)},${updateCenter.lat.toFixed(3)}`)
+        .then((results) => {
+          let addressDetails = this.getPostcodeFromCoord(results);
+          if(addressDetails.country) {
+            project.setProperties({
+              county: addressDetails.region,
+              country: addressDetails.country,
+              postCode: addressDetails.postCode || ''
+            });
+          }
         });
       }
     },

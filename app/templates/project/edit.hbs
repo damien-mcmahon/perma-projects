@@ -30,7 +30,7 @@
         checked=model.locationIsPublic
       }}Share location?
     </div>
-    {{#if model.address_1}}
+    {{#if model.locationIsPublic}}
     <div class="address-wrapper">
       <div class="form-input--wrapper">
         <label for="address_1">Address Line 1: </label>
@@ -81,39 +81,39 @@
     </div>
   </form>
 </section>
-{{#leaflet-map
-lat=model.lat
-lng=model.lng
-zoom=this.zoomLevel
-onDrag=(action "mapDragging")
-onMoveend=(action "updateLocation")
-}}
-{{tile-layer url=url detectRetina=true}}
-{{#if isDragging}}
-  {{#marker-layer
-    lat=centerPoint.lat
-    lng=centerPoint.lng
-    popupOpen=true}}
-    {{#project-descriptor project=(mut model)}}{{/project-descriptor}}
-  {{/marker-layer}}
-{{else}}
-  {{#if model.locationIsPublic}}
-    {{#marker-layer
-      lat=model.lat
-      lng=model.lng
-      popupOpen=true
-    }}
-      {{#if model.title}}
+  {{#leaflet-map
+    lat=model.lat
+    lng=model.lng
+    zoom=this.zoomLevel
+    onDrag=(action "mapDragging")
+    onMoveend=(action "updateLocation")
+  }}
+    {{tile-layer url=url detectRetina=true}}
+    {{#if isDragging}}
+      {{#marker-layer
+        lat=centerPoint.lat
+        lng=centerPoint.lng
+        popupOpen=true}}
         {{#project-descriptor project=(mut model)}}{{/project-descriptor}}
+      {{/marker-layer}}
+    {{else}}
+      {{#if model.locationIsPublic}}
+        {{#marker-layer
+          lat=model.lat
+          lng=model.lng
+          popupOpen=true
+        }}
+          {{#if model.title}}
+            {{#project-descriptor project=(mut model)}}{{/project-descriptor}}
+          {{/if}}
+        {{/marker-layer}}
+      {{else}}
+        {{#circle-marker-layer location=privacyCircle radius=privacyCircleRadius}}
+          {{#project-descriptor project=(mut model)}}{{/project-descriptor}}
+        {{/circle-marker-layer}}
       {{/if}}
-    {{/marker-layer}}
-  {{else}}
-    {{#circle-marker-layer location=privacyCircle radius=privacyCircleRadius}}
-      {{#project-descriptor project=(mut model)}}{{/project-descriptor}}
-    {{/circle-marker-layer}}
-  {{/if}}
-{{/if}}
-{{/leaflet-map}}
+    {{/if}}
+  {{/leaflet-map}}
   <div class="enable-dragging--wrapper">
     <label>
       {{input type="checkbox" checked=updateLocationWhenDragging}}
