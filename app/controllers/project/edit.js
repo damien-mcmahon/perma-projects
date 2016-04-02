@@ -9,9 +9,7 @@ const DEFAULTS = {
   ZOOM: 12,
   ADDRESS_ZOOM: 12
 };
-
 const MINIMUM_ZOOM_LEVEL = 11;
-
 
 export default Ember.Controller.extend({
   mapbox: Ember.inject.service(),
@@ -20,6 +18,7 @@ export default Ember.Controller.extend({
   searchResults: null,
   isSearching: false,
   isDragging: false,
+  privacyCircleRadius: 50,
   updateLocationWhenDragging: false,
   extractAddress(context) {
     let CITY_REG_EX = /place\.(\d+)/gi;

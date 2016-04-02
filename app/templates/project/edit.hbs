@@ -104,12 +104,12 @@
           popupOpen=true
         }}
           {{#if model.title}}
-            {{#project-descriptor project=(mut model)}}{{/project-descriptor}}
+            {{#project-descriptor project=model}}{{/project-descriptor}}
           {{/if}}
         {{/marker-layer}}
       {{else}}
-        {{#circle-marker-layer location=privacyCircle radius=privacyCircleRadius}}
-          {{#project-descriptor project=(mut model)}}{{/project-descriptor}}
+        {{#circle-marker-layer location=model.location radius=privacyCircleRadius}}
+          {{#project-descriptor project=model}}{{/project-descriptor}}
         {{/circle-marker-layer}}
       {{/if}}
     {{/if}}
