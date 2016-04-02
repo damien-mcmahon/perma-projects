@@ -12,7 +12,7 @@ export default Ember.Route.extend({
         });
 
         checkUserExists.then((results) => {
-          if(!results.content.length){
+          if(!results.content.length) {
             let currentUser = user.currentUser;
             let newUser = this.store.createRecord('user');
 
@@ -23,7 +23,11 @@ export default Ember.Route.extend({
               likes: [],
               role: 1
             });
-            newUser.save();
+            newUser.save().then(()=>{
+              this.transitionTo('projects.index');
+            })
+          } else {
+            this.transitionTo('projects.index');
           }
         });
 
