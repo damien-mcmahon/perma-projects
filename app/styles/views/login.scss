@@ -3,7 +3,8 @@ $fb-login-bg: $FACEBOOK_BG;
 $tw-login-bg: $TWITTER_BG;
 
 #login-page {
-
+  text-align: center;
+  
   .sign-in--wrapper {
     display: flex;
     flex-direction: column;

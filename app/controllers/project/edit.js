@@ -10,7 +10,7 @@ const DEFAULTS = {
   ADDRESS_ZOOM: 12
 };
 
-const MINIMUM_ZOOM_LEVEL = 11;
+const MINIMUM_ZOOM_LEVEL = 10;
 
 
 export default Ember.Controller.extend({
@@ -19,6 +19,9 @@ export default Ember.Controller.extend({
   url: 'http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png',
   searchResults: null,
   isSearching: false,
+  isDragging: false,
+  updateLocationWhenDragging: false,
+
   extractAddress(context) {
     let CITY_REG_EX = /place\.(\d+)/gi;
     let COUNTY_REG_EX = /region\.(\d+)/gi;
@@ -59,6 +62,36 @@ export default Ember.Controller.extend({
         });
       });
     },
+
+    mapDragging(event) {
+      if(!this.updateLocationWhenDragging) return;
+      let mapCenter = event.target.getCenter();
+      let currentZoomLevel = event.target.getZoom();
+
+      if(currentZoomLevel >= MINIMUM_ZOOM_LEVEL) {
+        this.set('isDragging', true);
+        this.set('centerPoint', {
+          lat: mapCenter.lat,
+          lng: mapCenter.lng
+        });
+      }
+    },
+
+    updateLocation(event) {
+      if(!this.updateLocationWhenDragging) return;
+      let currentZoomLevel = event.target.getZoom();
+      let updateCenter = event.target.getCenter();
+      let project = this.get('model');
+      this.set('isDragging', false);
+
+      if(currentZoomLevel >= MINIMUM_ZOOM_LEVEL) {
+        project.setProperties({
+          lat: updateCenter.lat,
+          lng: updateCenter.lng
+        });
+      }
+    },
+
     selectAddress(address) {
       let [lng, lat] = address.center;
       let addressDetails = this.extractAddress(address.context);

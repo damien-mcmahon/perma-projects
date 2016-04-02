@@ -2,6 +2,7 @@ $new-page--address-padding: $APP_BASE_SPACING / 4;
 
 #new-project-page {
   display: flex;
+  position: relative;
 
   .new-project--wrapper {
     width: 50%;
@@ -42,6 +43,25 @@ $new-page--address-padding: $APP_BASE_SPACING / 4;
 
     .address--postcode {
       width: 40%;
+    }
+  }
+
+  .enable-dragging--wrapper {
+    position: absolute;
+    top: $APP_BASE_SPACING;
+    right: $APP_BASE_SPACING;
+    padding: $APP_BASE_SPACING;
+    background: rgba(#FFF, .5);
+
+    input {
+      display: inline;
+      width: auto;
+      padding: 0;
+      margin-right: $APP_BASE_SPACING;
+    }
+
+    label {
+      font-size: 1rem;
     }
   }
 }

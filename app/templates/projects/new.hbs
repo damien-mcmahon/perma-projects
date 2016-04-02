@@ -80,29 +80,44 @@
       </div>
     </form>
   </section>
-{{#leaflet-map
-  lat=mapLocation.lat
-  lng=mapLocation.lng
-  zoom=this.zoomLevel
-  onDrag=(action "mapDragging")
+  {{#leaflet-map
+    lat=mapLocation.lat
+    lng=mapLocation.lng
+    zoom=this.zoomLevel
+    onDrag=(action "mapDragging")
+    onMoveend=(action "updateLocation")
   }}
-  {{tile-layer url=url detectRetina=true}}
-  {{#if locationData}}
-    {{#if model.locationIsPublic}}
-      {{#marker-layer
-        lat=locationData.lat
-        lng=locationData.lng
-        popupOpen=true
-      }}
-        {{#if model.title}}
-          {{#project-descriptor project=(mut model)}}{{/project-descriptor}}
+    {{tile-layer url=url detectRetina=true}}
+    {{#if locationData}}
+      {{#if isDragging}}
+        {{#marker-layer
+          lat=centerPoint.lat
+          lng=centerPoint.lng
+        }}
+        {{/marker-layer}}
+      {{else }}
+        {{#if model.locationIsPublic}}
+          {{#marker-layer
+            lat=locationData.lat
+            lng=locationData.lng
+            popupOpen=true
+          }}
+            {{#if model.title}}
+              {{#project-descriptor project=(mut model)}}{{/project-descriptor}}
+            {{/if}}
+          {{/marker-layer}}
+        {{else}}
+          {{#circle-marker-layer location=privacyCircle radius=privacyCircleRadius}}
+            {{#project-descriptor project=(mut model)}}{{/project-descriptor}}
+          {{/circle-marker-layer}}
         {{/if}}
-      {{/marker-layer}}
-    {{else}}
-      {{#circle-marker-layer location=privacyCircle radius=privacyCircleRadius}}
-        {{#project-descriptor project=(mut model)}}{{/project-descriptor}}
-      {{/circle-marker-layer}}
+      {{/if}}
     {{/if}}
-  {{/if}}
-{{/leaflet-map}}
+  {{/leaflet-map}}
+  <div class="enable-dragging--wrapper">
+    <label>
+      {{input type="checkbox" checked=updateLocationWhenDragging}}
+      Update Location on Drag?
+    </label>
+  </div>
 </section>

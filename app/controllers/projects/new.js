@@ -25,6 +25,7 @@ export default Ember.Controller.extend({
   searchResults: null,
   privacyCircle: {},
   privacyCircleRadius: 200,
+  updateLocationWhenDragging: false,
   url: 'http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png',
   slugerizeTitle(unsafeTitle) {
     const STRIP_CHARS_REGEX = /[^a-z0-9\-\s]/gi;
@@ -84,13 +85,13 @@ export default Ember.Controller.extend({
         }
       });
     },
-
     mapDragging(event) {
+      if(!this.updateLocationWhenDragging) return;
       let mapCenter = event.target.getCenter();
       let currentZoomLevel = event.target.getZoom();
-      let projectTitle = this.get('model.title');
 
-      if(!Ember.isNone(projectTitle) && currentZoomLevel >= MINIMUM_ZOOM_LEVEL) {
+      if(!Ember.isNone(projectTitle) &&
+        currentZoomLevel >= MINIMUM_ZOOM_LEVEL) {
         this.set('isDragging', true);
         this.set('centerPoint', {
           lat: mapCenter.lat,
@@ -100,19 +101,19 @@ export default Ember.Controller.extend({
     },
 
     updateLocation(event) {
+      if(!this.updateLocationWhenDragging) return;
+
       let currentZoomLevel = event.target.getZoom();
       let projectTitle = this.get('model.title');
       let updateCenter = event.target.getCenter();
 
       this.set('isDragging', false);
 
-      if(!Ember.isNone(projectTitle) && currentZoomLevel >= MINIMUM_ZOOM_LEVEL) {
+      if(currentZoomLevel >= MINIMUM_ZOOM_LEVEL) {
         this.set('locationData', {
           lat: updateCenter.lat,
           lng: updateCenter.lng
         });
-      } else {
-        //spawn a message...
       }
     },
     onSearch(searchQuery) {

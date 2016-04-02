@@ -85,25 +85,39 @@
 lat=model.lat
 lng=model.lng
 zoom=this.zoomLevel
-
+onDrag=(action "mapDragging")
+onMoveend=(action "updateLocation")
 }}
 {{tile-layer url=url detectRetina=true}}
 {{#if isDragging}}
   {{#marker-layer
     lat=centerPoint.lat
     lng=centerPoint.lng
-    popupOpen=true
-    clickable=false}}
+    popupOpen=true}}
     {{#project-descriptor project=(mut model)}}{{/project-descriptor}}
   {{/marker-layer}}
 {{else}}
-  {{#if model.lat}}
+  {{#if model.locationIsPublic}}
     {{#marker-layer
       lat=model.lat
       lng=model.lng
-      clickable=false}}
+      popupOpen=true
+    }}
+      {{#if model.title}}
+        {{#project-descriptor project=(mut model)}}{{/project-descriptor}}
+      {{/if}}
     {{/marker-layer}}
+  {{else}}
+    {{#circle-marker-layer location=privacyCircle radius=privacyCircleRadius}}
+      {{#project-descriptor project=(mut model)}}{{/project-descriptor}}
+    {{/circle-marker-layer}}
   {{/if}}
 {{/if}}
 {{/leaflet-map}}
+  <div class="enable-dragging--wrapper">
+    <label>
+      {{input type="checkbox" checked=updateLocationWhenDragging}}
+      Update Location on Drag?
+    </label>
+  </div>
 </section>
