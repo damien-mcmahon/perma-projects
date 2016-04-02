@@ -21,12 +21,7 @@
       {{#if session.isAuthenticated}}
         {{#user-button user=session.currentUser signOut=(action 'signOut')}}{{/user-button}}
       {{else}}
-      <button
-        class="button app--header--sign-in"
-        {{action "signIn" "facebook"}}>
-        {{fa-icon 'facebook-square'}}
-        Add your Project
-      </button>
+        {{#link-to "login" class="app--header--nav-link"}}Sign In/Sign Up{{/link-to}}
       {{/if}}
       {{#facebook-like class="app--header--facebook-like"}}{{/facebook-like}}
     </nav>

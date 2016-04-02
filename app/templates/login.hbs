@@ -1,1 +1,24 @@
-{{outlet}}
+<section id="login-page" class="view--wrapper">
+  <h1 class="login-page--title">Welcome</h1>
+  <p>If you want to contribute, sign in and add your project or just add projects you know about.</p>
+
+  <div class="sign-in--wrapper">
+    {{#if session.isAuthenticated}}
+      <h2>You're Signed In!</h2>
+    {{else}}
+      <h2>Sign In</h2>
+      <button
+        class="button login--sign-in -facebook-sign-in"
+        {{action "signIn" "facebook"}}>
+        {{fa-icon 'facebook-square'}}
+        Sign In with Facebook
+      </button>
+      <button
+        class="button login--sign-in -twitter-sign-in"
+        {{action "signIn" "twitter"}}>
+        {{fa-icon 'twitter-square'}}
+        Sign In with Twitter
+      </button>
+    {{/if}}
+  </div>
+</section>
