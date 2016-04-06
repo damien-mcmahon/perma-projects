@@ -18,6 +18,7 @@
     </div>
     <nav class="app--header--nav">
       {{#link-to "about" class="app--header--nav-link"}}About{{/link-to}}
+      {{#link-to "stats" class="app--header--nav-link"}}Stats{{/link-to}}
       {{#if session.isAuthenticated}}
         {{#user-button user=session.currentUser signOut=(action 'signOut')}}{{/user-button}}
       {{else}}

@@ -1,0 +1,15 @@
+<section id="stats-page" class="view--wrapper">
+  <h1>STATS</h1>
+  <p>Here are the current totals for Perma Projects. If your project is missing or your country has
+    a small number of projects, sign in to add your project and let others know about your work.
+  </p>
+  {{#each model as |stats|}}
+    <h2>Total Permaculture Projects - {{stats.totalProjects}}</h2>
+    <h2>Total Users on PermaProjects.com - {{stats.totalUsers}}</h2>
+    <ul>
+    {{#each-in stats.projectsByCountry as |country count|}}
+      <li>{{country}} {{count}}</li>
+    {{/each-in}}
+  </ul>
+  {{/each}}
+</section>
