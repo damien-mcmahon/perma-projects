@@ -44,12 +44,13 @@ export default Ember.Controller.extend(Mapping, {
       });
     },
     mapDragging(event) {
-      if(!this.updateLocationWhenDragging) return;
+      if(!this.updateLocationWhenDragging) {
+        return;
+      }
       let mapCenter = event.target.getCenter();
       let currentZoomLevel = event.target.getZoom();
 
-      if(!Ember.isNone(projectTitle) &&
-        currentZoomLevel >= MINIMUM_ZOOM_LEVEL) {
+      if(currentZoomLevel >= this.MINIMUM_ZOOM_LEVEL) {
         this.set('isDragging', true);
         this.set('centerPoint', {
           lat: mapCenter.lat,
@@ -68,7 +69,7 @@ export default Ember.Controller.extend(Mapping, {
 
       this.set('isDragging', false);
 
-      if(currentZoomLevel >= MINIMUM_ZOOM_LEVEL) {
+      if(currentZoomLevel >= this.MINIMUM_ZOOM_LEVEL) {
         this.set('locationData', {
           lat: updateCenter.lat,
           lng: updateCenter.lng
@@ -115,7 +116,7 @@ export default Ember.Controller.extend(Mapping, {
           lat: lat,
           lng: lng
         },
-        zoomLevel: DEFAULTS.ADDRESS_ZOOM
+        zoomLevel: this.DEFAULTS.ADDRESS_ZOOM
       });
 
       let addressLine1 = address.address ?

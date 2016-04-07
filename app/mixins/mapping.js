@@ -4,7 +4,7 @@ const SEARCH_QUERY_ZOOM_LEVEL = 10;
 const COUNTRY_LEVEL_ZOOM = 5;
 
 const MAP_STYLES = [
-  {label: 'Default', url: 'https://[abc].tile.thunderforest.com/outdoors/{z}/{x}/{y}.png'},
+  {label: 'Default', url: 'https://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png'},
   {label: 'Landscape', url: 'https://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png'},
   {label: 'Outdoors', url: 'https://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png'},
   {label: 'Terrain', url: 'https://tile.stamen.com/terrain/{z}/{x}/{y}.jpg'},
@@ -25,6 +25,7 @@ export default Ember.Mixin.create({
   COUNTRY_LEVEL_ZOOM: COUNTRY_LEVEL_ZOOM,
   SEARCH_QUERY_ZOOM_LEVEL: SEARCH_QUERY_ZOOM_LEVEL,
   DETECT_RETINA: DETECT_RETINA,
+  DEFAULTS: DEFAULTS,
   mapStyles: MAP_STYLES,
   selectedStyle: MAP_STYLES[0],
   mapLocation: {
