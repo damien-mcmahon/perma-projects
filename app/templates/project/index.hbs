@@ -8,56 +8,74 @@
     dragging=false
   }}
     {{tile-layer url=selectedStyle.url detectRetina=true}}
-    {{#if model.locationIsPublic}}
-      {{#marker-layer lat=model.lat lng=model.lng clickable=false}}{{/marker-layer}}
-    {{else}}
-      {{#circle-layer
-        location=project.location radius=privacyCircleRadius
-        clickable=false
-      }}
-      {{/circle-layer}}
-    {{/if}}
+    {{#marker-layer lat=model.lat lng=model.lng clickable=false}}{{/marker-layer}}
   {{/leaflet-map}}
-  <section class="project-show--main">
-    <h1 class="project-show--title">{{model.title}}</h1>
-    <p class="project-show--description">{{model.description}}</p>
-
+  <section class="project-show--main-wrapper">
+    <section class="project-show--main-info-wrapper">
+    <section class="project-show--main">
+      <h1 class="project-show--title">{{model.title}}</h1>
+      <p class="project-show--description">{{model.description}}</p>
+      {{#if (eq session.currentUser.id model.userId)}}
+        {{#link-to 'project.edit' model class="button"}}Edit{{/link-to}}
+      {{/if}}
+    </section>
+    <section class="project-show--details">
+      <h2 class="project-show--section-title">Contact Details</h2>
+      <ul class="project-show--contact-list">
+      {{#if model.url}}
+        <li class="project-show--contact-item">
+          <a href="{{model.url}}" target="_blank">
+            {{fa-icon "globe"}} Website
+          </a>
+        </li>
+      {{/if}}
+      {{#if model.facebookUrl}}
+        <li class="project-show--contact-item -facebook-page">
+          <a
+            href="https://facebook.com/{{model.facebookUrl}}" target="_blank">
+            {{fa-icon "facebook" }} Facebook Page
+          </a>
+        </li>
+      {{/if}}
+      {{#if model.twitter}}
+        <li class="project-show--contact-item -twitter-page">
+          <a href="https://twitter.com/{{model.twitter}}" target="_blank">
+            {{fa-icon "twitter"}} @{{model.twitter}}</a>
+        </li>
+      {{/if}}
+      </ul>
+    </section>
+    <section class="project-show--details">
+      <h2 class="project-show--section-title">Address Details</h2>
+      <div class="project-show--address-wrapper">
+        <p class="project-show--address--1">{{model.address_1}}</p>
+        <p class="project-show--address--2">{{model.address_2}}</p>
+        <p class="project-show--address--city">{{model.city}}</p>
+        <p class="project-show--address--county">{{model.county}}</p>
+        <p class="project-show--address--post-code">{{model.postCode}}</p>
+        <p class="project-show--address--post-code">{{model.country}}</p>
+      </div>
+    </section>
   </section>
-  <section class="project-show--details">
-    <h2 class="project-show--section-title">Contact Details</h2>
-    <ul class="project-show--contact-list">
-    {{#if model.url}}
-      <li class="project-show--contact-item">
-        <a href="{{model.url}}" target="_blank">
-          {{fa-icon "globe"}} Website
-        </a>
-      </li>
-    {{/if}}
-    {{#if model.facebookUrl}}
-      <li class="project-show--contact-item -facebook-page">
-        <a
-          href="https://facebook.com/{{model.facebookUrl}}" target="_blank">
-          {{fa-icon "facebook" }} Facebook Page
-        </a>
-      </li>
-    {{/if}}
-    {{#if model.twitter}}
-      <li class="project-show--contact-item -twitter-page">
-        <a href="https://twitter.com/{{model.twitter}}" target="_blank">
-          {{fa-icon "twitter"}} @{{model.twitter}}</a>
-      </li>
-    {{/if}}
-    </ul>
-  </section>
-  <section class="project-show--details">
-    <h2 class="project-show--section-title">Address Details</h2>
-    <div class="project-show--address-wrapper">
-      <p class="project-show--address--1">{{model.address_1}}</p>
-      <p class="project-show--address--2">{{model.address_2}}</p>
-      <p class="project-show--address--city">{{model.city}}</p>
-      <p class="project-show--address--county">{{model.county}}</p>
-      <p class="project-show--address--post-code">{{model.postCode}}</p>
-      <p class="project-show--address--post-code">{{model.country}}</p>
-    </div>
+    <section class="project-show--project-details">
+      <h1 class="project-details--title">Project Details</h1>
+      <ul class="project-details--list">
+        {{#if model.isWWOOFSite}}
+          <li class="project-details--item">WWOOF Site</li>
+        {{/if}}
+        {{#if model.isOpenForVisitors}}
+          <li class="project-details--item">Open to visitors</li>
+        {{/if}}
+        {{#if model.doesSellProduce}}
+          <li class="project-details--item">Produce for Sale</li>
+        {{/if}}
+        {{#if model.runsEducationalCourses}}
+          <li class="project-details--item">Runs Educational Courses</li>
+        {{/if}}
+        {{#if model.lookingForVolunteers}}
+          <li class="project-details--item">Looking For Volunteers</li>
+        {{/if}}
+      </ul>
+    </section>
   </section>
 </section>

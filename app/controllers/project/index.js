@@ -1,7 +1,5 @@
 import Ember from 'ember';
+import Mapping from '../../mixins/mapping';
 
-const SELECTED = {label: 'Default', url: 'http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png'}
-export default Ember.Controller.extend({
-  selectedStyle: SELECTED,
-  zoomLevel: 13
+export default Ember.Controller.extend(Mapping, {
 });

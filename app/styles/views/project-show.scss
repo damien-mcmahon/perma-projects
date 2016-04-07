@@ -5,12 +5,25 @@ $project-contact-twitter-bg: $TWITTER_BG;
 $project-section-border-colour: #DDD;
 
 #project-show-page {
+
+  .project-show--main-wrapper {
+    display: flex;
+  }
+
   .project-show--title {
     font-size: 2rem;
   }
 
   .project-map {
     height: 30vh;
+  }
+  .project-show--main-info-wrapper {
+    flex: 3;
+  }
+
+  .project-show--project-details {
+    flex: 1;
+    padding: $APP_BASE_SPACING;
   }
 
   .project-show--description {
@@ -66,6 +79,22 @@ $project-section-border-colour: #DDD;
     p {
       margin: 0;
     }
+  }
+
+  .project-show--project-details {
+  }
+
+  .project-details--title {
+    font-size: 1.3rem;
+  }
+
+  .project-details--list {
+    margin: 0;
+  }
+
+  .project-details--item {
+    font-size: 1.2rem;
+    margin: $APP_BASE_SPACING 0;
   }
 
 }

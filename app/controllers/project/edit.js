@@ -1,16 +1,6 @@
 import Ember from 'ember';
 import Mapping from '../../mixins/mapping';
 
-const DEFAULTS = {
-  LOCATION: {
-    lat: 52,
-    lng: -1.4
-  },
-  ZOOM: 12,
-  ADDRESS_ZOOM: 12
-};
-const MINIMUM_ZOOM_LEVEL = 11;
-
 export default Ember.Controller.extend(Mapping, {
   mapbox: Ember.inject.service(),
   searchResults: null,
