@@ -4,6 +4,9 @@
     <h1 class="user-button--name">{{user.displayName}}</h1>
   </button>
   <nav class="user--menu">
+    {{#if user.isAdmin }}
+      {{#link-to 'admin'}}Admin Panel{{/link-to}}
+    {{/if}}
     {{#link-to "projects"}}Your Projects{{/link-to}}
     <a {{action "signOut"}}>Sign Out</a>
   </nav>

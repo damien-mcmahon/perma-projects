@@ -10,6 +10,10 @@ export default Ember.Controller.extend({
         let statsModel = this.get('model').get('firstObject');
         let countriesAdded = statsModel.get('projectsByCountry');
 
+        if(countriesAdded) {
+          return;
+        }
+        
         if(totalResults) {
           countriesAdded = countriesAdded || {};
           results.map((project) => {

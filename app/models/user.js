@@ -5,5 +5,8 @@ export default DS.Model.extend({
   loginId: DS.attr('string'),
   profileImageUrl: DS.attr('string'),
   likes: DS.attr(),
-  role: DS.attr('number', {defaultValue: 1})
+  role: DS.attr('number', {defaultValue: 1}),
+  isAdmin: Ember.computed.bool('role', () => {
+    return this.get('role') === 99;
+  })
 });

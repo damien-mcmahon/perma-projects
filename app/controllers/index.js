@@ -23,7 +23,7 @@ export default Ember.Controller.extend({
   mapbox: Ember.inject.service(),
   searchResults: {projects: [], places: []},
   mapStyles: MAP_STYLES,
-  selectedStyle: MAP_STYLES[1],
+  selectedStyle: MAP_STYLES[0],
   mapLocation: {
     lat: DEFAULTS.LOCATION.lat,
     lng: DEFAULTS.LOCATION.lng

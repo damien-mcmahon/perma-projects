@@ -46,7 +46,9 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
+
   }
+
   ENV.manifest = {
     enabled: true,
     appcacheFile: "/manifest.appcache",
