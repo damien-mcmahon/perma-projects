@@ -55,6 +55,8 @@ html {
 
 .view--wrapper {
   max-width: 960px;
-  padding: $APP_BASE_SPACING;
+  width: 100%;
+  padding: 0 $APP_BASE_SPACING;
   margin: 0 auto;
+  position: relative;
 }

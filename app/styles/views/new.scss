@@ -1,17 +1,28 @@
 $new-page--address-padding: $APP_BASE_SPACING / 4;
+$new-page-border-colour: #DDD;
 
 #new-project-page {
   display: flex;
   position: relative;
 
+  .leaflet-container {
+    width: 100%;
+    height: 40vh;
+  }
   .new-project--wrapper {
-    width: 50%;
-    height: 100%;
+    width: 100%;
+    display: inline-flex;
   }
 
-  .leaflet-container {
-    width: 50%;
-    height: 100vh;
+  form {
+    width: 65%;
+  }
+
+  .new-project--details-wrapper {
+    border: 1px solid $new-page-border-colour;
+    border-radius: 1rem;
+    margin: $APP_BASE_SPACING 0;
+    padding: $APP_BASE_SPACING;
   }
 
   .search-box--wrapper {
@@ -48,7 +59,7 @@ $new-page--address-padding: $APP_BASE_SPACING / 4;
 
   .enable-dragging--wrapper {
     position: absolute;
-    top: $APP_BASE_SPACING;
+    top: 0;
     right: $APP_BASE_SPACING;
     padding: $APP_BASE_SPACING;
     background: rgba(#FFF, .5);

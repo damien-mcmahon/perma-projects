@@ -1,16 +1,54 @@
-<section class="view--wrapper" id="new-project-page">
-  <section class="new-project--wrapper">
-    <form name="new-project" onsubmit={{action "addProject"}}>
-      <div class="form-input--wrapper">
+<section id="new-project-page">
+  <div class="view--wrapper">
+  {{#leaflet-map
+    lat=mapLocation.lat
+    lng=mapLocation.lng
+    zoom=this.zoomLevel
+    onDrag=(action "mapDragging")
+    onMoveend=(action "updateLocation")
+  }}
+    {{tile-layer url=url detectRetina=true}}
+    {{#if locationData}}
+      {{#if isDragging}}
+        {{#marker-layer lat=centerPoint.lat lng=centerPoint.lng}}
+        {{/marker-layer}}
+      {{else }}
+        {{#if model.locationIsPublic}}
+          {{#marker-layer lat=locationData.lat lng=locationData.lng popupOpen=true}}
+            {{#if model.title}}
+              {{#project-descriptor project=(mut model)}}
+              {{/project-descriptor}}
+            {{/if}}
+          {{/marker-layer}}
+        {{else}}
+          {{#circle-marker-layer
+            location=privacyCircle
+            radius=privacyCircleRadius}}
+            {{#project-descriptor project=(mut model)}}
+            {{/project-descriptor}}
+          {{/circle-marker-layer}}
+        {{/if}}
+      {{/if}}
+    {{/if}}
+  {{/leaflet-map}}
+  <div class="enable-dragging--wrapper">
+    <label>
+      {{input type="checkbox" checked=updateLocationWhenDragging}}
+      Update Location on Drag?
+    </label>
+  </div>
+    <section class="new-project--wrapper">
+      <form name="new-project" onsubmit={{action "addProject"}}>
+        <div class="form-input--wrapper">
         <label for="projectTitle">Title:</label>
-        {{input
-          type="text"
-          placeholder="Your Project's Name here"
-          value=model.title
-          id="projectTitle"
-          focus-out=(action "checkAndSluggerizeTitle")
-        }}
-      </div>
+          {{input
+            type="text"
+            placeholder="Your Project's Name here"
+            value=model.title
+            id="projectTitle"
+            focus-out=(action "checkAndSluggerizeTitle")
+          }}
+        </div>
       <div class="form-input--wrapper project--description">
         <label for="projectDescription">Description:</label>
         {{textarea
@@ -79,45 +117,40 @@
         <button class="button" type="submit">Add {{model.title}} to Perma Projects</button>
       </div>
     </form>
-  </section>
-  {{#leaflet-map
-    lat=mapLocation.lat
-    lng=mapLocation.lng
-    zoom=this.zoomLevel
-    onDrag=(action "mapDragging")
-    onMoveend=(action "updateLocation")
-  }}
-    {{tile-layer url=url detectRetina=true}}
-    {{#if locationData}}
-      {{#if isDragging}}
-        {{#marker-layer
-          lat=centerPoint.lat
-          lng=centerPoint.lng
-        }}
-        {{/marker-layer}}
-      {{else }}
-        {{#if model.locationIsPublic}}
-          {{#marker-layer
-            lat=locationData.lat
-            lng=locationData.lng
-            popupOpen=true
-          }}
-            {{#if model.title}}
-              {{#project-descriptor project=(mut model)}}{{/project-descriptor}}
-            {{/if}}
-          {{/marker-layer}}
-        {{else}}
-          {{#circle-marker-layer location=privacyCircle radius=privacyCircleRadius}}
-            {{#project-descriptor project=(mut model)}}{{/project-descriptor}}
-          {{/circle-marker-layer}}
-        {{/if}}
-      {{/if}}
-    {{/if}}
-  {{/leaflet-map}}
-  <div class="enable-dragging--wrapper">
-    <label>
-      {{input type="checkbox" checked=updateLocationWhenDragging}}
-      Update Location on Drag?
-    </label>
+    <section class="new-project--details-wrapper">
+      <h1>Project Details</h1>
+      <div class="form-input--label-wrapper">
+        <label for="isWWOOFSite">
+          Does this project accept WWOOF volunteers?
+          {{input type="checkbox" checked=model.isWWOOFSite}}
+        </label>
+      </div>
+      <div class="form-input--label-wrapper">
+        <label for="isWWOOFSite">
+          Is this project open to visitors?
+          {{input type="checkbox" checked=model.isOpenForVisitors}}
+        </label>
+      </div>
+      <div class="form-input--label-wrapper">
+        <label for="isWWOOFSite">
+          Does this project sell produce?
+          {{input type="checkbox" checked=model.doesSellProduce}}
+        </label>
+      </div>
+      <div class="form-input--label-wrapper">
+        <label for="isWWOOFSite">
+          Does this project run courses?
+          {{input type="checkbox" checked=model.runsEducationalCourses}}
+        </label>
+      </div>
+      <div class="form-input--label-wrapper">
+        <label for="needsVolunteers">
+          Does this project need volunteers?
+          {{input type="checkbox" checked=model.lookingForVolunteers}}
+        </label>
+      </div>
+    </section>
+
+    </section>
   </div>
 </section>

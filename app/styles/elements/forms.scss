@@ -56,3 +56,18 @@ textarea {
     border-bottom-right-radius: $form-border-radius;
   }
 }
+
+.form-input--label-wrapper {
+  width: 100%;
+  padding: $form-spacing;
+  
+  label {
+    display: inline;
+  }
+
+  input {
+    display: inline;
+    width: auto;
+    margin-left: $APP_BASE_SPACING;
+  }
+}

@@ -26,5 +26,8 @@ export default DS.Model.extend({
   }),
   slugTitle: DS.attr('string'),
   isWWOOFSite: DS.attr('boolean'),
-  isOpenForVisitors: DS.attr('boolean')
+  isOpenForVisitors: DS.attr('boolean'),
+  doesSellProduce: DS.attr('boolean', {defaultValue: false}),
+  runsEducationalCourses: DS.attr('boolean', {defaultValue: false}),
+  lookingForVolunteers: DS.attr('boolean', {defaultValue: false})
 });

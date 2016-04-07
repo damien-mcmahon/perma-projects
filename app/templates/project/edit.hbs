@@ -1,4 +1,45 @@
-<section class="view--wrapper" id="new-project-page">
+<section id="new-project-page">
+  <div class="view--wrapper">
+  {{#leaflet-map
+    lat=model.lat
+    lng=model.lng
+    zoom=this.zoomLevel
+    onDrag=(action "mapDragging")
+    onMoveend=(action "updateLocation")
+  }}
+    {{tile-layer url=url detectRetina=true}}
+    {{#if isDragging}}
+      {{#marker-layer
+        lat=centerPoint.lat
+        lng=centerPoint.lng
+        popupOpen=true}}
+        {{#project-descriptor project=(mut model)}}{{/project-descriptor}}
+      {{/marker-layer}}
+    {{else}}
+      {{#if model.locationIsPublic}}
+        {{#marker-layer
+          lat=model.lat
+          lng=model.lng
+          popupOpen=true
+        }}
+          {{#if model.title}}
+            {{#project-descriptor project=model}}{{/project-descriptor}}
+          {{/if}}
+        {{/marker-layer}}
+      {{else}}
+        {{#circle-marker-layer location=model.location radius=privacyCircleRadius}}
+          {{#project-descriptor project=model}}{{/project-descriptor}}
+        {{/circle-marker-layer}}
+      {{/if}}
+    {{/if}}
+  {{/leaflet-map}}
+  <div class="enable-dragging--wrapper">
+    <label>
+      {{input type="checkbox" checked=updateLocationWhenDragging}}
+      Update Location on Drag?
+    </label>
+  </div>
+
 <section class="new-project--wrapper">
   <form name="update-project" onsubmit={{action "updateProject"}}>
     <div class="form-input--wrapper">
@@ -80,44 +121,39 @@
       <button class="button" type="submit">Update {{model.title}}</button>
     </div>
   </form>
-</section>
-  {{#leaflet-map
-    lat=model.lat
-    lng=model.lng
-    zoom=this.zoomLevel
-    onDrag=(action "mapDragging")
-    onMoveend=(action "updateLocation")
-  }}
-    {{tile-layer url=url detectRetina=true}}
-    {{#if isDragging}}
-      {{#marker-layer
-        lat=centerPoint.lat
-        lng=centerPoint.lng
-        popupOpen=true}}
-        {{#project-descriptor project=(mut model)}}{{/project-descriptor}}
-      {{/marker-layer}}
-    {{else}}
-      {{#if model.locationIsPublic}}
-        {{#marker-layer
-          lat=model.lat
-          lng=model.lng
-          popupOpen=true
-        }}
-          {{#if model.title}}
-            {{#project-descriptor project=model}}{{/project-descriptor}}
-          {{/if}}
-        {{/marker-layer}}
-      {{else}}
-        {{#circle-marker-layer location=model.location radius=privacyCircleRadius}}
-          {{#project-descriptor project=model}}{{/project-descriptor}}
-        {{/circle-marker-layer}}
-      {{/if}}
-    {{/if}}
-  {{/leaflet-map}}
-  <div class="enable-dragging--wrapper">
-    <label>
-      {{input type="checkbox" checked=updateLocationWhenDragging}}
-      Update Location on Drag?
-    </label>
+  <section class="new-project--details-wrapper">
+    <h1>Project Details</h1>
+    <div class="form-input--label-wrapper">
+      <label for="isWWOOFSite">
+        Does this project accept WWOOF volunteers?
+        {{input type="checkbox" checked=model.isWWOOFSite}}
+      </label>
+    </div>
+    <div class="form-input--label-wrapper">
+      <label for="isWWOOFSite">
+        Is this project open to visitors?
+        {{input type="checkbox" checked=model.isOpenForVisitors}}
+      </label>
+    </div>
+    <div class="form-input--label-wrapper">
+      <label for="isWWOOFSite">
+        Does this project sell produce?
+        {{input type="checkbox" checked=model.doesSellProduce}}
+      </label>
+    </div>
+    <div class="form-input--label-wrapper">
+      <label for="isWWOOFSite">
+        Does this project run courses?
+        {{input type="checkbox" checked=model.runsEducationalCourses}}
+      </label>
+    </div>
+    <div class="form-input--label-wrapper">
+      <label for="needsVolunteers">
+        Does this project need volunteers?
+        {{input type="checkbox" checked=model.lookingForVolunteers}}
+      </label>
+    </div>
+  </section>
+  </section>
   </div>
 </section>
