@@ -9,6 +9,10 @@ $project-section-border-colour: #DDD;
     font-size: 2rem;
   }
 
+  .project-map {
+    height: 30vh;
+  }
+
   .project-show--description {
     line-height: 1.5;
     margin: ($APP_BASE_SPACING * 3) 0;

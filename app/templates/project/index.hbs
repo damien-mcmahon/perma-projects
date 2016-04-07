@@ -1,4 +1,19 @@
 <section id="project-show-page" class="view--wrapper">
+  {{#leaflet-map
+    scrollWheelZoom=false
+    lat=model.lat
+    lng=model.lng
+    zoom=zoomLevel
+    class="project-map"
+  }}
+    {{tile-layer url=selectedStyle.url detectRetina=true}}
+    {{#if model.locationIsPublic}}
+      {{#marker-layer lat=model.lat lng=model.lng }}{{/marker-layer}}
+    {{else}}
+      {{#circle-layer location=project.location radius=privacyCircleRadius}}
+      {{/circle-layer}}
+    {{/if}}
+  {{/leaflet-map}}
   <section class="project-show--main">
     <h1 class="project-show--title">{{model.title}}</h1>
     <p class="project-show--description">{{model.description}}</p>
