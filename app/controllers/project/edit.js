@@ -1,5 +1,5 @@
 import Ember from 'ember';
-
+import Mapping from '../../mixins/mapping';
 
 const DEFAULTS = {
   LOCATION: {
@@ -11,42 +11,13 @@ const DEFAULTS = {
 };
 const MINIMUM_ZOOM_LEVEL = 11;
 
-export default Ember.Controller.extend({
+export default Ember.Controller.extend(Mapping, {
   mapbox: Ember.inject.service(),
-  zoomLevel: DEFAULTS.ZOOM,
-  url: 'http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png',
   searchResults: null,
   isSearching: false,
   isDragging: false,
   privacyCircleRadius: 50,
   updateLocationWhenDragging: false,
-  extractAddress(context) {
-    let CITY_REG_EX = /place\.(\d+)/gi;
-    let COUNTY_REG_EX = /region\.(\d+)/gi;
-    let POST_CODE_REG_EX = /postcode\.(\d+)/gi;
-    let COUNTRY_REG_EX = /country\.(\d+)/gi;
-    let address = {};
-
-    context.map((type) => {
-      if(CITY_REG_EX.test(type.id)){
-        address.city = type.text;
-      }
-
-      if(COUNTY_REG_EX.test(type.id)){
-        address.county = type.text;
-      }
-
-      if(COUNTRY_REG_EX.test(type.id)) {
-        address.country = type.text;
-      }
-
-      if(POST_CODE_REG_EX.test(type.id)){
-        address.postcode = type.text;
-      }
-    });
-
-    return address;
-  },
   actions: {
     onSearch(searchQuery) {
       this.set('isSearching', true);

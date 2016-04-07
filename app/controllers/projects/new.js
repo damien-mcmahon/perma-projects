@@ -1,32 +1,17 @@
 import Ember from 'ember';
+import Mapping from '../../mixins/mapping';
 
-const DEFAULTS = {
-  LOCATION: {
-    lat: 52,
-    lng: -1.4
-  },
-  ZOOM: 5,
-  ADDRESS_ZOOM: 12
-};
-
-const MINIMUM_ZOOM_LEVEL = 11;
 const PRIVACY_ROUNDING = 3;
 
-export default Ember.Controller.extend({
+export default Ember.Controller.extend(Mapping, {
   mapbox: Ember.inject.service(),
-  mapLocation: {
-    lat: DEFAULTS.LOCATION.lat,
-    lng: DEFAULTS.LOCATION.lng
-  },
   isSearching: false,
-  zoomLevel: DEFAULTS.ZOOM,
   locationData: null,
   isDragging: false,
   searchResults: null,
   privacyCircle: {},
-  privacyCircleRadius: 200,
+  privacyCircleRadius: this.PRIVACY_CIRCLE_RADIUS,
   updateLocationWhenDragging: false,
-  url: 'http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png',
   slugerizeTitle(unsafeTitle) {
     const STRIP_CHARS_REGEX = /[^a-z0-9\-\s]/gi;
     const DASH_STRIP_REGEX = /^-|-$/g;
@@ -40,70 +25,6 @@ export default Ember.Controller.extend({
       .replace(DASH_STRIP_REGEX, STRIP_REPLACE_VALS)
       .split(SPLIT_CHAR)
       .join(JOIN_CHAR);
-  },
-  extractAddress(context) {
-    let CITY_REG_EX = /place\.(\d+)/gi;
-    let COUNTY_REG_EX = /region\.(\d+)/gi;
-    let POST_CODE_REG_EX = /postcode\.(\d+)/gi;
-    let COUNTRY_REG_EX = /country\.(\d+)/gi;
-    let address = {};
-
-    context.map((type) => {
-      if(CITY_REG_EX.test(type.id)){
-        address.city = type.text;
-      }
-
-      if(COUNTY_REG_EX.test(type.id)){
-        address.county = type.text;
-      }
-
-      if(COUNTRY_REG_EX.test(type.id)) {
-        address.country = type.text;
-      }
-
-      if(POST_CODE_REG_EX.test(type.id)){
-        address.postcode = type.text;
-      }
-    });
-
-    return address;
-  },
-
-  getDetailsFromPlace(place){
-    let postCodeDetails = {};
-    place.context.map((contextItem) => {
-      const CONTEXT_POSTCODE_REG = /postcode/i;
-      const CONTEXT_REGION_REG = /region/i;
-      const CONTEXT_COUNTRY_REG = /country/i;
-
-      if(CONTEXT_COUNTRY_REG.test(contextItem.id)) {
-        postCodeDetails.country = contextItem.text
-      }
-
-      if(CONTEXT_POSTCODE_REG.test(contextItem.id)) {
-        postCodeDetails.postCode = contextItem.text
-      }
-
-      if(CONTEXT_REGION_REG.test(contextItem.id)) {
-        postCodeDetails.region = contextItem.text
-      }
-    });
-    return postCodeDetails;
-  },
-  getPostcodeFromCoord(results) {
-    let postCodeFeature = results.features.filter((feature) => {
-      const ADDRESS_REG_EX = /address/gi;
-      return ADDRESS_REG_EX.test(feature.id);
-    });
-
-    if(!postCodeFeature.length) {
-      postCodeFeature = results.features.filter((feature)=> {
-        const POSTCODE_REG_EX = /postcode/gi;
-        return POSTCODE_REG_EX.test(feature.id);
-      });
-    }
-
-    return this.getDetailsFromPlace(postCodeFeature[0]);
   },
   actions: {
     checkAndSluggerizeTitle() {

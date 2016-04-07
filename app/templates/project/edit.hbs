@@ -7,7 +7,7 @@
     onDrag=(action "mapDragging")
     onMoveend=(action "updateLocation")
   }}
-    {{tile-layer url=url detectRetina=true}}
+    {{tile-layer url=selectedStyle.url  detectRetina=DETECT_RETINA}}
     {{#if isDragging}}
       {{#marker-layer
         lat=centerPoint.lat
