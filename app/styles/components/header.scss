@@ -97,11 +97,16 @@ $app-header-name-colour: #111;
       margin: $app-header-spacing;
       text-transform: uppercase;
       text-decoration: none;
-      font-size: 1.2rem;
+      font-size: 1rem;
       color: $app-header-name-colour;
+      text-align: center;
 
       &:hover {
         text-decoration: underline;
+      }
+
+      @include mq($APP_TABLET_SCREEN_BREAKPOINT) {
+        font-size: 1.2rem;
       }
     }
   }

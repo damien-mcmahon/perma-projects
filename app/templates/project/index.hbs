@@ -5,12 +5,16 @@
     lng=model.lng
     zoom=zoomLevel
     class="project-map"
+    dragging=false
   }}
     {{tile-layer url=selectedStyle.url detectRetina=true}}
     {{#if model.locationIsPublic}}
-      {{#marker-layer lat=model.lat lng=model.lng }}{{/marker-layer}}
+      {{#marker-layer lat=model.lat lng=model.lng clickable=false}}{{/marker-layer}}
     {{else}}
-      {{#circle-layer location=project.location radius=privacyCircleRadius}}
+      {{#circle-layer
+        location=project.location radius=privacyCircleRadius
+        clickable=false
+      }}
       {{/circle-layer}}
     {{/if}}
   {{/leaflet-map}}

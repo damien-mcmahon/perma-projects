@@ -1,36 +1,12 @@
 import Ember from 'ember';
+import Mapping from '../mixins/mapping';
 
-const SEARCH_QUERY_ZOOM_LEVEL = 10;
-const COUNTRY_LEVEL_ZOOM = 5;
-const MAP_STYLES = [
-  {label: 'Default', url: 'http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png'},
-  {label: 'Landscape', url: 'http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png'},
-  {label: 'Outdoors', url: 'http://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png'},
-  {label: 'Terrain', url: 'http://tile.stamen.com/terrain/{z}/{x}/{y}.jpg'}
-];
-const DEFAULTS = {
-  LOCATION: {
-    lat: 51.47685,
-    lng: 0
-  },
-  ZOOM: 8
-};
-
-const PRIVACY_CIRCLE_RADIUS = 100;
 const PROJECTS_TO_SEARCH_COUNT = 10;
 
-export default Ember.Controller.extend({
+export default Ember.Controller.extend(Mapping, {
   mapbox: Ember.inject.service(),
   searchResults: {projects: [], places: []},
-  mapStyles: MAP_STYLES,
-  selectedStyle: MAP_STYLES[0],
-  mapLocation: {
-    lat: DEFAULTS.LOCATION.lat,
-    lng: DEFAULTS.LOCATION.lng
-  },
   isSearching: false,
-  zoomLevel: DEFAULTS.ZOOM,
-  privacyCircleRadius: PRIVACY_CIRCLE_RADIUS,
   actions: {
     onSearch(searchQuery) {
       let mapBox = this.get('mapbox');
@@ -75,7 +51,7 @@ export default Ember.Controller.extend({
           lat: coords.latitude,
           lng: coords.longitude
         },
-        zoomLevel: SEARCH_QUERY_ZOOM_LEVEL
+        zoomLevel: this.SEARCH_QUERY_ZOOM_LEVEL
       });
     },
 
@@ -86,12 +62,12 @@ export default Ember.Controller.extend({
       if(type === 'places') {
         [lng,lat] = result.center;
         zoomLevel = result.properties.short_code ?
-        COUNTRY_LEVEL_ZOOM : SEARCH_QUERY_ZOOM_LEVEL;
+        COUNTRY_LEVEL_ZOOM : this.SEARCH_QUERY_ZOOM_LEVEL;
       } else {
         let loc = result.get('location');
         lat = loc.lat;
         lng = loc.lng;
-        zoomLevel = SEARCH_QUERY_ZOOM_LEVEL;
+        zoomLevel = this.SEARCH_QUERY_ZOOM_LEVEL;
       }
 
       this.setProperties({

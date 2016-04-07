@@ -30,5 +30,5 @@
       {{/if}}
     {{/each}}
   {{/leaflet-map}}
-  {{#current-location onFind=(action "setLocation")}}{{/current-location}}
+  {{#current-location class="current-location--ember-wrapper" onFind=(action "setLocation")}}{{/current-location}}
 </section>

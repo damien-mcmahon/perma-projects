@@ -22,7 +22,7 @@
       {{#if session.isAuthenticated}}
         {{#user-button user=session.currentUser signOut=(action 'signOut')}}{{/user-button}}
       {{else}}
-        {{#link-to "login" class="app--header--nav-link"}}Sign In/Sign Up{{/link-to}}
+        {{#link-to "login" class="app--header--nav-link"}}Sign In / Sign Up{{/link-to}}
       {{/if}}
       {{#facebook-like class="app--header--facebook-like"}}{{/facebook-like}}
     </nav>
