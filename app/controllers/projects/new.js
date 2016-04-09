@@ -1,16 +1,17 @@
 import Ember from 'ember';
+import EmberValidations from 'ember-validations';
 import Mapping from '../../mixins/mapping';
 
 const PRIVACY_ROUNDING = 3;
 
-export default Ember.Controller.extend(Mapping, {
+export default Ember.Controller.extend(EmberValidations, Mapping, {
   mapbox: Ember.inject.service(),
   isSearching: false,
   locationData: null,
   isDragging: false,
   searchResults: null,
   privacyCircle: {},
-  privacyCircleRadius: this.PRIVACY_CIRCLE_RADIUS,
+  hasErrors: false,
   updateLocationWhenDragging: false,
   slugerizeTitle(unsafeTitle) {
     const STRIP_CHARS_REGEX = /[^a-z0-9\-\s]/gi;
@@ -25,6 +26,13 @@ export default Ember.Controller.extend(Mapping, {
       .replace(DASH_STRIP_REGEX, STRIP_REPLACE_VALS)
       .split(SPLIT_CHAR)
       .join(JOIN_CHAR);
+  },
+  validations: {
+    'model.title': {presence: true},
+    'model.description': {presence: true},
+    'model.country': {presence: true},
+    'model.lat': {presence: true},
+    'model.lng': {presence: true}
   },
   actions: {
     checkAndSluggerizeTitle() {
@@ -60,7 +68,9 @@ export default Ember.Controller.extend(Mapping, {
     },
 
     updateLocation(event) {
-      if(!this.updateLocationWhenDragging) return;
+      if(!this.updateLocationWhenDragging) {
+        return;
+      }
 
       let currentZoomLevel = event.target.getZoom();
       let project = this.get('model');
@@ -148,9 +158,7 @@ export default Ember.Controller.extend(Mapping, {
           privacyCircle:{}
         });
       }
-
       this.set('model.locationIsPublic', isChecked);
-
     },
 
     addProject(event) {
@@ -169,10 +177,16 @@ export default Ember.Controller.extend(Mapping, {
         });
       }
 
-      let projectLat = locationIsPublic ?
-        locationData.lat : locationData.lat.toFixed(PRIVACY_ROUNDING);
-      let projectLng = locationIsPublic ?
-        locationData.lng : locationData.lng.toFixed(PRIVACY_ROUNDING);
+      let projectLat = null;
+      let projectLng = null;
+
+      if(locationData && locationData.lat && locationData.lng) {
+        projectLat = locationIsPublic ?
+          locationData.lat : locationData.lat.toFixed(PRIVACY_ROUNDING);
+        projectLng = locationIsPublic ?
+          locationData.lng : locationData.lng.toFixed(PRIVACY_ROUNDING);
+      }
+
 
       newProject.setProperties({
         userId: user.id,
@@ -183,40 +197,38 @@ export default Ember.Controller.extend(Mapping, {
         lng: projectLng
       });
 
+      this.validate().then(() => {
+        if(newProject.get('isValid')){
+          newProject.save();
+          this.store.query('stat', {
+            limitToLast: 1
+          }).then((stats) => {
+            //@TODO: extract this into a better pattern
+            let stat = stats.get('firstObject');
+            let projectCountries = stat.get('projectsByCountry');
+            let newProjectCountry = newProject.get('country');
 
+            if(projectCountries[newProjectCountry]){
+              let currentCount = projectCountries[newProjectCountry];
+              projectCountries[newProjectCountry] = ++currentCount;
+            } else {
+              projectCountries[newProjectCountry] = 1;
+            }
+            let currentProjectsCount = stat.get('totalProjects');
+            stat.setProperties({
+              totalProjects: ++currentProjectsCount,
+              projectsByCountry: projectCountries
+            });
 
-      if(user.id) {
-        newProject.save();
-        let stats = this.store.query('stat', {
-          limitToLast: 1
-        }).then((stats) => {
-          //@TODO: extract this into a better pattern
-          let stat = stats.get('firstObject');
-          let projectCountries = stat.get('projectsByCountry');
-          let newProjectCountry = newProject.get('country');
-
-          if(projectCountries[newProjectCountry]){
-            let currentCount = projectCountries[newProjectCountry];
-            projectCountries[newProjectCountry] = ++currentCount;
-          } else {
-            projectCountries[newProjectCountry] = 1;
-          }
-          let currentProjectsCount = stat.get('totalProjects');
-
-          stat.setProperties({
-            totalProjects: ++currentProjectsCount,
-            projectsByCountry: projectCountries
+            stat.save();
+            this.transitionToRoute('projects');
           });
-
-          stat.save();
-
-          this.transitionToRoute('projects');
-        })
-
-
-      } else {
-        alert("You need to be logged in");
-      }
+        }
+      })
+      .catch(() => {
+        alert("There are errors with this project");
+        this.set('hasErrors', true);
+      });
     }
   }
 });

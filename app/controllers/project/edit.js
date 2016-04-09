@@ -1,13 +1,22 @@
 import Ember from 'ember';
 import Mapping from '../../mixins/mapping';
+import EmberValidations from 'ember-validations';
 
-export default Ember.Controller.extend(Mapping, {
+export default Ember.Controller.extend(Mapping, EmberValidations, {
   mapbox: Ember.inject.service(),
   searchResults: null,
   isSearching: false,
   isDragging: false,
   privacyCircleRadius: 50,
   updateLocationWhenDragging: false,
+  hasErrors: false,
+  validations: {
+    'model.title': {presence: true},
+    'model.description': {presence: true},
+    'model.country': {presence: true},
+    'model.lat': {presence: true},
+    'model.lng': {presence: true}
+  },
   actions: {
     onSearch(searchQuery) {
       this.set('isSearching', true);
@@ -71,8 +80,16 @@ export default Ember.Controller.extend(Mapping, {
       event.preventDefault();
       let user = this.get('session.currentUser');
       let project = this.get('model');
-      project.save();
-      this.transitionToRoute('projects');
+      this.validate().then(() => {
+        if(project.get('isValid')){
+          project.save();
+          this.transitionToRoute('projects');
+        }
+      })
+      .catch(() => {
+        alert("There are errors with this project");
+        this.set('hasErrors', true);
+      });
     }
   }
 });

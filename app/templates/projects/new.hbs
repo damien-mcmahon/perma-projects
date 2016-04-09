@@ -48,6 +48,7 @@
             id="projectTitle"
             focus-out=(action "checkAndSluggerizeTitle")
           }}
+          {{display-errors errors=errors.model.title showErrors=hasErrors}}
         </div>
       <div class="form-input--wrapper project--description">
         <label for="projectDescription">Description:</label>
@@ -56,6 +57,7 @@
           value=model.description
           id="projectDescription"
         }}
+        {{display-errors errors=errors.model.description showErrors=hasErrors}}
       </div>
       <div class="form-input--wrapper">
         <label for="projectLocation">Location:</label>
@@ -88,6 +90,7 @@
         <div class="form-input--wrapper address--country">
           <label for="country">Country: </label>
           {{input type="text" value=model.country}}
+          {{display-errors errors=errors.model.country showErrors=hasErrors}}
         </div>
         <div class="form-input--wrapper address--postcode">
           <label for="postCode">Post/Zip Code: </label>

@@ -1,0 +1,9 @@
+$error-bg-colour: rgba(#F00, .2);
+$error-text-colour: #F00;
+.input-error {
+  display: inline-block;
+  background: $error-bg-colour;
+  color: $error-text-colour;
+  width: 100%;
+  padding: $APP_BASE_SPACING;
+}
