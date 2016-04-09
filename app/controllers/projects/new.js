@@ -183,9 +183,37 @@ export default Ember.Controller.extend(Mapping, {
         lng: projectLng
       });
 
+
+
       if(user.id) {
         newProject.save();
-        this.transitionToRoute('projects');
+        let stats = this.store.query('stat', {
+          limitToLast: 1
+        }).then((stats) => {
+          //@TODO: extract this into a better pattern
+          let stat = stats.get('firstObject');
+          let projectCountries = stat.get('projectsByCountry');
+          let newProjectCountry = newProject.get('country');
+
+          if(projectCountries[newProjectCountry]){
+            let currentCount = projectCountries[newProjectCountry];
+            projectCountries[newProjectCountry] = ++currentCount;
+          } else {
+            projectCountries[newProjectCountry] = 1;
+          }
+          let currentProjectsCount = stat.get('totalProjects');
+
+          stat.setProperties({
+            totalProjects: ++currentProjectsCount,
+            projectsByCountry: projectCountries
+          });
+
+          stat.save();
+
+          this.transitionToRoute('projects');
+        })
+
+
       } else {
         alert("You need to be logged in");
       }

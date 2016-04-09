@@ -12,8 +12,7 @@ export default Ember.Route.extend({
         });
 
         checkUserExists.then((results) => {
-          if(!results.content.length) {
-            let currentUser = user.currentUser;
+          if(!results.get('length')) {
             let newUser = this.store.createRecord('user');
 
             newUser.setProperties({
@@ -23,15 +22,27 @@ export default Ember.Route.extend({
               likes: [],
               role: 1
             });
-            newUser.save().then(()=>{
-              this.transitionTo('projects.index');
-            })
+
+            newUser.save().then(() => {
+              this.store.query('stat', {
+                limitToLast: 1
+              }).then((stats) => {
+                let stat = stats.get('firstObject');
+                let currentUsersCount = stat.get('totalUsers');
+
+                stat.setProperties({
+                  totalUsers: ++currentUsersCount
+                });
+
+                stat.save();
+                this.transitionTo('projects.index');
+              });
+            });
           } else {
             this.transitionTo('projects.index');
           }
         });
-
-      })
+      });
     }
   }
 });
