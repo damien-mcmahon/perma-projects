@@ -1,0 +1,35 @@
+.projects-list--wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: $APP_BASE_SPACING;
+
+  .projects-list--header {
+    flex: 1;
+  }
+
+  .projects-list--body {
+    overflow-y: scroll;
+    margin-bottom: $APP_BASE_SPACING;
+    flex: 1;
+    max-height: 70vh;
+  }
+
+  .projects-list--list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .projects-list--project {
+    padding: $APP_BASE_SPACING;
+    border: 1px solid #DDD;
+    margin: $APP_BASE_SPACING 0;
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-between;
+
+    a {
+      font-size: 1rem;
+    }
+  }
+}

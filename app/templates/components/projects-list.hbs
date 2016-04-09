@@ -1,0 +1,24 @@
+<div class="projects-list--wrapper">
+  <header class="projects-list--header">
+    <h1>PROJECTS</h1>
+    <div class="input-group-wrapper">
+      {{input type="text" key-up="filterProjects" placeholder="Start Typing to search"}}
+    </div>
+  </header>
+  <section class="projects-list--body">
+    <ul class="projects-list--list">
+      {{#each visibleProjects as |project|}}
+      <li
+      class="projects-list--project">
+      {{#link-to "project" project}}{{project.title}}{{/link-to}}
+
+      <button class="button" {{action "hoverAction" project}}>
+        {{fa-icon "crosshairs"}}
+      </button>
+    </li>
+    {{/each}}
+  </ul>
+  </section>
+  <footer class="projects-list--footer">
+  </footer>
+</div>

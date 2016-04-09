@@ -8,18 +8,31 @@ $index-page-spacing: $APP_BASE_SPACING;
   margin: 0;
   padding: 0;
 
-  .view--wrapper {
-    border: 2px solid red;
-    height: 92.5vh;
-    position: relative;
-  }
-
-  .leaflet-container {
+  .map-and-list--wrapper {
+    display: flex;
     position: absolute;
     top: 0;
     left: 0;
     width: 100vw;
     height: 92.5vh;
+  }
+
+  .projects-list--container {
+    display:none;
+
+    @include mq($APP_TABLET_SCREEN_BREAKPOINT) {
+      display: block;
+      width: 30vw;
+      min-width: 30rem;
+      max-height: 100%;
+      background: #FFF;
+      z-index: 11;
+      overflow-y: scroll;
+    }
+  }
+
+  .leaflet-container {
+    height: 100%;
   }
 
   .multibox--wrapper {

@@ -1,5 +1,5 @@
 <section id="index-page">
-  <div class="view--wrapper">
+  <div class="map-and-list--wrapper">
     <div class="multibox--wrapper">
       {{#search-box
         search=(action "onSearch")
@@ -9,26 +9,29 @@
         placeholderText="Search For Projects or Places"
       }}{{/search-box}}
     </div>
+    <div class="projects-list--container">
+      {{projects-list projects=model on-hover=(action "setLocation")}}
+    </div>
+    {{#leaflet-map
+      scrollWheelZoom=false
+      lat=mapLocation.lat
+      lng=mapLocation.lng
+      onMoveend=(action "getProjectsForBounds")
+      zoom=this.zoomLevel
+      worldCopyJump=true}}
+      {{tile-layer url=selectedStyle.url detectRetina=DETECT_RETINA}}
+      {{#each model as |project|}}
+        {{#if project.locationIsPublic}}
+          {{#marker-layer lat=project.lat lng=project.lng }}
+            {{#project-descriptor project=project}}{{/project-descriptor}}
+            {{/marker-layer}}
+        {{else}}
+          {{#circle-layer location=project.location radius=privacyCircleRadius}}
+            {{#project-descriptor project=project}}{{/project-descriptor}}
+          {{/circle-layer}}
+        {{/if}}
+      {{/each}}
+    {{/leaflet-map}}
+    {{#current-location class="current-location--ember-wrapper" onFind=(action "setLocation")}}{{/current-location}}
   </div>
-  {{#leaflet-map
-    scrollWheelZoom=false
-    lat=mapLocation.lat
-    lng=mapLocation.lng
-    onMoveend=(action "getProjectsForBounds")
-    zoom=this.zoomLevel
-    worldCopyJump=true}}
-    {{tile-layer url=selectedStyle.url detectRetina=DETECT_RETINA}}
-    {{#each model as |project|}}
-      {{#if project.locationIsPublic}}
-        {{#marker-layer lat=project.lat lng=project.lng }}
-          {{#project-descriptor project=project}}{{/project-descriptor}}
-          {{/marker-layer}}
-      {{else}}
-        {{#circle-layer location=project.location radius=privacyCircleRadius}}
-          {{#project-descriptor project=project}}{{/project-descriptor}}
-        {{/circle-layer}}
-      {{/if}}
-    {{/each}}
-  {{/leaflet-map}}
-  {{#current-location class="current-location--ember-wrapper" onFind=(action "setLocation")}}{{/current-location}}
 </section>

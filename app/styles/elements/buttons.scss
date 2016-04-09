@@ -1,4 +1,4 @@
-$button-spacing: $APP_BASE_SPACING;
+$button-spacing: ($APP_BASE_SPACING / 2);
 $button-border-colour: #558B2F;
 $button-border-radius: .5rem;
 $button-colour: #FFF;
@@ -8,7 +8,7 @@ $button-bg: #9CCC65;
 
 .button {
   display: inline-block;
-  padding: $button-spacing;
+  padding: $button-spacing ($APP_BASE_SPACING * .75);
   border: 1px solid $button-border-colour;
   margin: 0 ($button-spacing / 4);
   text-decoration: none;

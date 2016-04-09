@@ -2,6 +2,7 @@ import Ember from 'ember';
 import Mapping from '../mixins/mapping';
 
 const PROJECTS_TO_SEARCH_COUNT = 10;
+const LOCATION_UPDATE_DELAY = 250;
 
 export default Ember.Controller.extend(Mapping, {
   mapbox: Ember.inject.service(),
@@ -45,14 +46,16 @@ export default Ember.Controller.extend(Mapping, {
       });
     },
 
-    setLocation(coords) {
-      this.setProperties({
-        mapLocation: {
-          lat: coords.latitude,
-          lng: coords.longitude
-        },
-        zoomLevel: this.SEARCH_QUERY_ZOOM_LEVEL
-      });
+    setLocation(coords, zoomLevel = this.SEARCH_QUERY_ZOOM_LEVEL) {
+      setTimeout(() =>{
+        this.setProperties({
+          mapLocation: {
+            lat: coords.latitude,
+            lng: coords.longitude
+          },
+          zoomLevel: zoomLevel
+        });
+      }, LOCATION_UPDATE_DELAY);
     },
 
     selectAddress(result, type) {
