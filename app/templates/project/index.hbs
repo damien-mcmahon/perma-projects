@@ -8,7 +8,18 @@
     dragging=false
   }}
     {{tile-layer url=selectedStyle.url detectRetina=true}}
-    {{#marker-layer lat=model.lat lng=model.lng clickable=false}}{{/marker-layer}}
+    {{#if model.locationIsPublic}}
+      {{#marker-layer
+        lat=model.lat
+        lng=model.lng
+        clickable=false}}
+      {{/marker-layer}}
+    {{else}}
+      {{#circle-layer
+        location=model.location
+        radius=privacyCircleRadius}}
+      {{/circle-layer}}
+    {{/if}}
   {{/leaflet-map}}
   <section class="project-show--main-wrapper">
     <section class="project-show--main-info-wrapper">
