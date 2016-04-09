@@ -10,10 +10,11 @@ export default Ember.Controller.extend({
         let statsModel = this.get('model').get('firstObject');
         let countriesAdded = statsModel.get('projectsByCountry');
 
+
         if(countriesAdded) {
-          return;
+          countriesAdded = {};
         }
-        
+
         if(totalResults) {
           countriesAdded = countriesAdded || {};
           results.map((project) => {
@@ -29,8 +30,23 @@ export default Ember.Controller.extend({
               }
             }
           });
-          statsModel.set('projectsByCountry', countriesAdded);
-          statsModel.save();
+
+          let userCount = this.store.query('user', {
+            orderBy: 'id'
+          }).then((users) => {
+            if(users.get('length')){
+              let userCount = users.get('length');
+
+              statsModel.setProperties({
+                'projectsByCountry': countriesAdded,
+                'totalProjects': totalResults,
+                'totalUsers': userCount
+              });
+
+              statsModel.save();
+            }
+          })
+
         }
       });
     }
