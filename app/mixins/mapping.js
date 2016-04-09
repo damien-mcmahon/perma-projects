@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const SEARCH_QUERY_ZOOM_LEVEL = 10;
+const SEARCH_QUERY_ZOOM_LEVEL = 15;
 const COUNTRY_LEVEL_ZOOM = 5;
 
 const MAP_STYLES = [
