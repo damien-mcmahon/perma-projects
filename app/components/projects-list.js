@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const PROJECT_LIST_ZOOM_LEVEL = 11;
+const PROJECT_LIST_ZOOM_LEVEL = 13;
 
 export default Ember.Component.extend({
   visibleProjects: [],
@@ -13,6 +13,12 @@ export default Ember.Component.extend({
     this.visibleProjects = projects.slice(0, pageSize - 1);
     this.set('totalPages', Math.ceil(projects.get('length') / pageSize));
     //paginate at some point
+  },
+  didReceiveAttrs(attrs) {
+    this._super(...arguments);
+    let newAttrs = attrs.newAttrs;
+    let newProjects = newAttrs.projects.value;
+    this.set('visibleProjects', newProjects.slice(0, this.get('pageSize')));
   },
   actions: {
     hoverAction(project) {
