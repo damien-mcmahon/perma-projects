@@ -4,6 +4,44 @@
     <div class="input-group-wrapper">
       {{input type="text" key-up="filterProjects" placeholder="Start Typing to search"}}
     </div>
+    <button class="button" {{action "toggleFilters"}}>
+        {{fa-icon "list"}} Filters
+    </button>
+    {{#if showFilters}}
+      <h2>Filters:</h2>
+      <div class="check-box-group">
+        <div class="form-input--label-wrapper">
+          <label>
+            WWOOF Projects:
+            <input type="checkbox" onchange={{action "filterType" 'wwoof'}} checked={{wwoof}}/>
+          </label>
+        </div>
+        <div class="form-input--label-wrapper">
+          <label>
+            Sells Produce:
+            <input type="checkbox" onchange={{action "filterType" 'produce'}} checked={{produce}}/>
+          </label>
+        </div>
+        <div class="form-input--label-wrapper">
+          <label>
+            Runs Educational Courses:
+            <input type="checkbox" onchange={{action "filterType" 'educational'}} checked={{educational}}/>
+          </label>
+        </div>
+        <div class="form-input--label-wrapper">
+          <label>
+            Open to Visitors:
+            <input type="checkbox" onchange={{action "filterType" 'visitors'}} checked={{visitors}}/>
+          </label>
+        </div>
+        <div class="form-input--label-wrapper">
+          <label>
+            Looking for volunteers:
+            <input type="checkbox" onchange={{action "filterType" 'volunteers'}} checked={{volunteers}}/>
+          </label>
+        </div>
+      </div>
+    {{/if}}
   </header>
   <section class="projects-list--body">
     <ul class="projects-list--list">

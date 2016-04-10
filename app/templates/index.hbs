@@ -9,9 +9,11 @@
         placeholderText="Search For Projects or Places"
       }}{{/search-box}}
     </div>
-    <div class="projects-list--container">
-      {{projects-list projects=model on-hover=(action "setLocation")}}
-    </div>
+    {{#if showProjectList}}
+      <div class="projects-list--container">
+        {{projects-list projects=model on-hover=(action "setLocation")}}
+      </div>
+    {{/if}}
     {{#leaflet-map
       scrollWheelZoom=false
       lat=mapLocation.lat

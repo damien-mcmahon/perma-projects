@@ -7,6 +7,7 @@ const LOCATION_UPDATE_DELAY = 250;
 export default Ember.Controller.extend(Mapping, {
   mapbox: Ember.inject.service(),
   searchResults: {projects: [], places: []},
+  showProjectList: true,
   isSearching: false,
   actions: {
     onSearch(searchQuery) {
