@@ -10,7 +10,7 @@ $index-page-spacing: $APP_BASE_SPACING;
 
   .map-and-list--wrapper {
     display: flex;
-    position: absolute;
+    position: relative;
     top: 0;
     left: 0;
     width: 100vw;
@@ -31,8 +31,34 @@ $index-page-spacing: $APP_BASE_SPACING;
     }
   }
 
+  .project-list--toggler {
+    position: absolute;
+    top: $APP_BASE_SPACING;
+    left: $APP_BASE_SPACING;
+    z-index: 20;
+    box-shadow: 0 2px 2px rgba(0,0,0,.25);
+    font-size: 1.3rem;
+    display: none;
+
+    @include mq($APP_TABLET_SCREEN_BREAKPOINT) {
+      display: block;
+    }
+  }
+
   .leaflet-container {
     height: 100%;
+  }
+
+  .leaflet-control-container {
+    .leaflet-top.leaflet-left {
+      left: initial;
+      right: 0;
+      top: ($APP_BASE_SPACING * 4);
+    }
+  }
+
+  .leaflet-control-zoom {
+    right: $APP_BASE_SPACING;
   }
 
   .multibox--wrapper {

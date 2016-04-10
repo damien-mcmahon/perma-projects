@@ -6,14 +6,18 @@
   .projects-list--header {
     flex: 1;
     padding: $APP_BASE_SPACING 0;
+
+    h1 {
+      margin: 0 0 ($APP_BASE_SPACING/2);
+    }
   }
 
   .projects-list--body {
     overflow-y: scroll;
     margin-bottom: $APP_BASE_SPACING;
     flex: 1;
-    height: 70vh;
-    max-height: 70vh;
+    height: 75vh;
+    max-height: 75vh;
     background: #F9F9F9;
     padding: $APP_BASE_SPACING;
     border: 1px solid #AAA;
@@ -37,5 +41,16 @@
     a {
       font-size: 1rem;
     }
+  }
+
+  .check-box-group {
+    border: 1px solid #EEE;
+    label {
+      font-size: 1.1rem;
+    }
+  }
+
+  .check-box-group--title {
+    margin: $APP_BASE_SPACING $APP_BASE_SPACING 0;
   }
 }

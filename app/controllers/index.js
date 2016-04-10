@@ -10,6 +10,9 @@ export default Ember.Controller.extend(Mapping, {
   showProjectList: true,
   isSearching: false,
   actions: {
+    toggleProjectList(){
+      this.toggleProperty('showProjectList');
+    },
     onSearch(searchQuery) {
       let mapBox = this.get('mapbox');
       this.set('isSearching', true);
