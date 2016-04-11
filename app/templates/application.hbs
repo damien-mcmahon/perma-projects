@@ -12,17 +12,27 @@
           {{#link-to "index"}}Perma Projects{{/link-to}}
         </h1>
         <h2 class="app--header--subtitle">
-          Permaculture Projects from around the world
+          {{t 'app.header.subtitle'}}
         </h2>
       </div>
     </div>
     <nav class="app--header--nav">
-      {{#link-to "about" class="app--header--nav-link"}}About{{/link-to}}
-      {{#link-to "stats" class="app--header--nav-link"}}Stats{{/link-to}}
+      {{#link-to "about" class="app--header--nav-link"}}
+        {{t 'app.header.nav.about-page'}}
+      {{/link-to}}
+      {{#link-to "stats" class="app--header--nav-link"}}
+        {{t 'app.header.nav.stats-page'}}
+      {{/link-to}}
       {{#if session.isAuthenticated}}
-        {{#user-button user=session.currentUser signOut=(action 'signOut')}}{{/user-button}}
+        {{#user-button
+          user=session.currentUser
+          signOut=(action 'signOut')
+        }}
+        {{/user-button}}
       {{else}}
-        {{#link-to "login" class="app--header--nav-link"}}Sign In / Sign Up{{/link-to}}
+        {{#link-to "login" class="app--header--nav-link"}}
+          {{t 'app.header.nav.login-page'}}
+        {{/link-to}}
       {{/if}}
       {{#facebook-like class="app--header--facebook-like"}}{{/facebook-like}}
     </nav>

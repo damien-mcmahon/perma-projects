@@ -12,8 +12,10 @@
       onMoveend=(action "getProjectsForBounds")
       zoom=this.zoomLevel
       worldCopyJump=true}}
-      <button class="button project-list--toggler" {{action "toggleProjectList"}}>
-        {{fa-icon "bars"}} Visible Projects
+      <button
+        class="button project-list--toggler"
+        {{action "toggleProjectList"}}>
+        {{fa-icon "bars"}} {{t 'index.visible-projects'}}
       </button>
       <div class="multibox--wrapper">
         {{#search-box
@@ -21,7 +23,7 @@
           searching=(mut isSearching)
           results=(mut searchResults)
           onSelect=(action "selectAddress")
-          placeholderText="Search For Projects or Places"
+          placeholderText=(t 'index.search-box.placeholder')
         }}{{/search-box}}
       </div>
       {{tile-layer url=selectedStyle.url detectRetina=DETECT_RETINA}}

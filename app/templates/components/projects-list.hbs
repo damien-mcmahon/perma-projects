@@ -1,42 +1,47 @@
 <div class="projects-list--wrapper">
   <header class="projects-list--header">
-    <h1>PROJECTS</h1>
+    <h1>{{t 'project-list.header.title'}}</h1>
     <div class="input-group-wrapper">
-      {{input type="text" key-up="filterProjects" placeholder="Start Typing to search"}}
+      {{input
+        type="text"
+        key-up="filterProjects"
+        placeholder=(t 'project-list.header.search-box.placeholder')}}
     </div>
     <button class="button" {{action "toggleFilters"}}>
-        {{fa-icon "list"}} Filters
+        {{fa-icon "list"}} {{t 'project-list.header.filter-button' count="1"}}
     </button>
     {{#if showFilters}}
       <div class="check-box-group">
-        <h2 class="check-box-group--title">Filters:</h2>
+        <h2 class="check-box-group--title">
+          {{t 'project-list.header.filter-button' count="5"}}
+        </h2>
         <div class="form-input--label-wrapper">
           <label>
-            WWOOF Projects:
+            {{t 'project-list.filter.label.wwoof'}}:
             <input type="checkbox" onchange={{action "filterType" 'wwoof'}} checked={{wwoof}}/>
           </label>
         </div>
         <div class="form-input--label-wrapper">
           <label>
-            Sells Produce:
+            {{t 'project-list.filter.label.produce'}}:
             <input type="checkbox" onchange={{action "filterType" 'produce'}} checked={{produce}}/>
           </label>
         </div>
         <div class="form-input--label-wrapper">
           <label>
-            Runs Educational Courses:
+            {{t 'project-list.filter.label.eductional'}}:
             <input type="checkbox" onchange={{action "filterType" 'educational'}} checked={{educational}}/>
           </label>
         </div>
         <div class="form-input--label-wrapper">
           <label>
-            Open to Visitors:
+            {{t 'project-list.filter.label.visitors'}}:
             <input type="checkbox" onchange={{action "filterType" 'visitors'}} checked={{visitors}}/>
           </label>
         </div>
         <div class="form-input--label-wrapper">
           <label>
-            Looking for volunteers:
+            {{t 'project-list.filter.label.volunteers'}}:
             <input type="checkbox" onchange={{action "filterType" 'volunteers'}} checked={{volunteers}}/>
           </label>
         </div>
