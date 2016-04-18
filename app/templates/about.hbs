@@ -1,25 +1,15 @@
 <div id="about-page" class="view--wrapper">
-  <h1>Welcome!</h1>
-  <p>Perma Projects is a site that's intended to help anyone looking to find Permaculture projects in their location.
-  There are many disparate sites each with their own website and directories of places where Permaculture is being used.
-  Perma Projects will hopefully become a place where it's possible to find all of these projects in one place.
-  </p>
-  <h1>Get Involved</h1>
-  <p>I've created this site as I'm interested in visiting, volunteering and finding out
-    where Permaculture is happening near me and I decided to create a resource that others
-    can use too. If you run a permaculture project and would like to share it
-    then please feel free to sign up (login via Facebook) and it's very easy to add your project.
-  </p>
-  <h1>Get the Data</h1>
-  <p>In the spirit of permaculture and sharing, the <a href="https://github.com/damien-mcmahon/perma-projects">source code for this site</a> is freely available
-    (meaning you can clone this site).
-    The <a href="https://perma-project.firebaseio.com/projects.json">project data</a>
-    is freely available to use as you see fit and perhaps make something interesting with.
-  </p>
-  <h1>Get in touch</h1>
-  <p>If you'd like to get in contact with me, visit <a href="http://macoto.co.uk">my personal site</a> for more info!.</p>
-  <p>Or via Twitter: <a href="https://twitter.com/perma_projects">@perma_projects</a></p>
-  <h1>Data Sources used so far:</h1>
+  <h1>{{t 'about.page-title'}}</h1>
+  <p>{{t 'about.intro-paragraph'}}</p>
+  <h1>{{t 'about.help-title'}}</h1>
+  <p>{{t 'about.help-paragraph'}}</p>
+  <h1>{{t 'about.get-data-title'}}</h1>
+  <p>{{t 'about.get-data-github' githubLink=(t 'about.github')}}</p>
+  <p>{{t 'about.get-project-data-link' projectDataLink=(t 'about.projectdata')}}</p>
+  <h1>{{t 'about.get-in-touch-title'}}</h1>
+  <p>{{t 'about.get-in-touch-macoto' macotoLink=(t 'about.macoto')}}</p>
+  <p>{{t 'about.get-in-touch-twitter' twitterLink=(t 'about.twitter')}}</p>
+  <h1>{{t 'about.data-sources-title'}}</h1>
   <ul>
     <li>
       <a href="https://www.permaculture.org.uk/people-projects-places/land/map">
