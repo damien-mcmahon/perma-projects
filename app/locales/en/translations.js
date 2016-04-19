@@ -56,5 +56,12 @@ export default {
       'totalProjects': 'Total Permaculture Projects',
       'totalUsers': 'Total Users on PermaProjects.com'
     }
+  },
+  'projects': {
+    'page-title': 'Projects you\'ve added',
+    'add-project-button': 'Add Project',
+    'view-project-button': 'View',
+    'edit-project-button': 'Edit',
+    'delete-project-button': 'Delete'
   }
 };
