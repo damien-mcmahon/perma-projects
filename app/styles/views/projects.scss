@@ -1,8 +1,13 @@
 $project-spacing: $APP_BASE_SPACING;
 $project-border-colour: #DDD;
+$project-delete-button-bg: #F00;
+$project-delete-button-border: darken($project-delete-button-bg, 10%);
+$project-edit-button-bg: orange;
+$project-edit-button-border: darken($project-edit-button-bg, 10%);
 
 #projects-page {
   .projects--project-wrapper {
+    display: flex;
     padding: $project-spacing;
     margin: $project-spacing 0;
     border: 1px solid $project-border-colour;
@@ -14,6 +19,7 @@ $project-border-colour: #DDD;
     margin: 0;
     font-size: 2rem;
     text-transform: uppercase;
+    flex: 3;
   }
 
   .projects--view-counter {
@@ -21,5 +27,24 @@ $project-border-colour: #DDD;
     color: #AAA;
     font-size: 1.2rem;
     margin-left: $APP_BASE_SPACING;
+  }
+
+  .projects--project-actions {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .button {
+    font-size: 1rem;
+  }
+
+  .-edit-project {
+    background: $project-edit-button-bg;
+    border-color: $project-edit-button-border;
+  }
+
+  .-delete-project {
+    background: $project-delete-button-bg;
+    border-color: $project-delete-button-border;
   }
 }

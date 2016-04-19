@@ -1,23 +1,35 @@
 <section id="projects-page" class="view--wrapper">
-  <h1>Projects you've added</h1>
+  <h1>{{t 'projects.page-title'}}</h1>
   <nav>
-    {{#link-to "projects.new" class="button"}}Add Project{{/link-to}}
+    {{#link-to "projects.new" class="button"}}
+      {{fa-icon "plus"}}
+      {{t 'projects.add-project-button'}}
+    {{/link-to}}
   </nav>
   {{#each model as |project|}}
     <div class="projects--project-wrapper">
       <h1 class="projects--project-title">
         {{project.title}}
-          <span class="projects--view-counter">{{fa-icon 'eye'}} {{project.views}}</span>
+          <span class="projects--view-counter">
+            {{fa-icon 'eye'}} {{project.views}}
+          </span>
       </h1>
-      {{#link-to 'project' project.slugTitle class="button"}}
-        View
-      {{/link-to}}
-      {{#link-to
-        'project.edit' project.slugTitle
-        class="button"}}
-        Edit
-      {{/link-to}}
-      <a class="button" {{action "deleteProject" project}}>Delete</a>
+      <div class="projects--project-actions">
+        {{#link-to 'project' project.slugTitle class="button"}}
+          {{fa-icon 'eye'}}
+          {{t 'projects.view-project-button'}}
+        {{/link-to}}
+        {{#link-to
+          'project.edit' project.slugTitle
+          class="button -edit-project"}}
+          {{fa-icon "pencil"}}
+          {{t 'projects.edit-project-button'}}
+        {{/link-to}}
+        <a class="button -delete-project" {{action "deleteProject" project}}>
+          {{fa-icon "trash"}}
+          {{t 'projects.delete-project-button'}}
+        </a>
+      </div>
   </div>
   {{/each}}
 </section>
