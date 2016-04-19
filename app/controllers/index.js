@@ -10,7 +10,7 @@ export default Ember.Controller.extend(Mapping, {
   showProjectList: true,
   isSearching: false,
   actions: {
-    toggleProjectList(){
+    toggleProjectList() {
       this.toggleProperty('showProjectList');
     },
     onSearch(searchQuery) {
