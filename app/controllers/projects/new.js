@@ -126,7 +126,8 @@ export default Ember.Controller.extend(EmberValidations, Mapping, {
           lat: lat,
           lng: lng
         },
-        zoomLevel: this.DEFAULTS.ADDRESS_ZOOM
+        zoomLevel: this.DEFAULTS.ADDRESS_ZOOM,
+        searchResults: null
       });
 
       let addressLine1 = address.address ?
