@@ -5,7 +5,8 @@ export default {
       'nav': {
         'about-page': 'About',
         'stats-page': 'Stats',
-        'login-page': 'Sign In / Sign Up'
+        'login-page': 'Sign In',
+        'sign-up-page': 'Sign Up'
       }
     },
   },

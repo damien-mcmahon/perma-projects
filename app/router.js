@@ -16,6 +16,7 @@ Router.map(function() {
   });
   this.route('stats');
   this.authenticatedRoute('admin');
+  this.route('sign-up');
 });
 
 export default Router;

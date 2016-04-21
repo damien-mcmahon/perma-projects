@@ -19,6 +19,35 @@
         {{fa-icon 'twitter-square'}}
         Sign In with Twitter
       </button>
+      <button class="button login--sign-in" {{action "showSignIn"}}>
+        {{fa-icon 'envelope'}}
+        Sign In
+      </button>
+      {{#if showEmailSignIn}}
+      <form>
+        <h2>Email Sign In</h2>
+        <div class="form-input--wrapper">
+          <label for="email">Email:</label>
+          {{input
+            type="text"
+            placeholder="Your Email address"
+            value=model.email
+            id="email"
+          }}
+        </div>
+        <div class="form-input--wrapper">
+          <label for="password">Password:</label>
+          {{input
+            type="password"
+            value=model.password
+            id="password"
+          }}
+        </div>
+        <button class="button" {{action "signInEmailPassword" model}}>
+          Sign in
+        </button>
+      </form>
+      {{/if}}
     {{/if}}
   </div>
 </section>
