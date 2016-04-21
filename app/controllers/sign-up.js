@@ -1,8 +1,8 @@
 import Ember from 'ember';
 import EmberValidations from 'ember-validations';
+import SignIn from '../mixins/signIn';
 
-
-export default Ember.Controller.extend(EmberValidations, {
+export default Ember.Controller.extend(EmberValidations, SignIn, {
   firebase: Ember.inject.service(),
   showSignUpForm: false,
   emailErrors: false,
@@ -10,7 +10,6 @@ export default Ember.Controller.extend(EmberValidations, {
   actions: {
     checkEmailExists() {
       let email = this.get('model.email');
-
       this.store.query('user', {
         orderBy: 'email',
         equalTo: email
@@ -26,6 +25,7 @@ export default Ember.Controller.extend(EmberValidations, {
     toggleSignUpForm() {
       this.toggleProperty('showSignUpForm');
     },
+
     signUpUser() {
       let user = this.get('model');
       // if(user.get('password') === user.get('confirm')){
@@ -43,14 +43,13 @@ export default Ember.Controller.extend(EmberValidations, {
               });
               return;
             }
-            console.log("USER...", user);
+
+            this.signInEmailAndPassword(user);
 
           });
         }).catch((err) => {
           this.set('hasErrors', true);
         })
-      // } else {
-      // }
     }
   },
   validations: {
