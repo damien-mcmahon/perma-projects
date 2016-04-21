@@ -65,12 +65,16 @@ export default Ember.Route.extend({
         password: signInUser.get('password')
       }).then((user) => {
         let checkUserExists = this.checkForUser(user);
-        let session = this.get('session');
-        session.set('currentUser.id', user.uid);
+
         checkUserExists.then((results) => {
           if(!results.get('length')) {
             this.saveNewUser(user, this.updateStatsWithNewUser.bind(this));
           } else {
+
+            if(user.isTemporaryPassword) {
+              this.transitionTo('profile');
+            }
+
             this.transitionTo('projects.index');
           }
         });

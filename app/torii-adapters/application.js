@@ -7,24 +7,22 @@ export default ToriiFirebaseAdapter.extend({
   open(authorization) {
     if(authorization.provider === 'password') {
       authorization.password.id = authorization.uid;
-      return {
-        currentUser: authorization.password
-      };
+      return this.store.query('user', {
+        orderBy: 'loginId',
+        equalTo: authorization.uid
+      }).then((users) => {
+        if(users.get('length')){
+          authorization.password.displayName =
+          users.get('firstObject').get('displayName');
+
+          return {
+            currentUser: authorization[authorization.provider]
+          };
+        }
+      });
     }
+    return {
+      currentUser: authorization[authorization.provider]
+    };
   }
-  // ,
-  // store: Ember.inject.service(),
-  // open(authorization){
-  //   var userId = authorization.uid,
-  //       store  = this.get('store');
-  //   return store.query('user', {
-  //     orderBy: 'loginId',
-  //     equalTo: userId
-  //   }).then((user) => {
-  //     let theUser = user.get('firstObject');
-  //     return {
-  //       currentUser: theUser
-  //     };
-  //   });
-  // }
 });

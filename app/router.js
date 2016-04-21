@@ -8,7 +8,7 @@ const Router = Ember.Router.extend({
 Router.map(function() {
   this.route('login');
   this.route('project', { path: '/project/:slugTitle' }, function() {
-    this.route('edit');
+    this.authenticatedRoute('edit');
   });
   this.route('about');
   this.authenticatedRoute('projects', {}, function() {
@@ -17,6 +17,8 @@ Router.map(function() {
   this.route('stats');
   this.authenticatedRoute('admin');
   this.route('sign-up');
+  this.authenticatedRoute('profile');
+  this.route('forgot-password');
 });
 
 export default Router;

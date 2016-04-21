@@ -18,51 +18,51 @@
       {{fa-icon "envelope"}}
       Sign Up with Email
     </button>
+    {{#if showSignUpForm}}
+      <form>
+        <h2>Sign Up</h2>
+        <div class="form-input--wrapper">
+          <label for="displayName">Display Name:</label>
+          {{input
+            type="text"
+            placeholder="Geoff Mollison"
+            value=model.displayName
+            id="displayName"
+          }}
+          {{display-errors errors=errors.model.displayName showErrors=hasErrors}}
+        </div>
+        <div class="form-input--wrapper">
+          <label for="email">Email:</label>
+          {{input
+            type="text"
+            placeholder="Your Email address"
+            value=model.email
+            id="email"
+            focus-out=(action "checkEmailExists")
+          }}
+          {{display-errors errors=errors.model.email showErrors=hasErrors}}
+          {{display-errors errors=errors.model.email showErrors=emailErrors}}
+        </div>
+        <div class="form-input--wrapper">
+          <label for="password">Password:</label>
+          {{input
+            type="password"
+            value=model.password
+            id="password"
+          }}
+          {{display-errors errors=errors.model.password showErrors=hasErrors}}
+        </div>
+        <div class="form-input--wrapper">
+          <label for="confirm">Confirm Password:</label>
+          {{input
+            type="password"
+            value=model.confirm
+            id="confirm"
+          }}
+          {{display-errors errors=errors.model.confirm showErrors=hasErrors}}
+        </div>
+        <button class="button" {{action "signUpUser"}}>Sign Up</button>
+      </form>
+    {{/if}}
   </div>
-  {{#if showSignUpForm}}
-  <form>
-    <h2>Sign Up</h2>
-    <div class="form-input--wrapper">
-      <label for="displayName">Display Name:</label>
-      {{input
-        type="text"
-        placeholder="Geoff Mollison"
-        value=model.displayName
-        id="displayName"
-      }}
-      {{display-errors errors=errors.model.displayName showErrors=hasErrors}}
-    </div>
-    <div class="form-input--wrapper">
-      <label for="email">Email:</label>
-      {{input
-        type="text"
-        placeholder="Your Email address"
-        value=model.email
-        id="email"
-        focus-out=(action "checkEmailExists")
-      }}
-      {{display-errors errors=errors.model.email showErrors=hasErrors}}
-      {{display-errors errors=errors.model.email showErrors=emailErrors}}
-    </div>
-    <div class="form-input--wrapper">
-      <label for="password">Password:</label>
-      {{input
-        type="password"
-        value=model.password
-        id="password"
-      }}
-      {{display-errors errors=errors.model.password showErrors=hasErrors}}
-    </div>
-    <div class="form-input--wrapper">
-      <label for="confirm">Confirm Password:</label>
-      {{input
-        type="password"
-        value=model.confirm
-        id="confirm"
-      }}
-      {{display-errors errors=errors.model.confirm showErrors=hasErrors}}
-    </div>
-    <button class="button" {{action "signUpUser"}}>Sign Up</button>
-  </form>
-  {{/if}}
 </section>

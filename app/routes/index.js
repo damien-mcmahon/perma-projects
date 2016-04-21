@@ -11,6 +11,7 @@ export default Ember.Route.extend({
       limitToLast: 50
     });
   },
+
   setupController(controller, model) {
     this._super(controller, model);
     navigator.geolocation.getCurrentPosition((Geo)=>{

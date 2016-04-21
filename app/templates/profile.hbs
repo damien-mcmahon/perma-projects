@@ -1,0 +1,43 @@
+<section id="profile-page" class="view--wrapper">
+  <h1>YOUR PROFILE</h1>
+  <div class="profile-page--image-wrapper">
+    <img src="{{model.profileImageUrl}}" />
+  </div>
+  <div class="profile-page--info-wrapper">
+    <p>Email: {{model.email}}</p>
+    <div class="form-input--wrapper">
+      <label for="displayName">Display Name:</label>
+      {{input
+        type="text"
+        value=model.displayName
+        id="displayName"
+        placeholder="Set your display name"
+      }}
+      <button class="button" {{action "updateDisplayName"}}>Update Display Name</button>
+    </div>
+    <div class="form-input--wrapper">
+      {{#if model.isTemporaryPassword}}
+        <h2>UPDATE YOUR TEMPORARY PASSWORD NOW!</h2>
+      {{/if}}
+      <label for="password">Current Password:</label>
+      {{input
+        type="password"
+        value=model.password
+        placeholder="Enter the Temp or current password"
+        id="password"
+      }}
+    </div>
+    <div class="form-input--wrapper">
+      <label for="newpassword">New Password:</label>
+      {{input
+        type="password"
+        value=model.newpassword
+        placeholder="Enter a new password"
+        id="newpassword"
+      }}
+      <button class="button" {{action "updateCurrentPassword"}}>
+        Update Password
+      </button>
+    </div>
+  </div>
+</section>

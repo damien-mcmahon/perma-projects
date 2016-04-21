@@ -43,6 +43,8 @@
             id="password"
           }}
         </div>
+        {{#link-to 'forgot-password'}}Forgot your password?{{/link-to}}
+        <br />
         <button class="button" {{action "signInEmailPassword" model}}>
           Sign in
         </button>
