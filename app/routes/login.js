@@ -11,6 +11,9 @@ export default Ember.Route.extend(SignIn,{
     },
     signInEmailPassword(signInUser) {
       this.signInEmailAndPassword(signInUser);
+    },
+    didTransition(){
+      this.controller.set('showEmailSignIn', false);
     }
   }
 });

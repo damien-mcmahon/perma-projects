@@ -40,6 +40,11 @@
       {{#facebook-like class="app--header--facebook-like"}}{{/facebook-like}}
     </nav>
   </div>
+  <div class="flash-message--main-container">
+    {{#each flashMessages.queue as |flash|}}
+      {{flash-message flash=flash}}
+    {{/each}}
+  </div>
 </header>
 <main class="app--main">
   {{outlet}}

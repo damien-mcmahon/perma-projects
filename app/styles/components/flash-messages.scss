@@ -1,0 +1,33 @@
+$flash-message-bg: rgba(black, .2);
+$flash-message-success-bg: green;
+$flash-message-error-bg: red;
+$flash-message-success-border-colour: darken($flash-message-success-bg, 10%);
+$flash-message-error-border-colour: darken($flash-message-error-bg, 10%);
+
+.flash-message--main-container {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  height: (5 * $APP_BASE_SPACING);
+  padding: ($APP_BASE_SPACING / 2);
+  color: #FFF;
+  transform: translateX(-50%);
+
+  .alert {
+    font-size: 1.5rem;
+
+    &-success {
+      background: rgba($flash-message-success-bg, .5);
+      padding: ($APP_BASE_SPACING * 2);
+      border: 1px solid $flash-message-success-border-colour;
+      border-radius: $APP_BASE_SPACING;
+    }
+
+    &-danger {
+      background: rgba($flash-message-error-bg, .75);
+      padding: ($APP_BASE_SPACING * 2);
+      border: 1px solid $flash-message-error-border-colour;
+      border-radius: $APP_BASE_SPACING;
+    }
+  }
+}
