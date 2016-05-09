@@ -44,4 +44,9 @@ $tw-login-bg: $TWITTER_BG;
       border-color: darken($tw-login-bg, 10%);
     }
   }
+  .login--forgot-password {
+    display: inline-block;
+    margin: $APP_BASE_SPACING;
+    font-size: 1rem;
+  }
 }
