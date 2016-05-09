@@ -55,10 +55,11 @@ export default Ember.Controller.extend(EmberValidations, Mapping, {
       if(!this.updateLocationWhenDragging) {
         return;
       }
+      
       let mapCenter = event.target.getCenter();
       let currentZoomLevel = event.target.getZoom();
 
-      if(currentZoomLevel >= this.MINIMUM_ZOOM_LEVEL) {
+      if(currentZoomLevel >= this.DRAGGING_MINIMUM_ZOOM_LEVEL) {
         this.set('isDragging', true);
         this.set('centerPoint', {
           lat: mapCenter.lat,
@@ -79,7 +80,7 @@ export default Ember.Controller.extend(EmberValidations, Mapping, {
 
       this.set('isDragging', false);
 
-      if(currentZoomLevel >= this.MINIMUM_ZOOM_LEVEL) {
+      if(currentZoomLevel >= this.DRAGGING_MINIMUM_ZOOM_LEVEL) {
         this.set('locationData', {
           lat: updateCenter.lat,
           lng: updateCenter.lng
