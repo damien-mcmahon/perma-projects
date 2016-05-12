@@ -19,7 +19,7 @@ const DEFAULTS = {
 };
 
 const PRIVACY_CIRCLE_RADIUS = 100;
-const DETECT_RETINA = true
+const DETECT_RETINA = true;
 
 export default Ember.Mixin.create({
   COUNTRY_LEVEL_ZOOM: COUNTRY_LEVEL_ZOOM,
@@ -71,15 +71,15 @@ export default Ember.Mixin.create({
       const CONTEXT_COUNTRY_REG = /country/i;
 
       if(CONTEXT_COUNTRY_REG.test(contextItem.id)) {
-        postCodeDetails.country = contextItem.text
+        postCodeDetails.country = contextItem.text;
       }
 
       if(CONTEXT_POSTCODE_REG.test(contextItem.id)) {
-        postCodeDetails.postCode = contextItem.text
+        postCodeDetails.postCode = contextItem.text;
       }
 
       if(CONTEXT_REGION_REG.test(contextItem.id)) {
-        postCodeDetails.region = contextItem.text
+        postCodeDetails.region = contextItem.text;
       }
     });
     return postCodeDetails;

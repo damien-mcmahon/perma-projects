@@ -19,7 +19,7 @@ export default Ember.Controller.extend(EmberValidations, SignIn, {
           errors.set('model.email', ["Email is already in Use"]);
           this.set('emailErrors', true);
         }
-      })
+      });
     },
 
     toggleSignUpForm() {
@@ -47,9 +47,9 @@ export default Ember.Controller.extend(EmberValidations, SignIn, {
             this.signInEmailAndPassword(user);
 
           });
-        }).catch((err) => {
+        }).catch(() => {
           this.set('hasErrors', true);
-        })
+        });
     }
   },
   validations: {

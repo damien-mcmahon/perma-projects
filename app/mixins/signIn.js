@@ -5,7 +5,7 @@ export default Ember.Mixin.create({
     return this.store.query('user', {
       orderBy: 'loginId',
       equalTo: user.uid
-    })
+    });
   },
   saveNewUser(user, callback) {
     let newUser = this.store.createRecord('user');
@@ -21,7 +21,7 @@ export default Ember.Mixin.create({
 
     newUser.save().then(() => {
       callback();
-    })
+    });
   },
   updateStatsWithNewUser() {
     this.store.query('stat', {
@@ -58,7 +58,7 @@ export default Ember.Mixin.create({
           this.transitionTo('projects.index');
         }
       });
-    })
+    });
   },
   socialSignIn(provider) {
     this.get('session').open('firebase', {

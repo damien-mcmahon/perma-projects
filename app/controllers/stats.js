@@ -31,7 +31,7 @@ export default Ember.Controller.extend({
             }
           });
 
-          let userCount = this.store.query('user', {
+          this.store.query('user', {
             orderBy: 'id'
           }).then((users) => {
             if(users.get('length')){
@@ -45,7 +45,7 @@ export default Ember.Controller.extend({
 
               statsModel.save();
             }
-          })
+          });
 
         }
       });

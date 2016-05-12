@@ -22,7 +22,7 @@ export default Ember.Component.extend({
   showFilters: false,
   init() {
     this._super(...arguments);
-    let projects = this.get('projects')
+    let projects = this.get('projects');
     let pageSize = this.get('pageSize');
     this.visibleProjects = projects.slice(0, pageSize - 1);
     this.set('totalPages', Math.ceil(projects.get('length') / pageSize));
@@ -49,7 +49,7 @@ export default Ember.Component.extend({
     toggleFilters() {
       this.toggleProperty('showFilters');
     },
-    
+
     filterProjects(text) {
       let projectsToShow;
 

@@ -32,11 +32,13 @@ export default Ember.Controller.extend(Mapping, EmberValidations, {
     },
 
     mapDragging(event) {
-      if(!this.updateLocationWhenDragging) return;
+      if(!this.updateLocationWhenDragging) {
+        return;
+      }
       let mapCenter = event.target.getCenter();
       let currentZoomLevel = event.target.getZoom();
 
-      if(currentZoomLevel >= MINIMUM_ZOOM_LEVEL) {
+      if(currentZoomLevel >= this.MINIMUM_ZOOM_LEVEL) {
         this.set('isDragging', true);
         this.set('centerPoint', {
           lat: mapCenter.lat,
@@ -46,13 +48,16 @@ export default Ember.Controller.extend(Mapping, EmberValidations, {
     },
 
     updateLocation(event) {
-      if(!this.updateLocationWhenDragging) return;
+      if(!this.updateLocationWhenDragging) {
+        return;
+      }
+
       let currentZoomLevel = event.target.getZoom();
       let updateCenter = event.target.getCenter();
       let project = this.get('model');
       this.set('isDragging', false);
 
-      if(currentZoomLevel >= MINIMUM_ZOOM_LEVEL) {
+      if(currentZoomLevel >= this.MINIMUM_ZOOM_LEVEL) {
         project.setProperties({
           lat: updateCenter.lat,
           lng: updateCenter.lng
@@ -61,7 +66,6 @@ export default Ember.Controller.extend(Mapping, EmberValidations, {
     },
 
     selectAddress(address) {
-      let [lng, lat] = address.center;
       let addressDetails = this.extractAddress(address.context);
       let model = this.get('model');
 
@@ -78,7 +82,6 @@ export default Ember.Controller.extend(Mapping, EmberValidations, {
     },
     updateProject(event){
       event.preventDefault();
-      let user = this.get('session.currentUser');
       let project = this.get('model');
       this.validate().then(() => {
         if(project.get('isValid')){

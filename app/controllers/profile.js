@@ -6,7 +6,6 @@ export default Ember.Controller.extend({
   actions: {
     updateDisplayName(){
       let user = this.get('model');
-      let sessionUser = this.get('session.currentUser');
       if(user.get('displayName')){
         this.set('session.currentUser.displayName', user.get('displayName'));
         user.save();

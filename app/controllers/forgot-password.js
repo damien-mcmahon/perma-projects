@@ -20,7 +20,7 @@ export default Ember.Controller.extend({
             flashMessages.success('Password has been reset, check your email for details');
             this.transitionToRoute('login');
           }
-        })
+        });
       }
     }
   }

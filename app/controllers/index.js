@@ -29,7 +29,7 @@ export default Ember.Controller.extend(Mapping, {
         orderBy: 'title',
         startAt: searchQuery.charAt(0),
         limitToFirst: PROJECTS_TO_SEARCH_COUNT
-      })
+      });
 
       projectsFound.then((results) => {
         let content = results.get('content');
@@ -69,7 +69,7 @@ export default Ember.Controller.extend(Mapping, {
       if(type === 'places') {
         [lng,lat] = result.center;
         zoomLevel = result.properties.short_code ?
-        COUNTRY_LEVEL_ZOOM : this.SEARCH_QUERY_ZOOM_LEVEL;
+          this.COUNTRY_LEVEL_ZOOM : this.SEARCH_QUERY_ZOOM_LEVEL;
       } else {
         let loc = result.get('location');
         lat = loc.lat;
