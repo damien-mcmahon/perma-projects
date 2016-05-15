@@ -12,7 +12,7 @@ const TOGGLE_TO_ATTR_MAP = {
 
 export default Ember.Component.extend({
   visibleProjects: [],
-  pageSize: 10,
+  pageSize: 100,
   totalPages: 0,
   wwoof: false,
   produce: false,
