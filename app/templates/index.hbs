@@ -27,8 +27,10 @@
         }}{{/search-box}}
       </div>
       {{tile-layer url=selectedStyle.url detectRetina=DETECT_RETINA}}
+      {{#marker-cluster-layer}}
       {{#each model as |project|}}
         {{#if project.locationIsPublic}}
+
           {{#marker-layer lat=project.lat lng=project.lng }}
             {{#project-descriptor project=project}}{{/project-descriptor}}
             {{/marker-layer}}
@@ -38,6 +40,7 @@
           {{/circle-layer}}
         {{/if}}
       {{/each}}
+      {{/marker-cluster-layer}}
     {{/leaflet-map}}
     {{#current-location class="current-location--ember-wrapper" onFind=(action "setLocation")}}{{/current-location}}
   </div>

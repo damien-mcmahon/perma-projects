@@ -30,5 +30,9 @@ export default DS.Model.extend({
   isOpenForVisitors: DS.attr('boolean'),
   doesSellProduce: DS.attr('boolean', {defaultValue: false}),
   runsEducationalCourses: DS.attr('boolean', {defaultValue: false}),
-  lookingForVolunteers: DS.attr('boolean', {defaultValue: false})
+  lookingForVolunteers: DS.attr('boolean', {defaultValue: false}),
+  clippedDescription: Ember.computed('description', function(){
+    const CHARS_TO_SHOW = 140;
+    return this.get('description').substr(0, CHARS_TO_SHOW) + '...';
+  })
 });
