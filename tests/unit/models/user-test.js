@@ -1,4 +1,5 @@
 import { moduleForModel, test } from 'ember-qunit';
+import Ember from 'ember';
 
 moduleForModel('user', 'Unit | Model | user', {
   // Specify the other units that are required for this test.
@@ -18,6 +19,8 @@ test('general users are not admin', function(assert) {
 
 test('users with role 99 are admins', function(assert) {
   let model = this.subject();
-  model.set('role', 99);
-  assert.equal(model.get('isAdmin'), true);
+  Ember.run(()=>{
+    model.set('role', 99);
+    assert.equal(model.get('isAdmin'), true);
+  });
 });
