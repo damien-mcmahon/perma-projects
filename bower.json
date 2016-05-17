@@ -8,6 +8,9 @@
     "firebase": "^2.1.0",
     "leaflet": "~0.7.7",
     "font-awesome": "~4.5.0",
-    "leaflet.markercluster": "~0.5.0"
+    "leaflet.markercluster": "~0.5.0",
+    "pretender": "~0.10.1",
+    "lodash": "~3.7.0",
+    "Faker": "~3.0.0"
   }
 }
