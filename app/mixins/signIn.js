@@ -44,20 +44,23 @@ export default Ember.Mixin.create({
       email: signInUser.get('email'),
       password: signInUser.get('password')
     }).then((user) => {
-      let checkUserExists = this.checkForUser(user);
+      if(user) {
+        let checkUserExists = this.checkForUser(user);
 
-      checkUserExists.then((results) => {
-        if(!results.get('length')) {
-          this.saveNewUser(user, this.updateStatsWithNewUser.bind(this));
-        } else {
-
-          if(user.isTemporaryPassword) {
-            this.transitionTo('profile');
+        checkUserExists.then((results) => {
+          if(!results.get('length')) {
+            this.saveNewUser(user, this.updateStatsWithNewUser.bind(this));
+          } else {
+            if(user.isTemporaryPassword) {
+              this.transitionTo('profile');
+            }
+            this.transitionTo('projects.index');
           }
-
-          this.transitionTo('projects.index');
-        }
-      });
+        });
+      }
+    })
+    .catch((err) => {
+      console.log("ERR", err);
     });
   },
   socialSignIn(provider) {

@@ -27,14 +27,14 @@ export default Ember.Controller.extend(EmberValidations, SignIn, {
     },
 
     signUpUser() {
-      let user = this.get('model');
+      let signUpUserModel = this.get('model');
       // if(user.get('password') === user.get('confirm')){
         this.validate().then(() => {
           //create a user
           let firebase = this.get('firebase');
           firebase.createUser({
-            email: user.get('email'),
-            password: user.get('password')
+            email: signUpUserModel.get('email'),
+            password: signUpUserModel.get('password')
           }, (err, user) => {
             if(err) {
               this.setProperties({
@@ -44,7 +44,7 @@ export default Ember.Controller.extend(EmberValidations, SignIn, {
               return;
             }
 
-            this.signInEmailAndPassword(user);
+            this.signInEmailAndPassword(signUpUserModel);
 
           });
         }).catch(() => {

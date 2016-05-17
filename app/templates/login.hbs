@@ -17,7 +17,7 @@
         {{fa-icon 'twitter-square'}}
         Sign In with Twitter
       </button>
-      <button class="button login--sign-in" {{action "showSignIn"}}>
+      <button class="button login--sign-in -email-sigin-in" {{action "showSignIn"}}>
         {{fa-icon 'envelope'}}
         Sign In
       </button>
@@ -43,7 +43,10 @@
         </div>
         {{#link-to 'forgot-password' class="login--forgot-password"}}Forgot your password?{{/link-to}}
         <br />
-        <button class="button" {{action "signInEmailPassword" model}}>
+        <button
+          id="email-sign-in--button"
+          class="button"
+          {{action "signInEmailPassword" model}}>
           Sign in
         </button>
       </form>
