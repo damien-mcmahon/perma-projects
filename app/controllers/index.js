@@ -1,3 +1,4 @@
+/*globals L */
 import Ember from 'ember';
 import Mapping from '../mixins/mapping';
 

@@ -10,3 +10,13 @@ test('it exists', function(assert) {
   // let store = this.store();
   assert.ok(!!model);
 });
+
+test('Location is correctly set', function(assert) {
+  let model = this.subject();
+  model.setProperties({
+    lat: -1,
+    lng: 50
+  });
+
+  assert.equal(model.get('location'), '-1, 50');
+});

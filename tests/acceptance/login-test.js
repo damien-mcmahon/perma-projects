@@ -11,14 +11,14 @@ test('visiting /login', function(assert) {
   });
 });
 
-test('can login', (assert) => {
+test('can login', function(assert){
   visit('/login');
-  click('button.-email-sigin-in');
+  click('button.email-sign-in');
   fillIn('#email', 'test@example.com');
   fillIn('#password', 'testing123');
   click('#email-sign-in--button');
 
-  andThen(()=> {
+  andThen(function(){
     assert.equal(currentURL(), '/login');
   });
 });

@@ -16,7 +16,7 @@ test('general users are not admin', function(assert) {
   assert.equal(model.get('isAdmin'), false);
 });
 
-test('users with role 99 are admins', (assert) => {
+test('users with role 99 are admins', function(assert) {
   let model = this.subject();
   model.set('role', 99);
   assert.equal(model.get('isAdmin'), true);

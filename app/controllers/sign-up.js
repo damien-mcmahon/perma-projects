@@ -35,7 +35,7 @@ export default Ember.Controller.extend(EmberValidations, SignIn, {
           firebase.createUser({
             email: signUpUserModel.get('email'),
             password: signUpUserModel.get('password')
-          }, (err, user) => {
+          }, (err) => {
             if(err) {
               this.setProperties({
                 'errors.model.email': [err],
