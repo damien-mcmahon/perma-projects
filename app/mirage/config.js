@@ -1,7 +1,39 @@
 export default function() {
   this.get('https://api.mapbox.com/geocoding/v5/mapbox.places/:query', function(){
-    console.log("PRETEND?", arguments);
-    return {"type":"FeatureCollection","query":["purlewent","drive"],"features":[{"id":"address.17819718615148260","type":"Feature","text":"Purlewent Drive","place_name":"Purlewent Drive, Bath and North East Somerset, Bath and North East Somerset BA1 4BD, United Kingdom","relevance":0.79,"properties":{},"center":[-2.386096,51.396785],"geometry":{"type":"Point","coordinates":[-2.386096,51.396785]},"context":[{"id":"place.7791","text":"Bath and North East Somerset"},{"id":"postcode.13321637641760830","text":"BA1 4BD"},{"id":"region.2299996767900","text":"Bath and North East Somerset","short_code":"GB-BAS","wikidata":"Q810793"},{"id":"country.15810817285254780","text":"United Kingdom","short_code":"gb","wikidata":"Q145"}]}],"attribution":"NOTICE: © 2016 Mapbox and its suppliers. All rights reserved. Use of this data is subject to the Mapbox Terms of Service (https://www.mapbox.com/about/maps/). This response and the information it contains may not be retained."};
+    return {
+      "type":"FeatureCollection",
+      "query":["purlewent","drive"],
+      "features":[{
+        "id":"address.17819718615148260",
+        "type":"Feature",
+        "text":"Purlewent Drive",
+        "place_name":"Purlewent Drive, Bath and North East Somerset, Bath and North East Somerset BA1 4BD, United Kingdom",
+        "relevance":0.79,
+        "properties":{},
+        "center":[-2.386096,51.396785],
+        "geometry": {
+          "type":"Point",
+          "coordinates":[-2.386096,51.396785]
+        },
+        "context":[{
+            "id":"place.7791",
+            "text":"Bath and North East Somerset"
+          },{
+            "id":"postcode.13321637641760830",
+            "text":"BA1 4BD"
+          },{
+            "id":"region.2299996767900",
+            "text":"Bath and North East Somerset",
+            "short_code":"GB-BAS",
+            "wikidata":"Q810793"
+          },{
+            "id":"country.15810817285254780",
+            "text":"United Kingdom",
+            "short_code":"gb",
+            "wikidata":"Q145"
+          }]
+        }],
+        "attribution":"NOTICE: © 2016 Mapbox and its suppliers. All rights reserved. Use of this data is subject to the Mapbox Terms of Service (https://www.mapbox.com/about/maps/). This response and the information it contains may not be retained."};
   });
   // These comments are here to help you get started. Feel free to delete them.
 
