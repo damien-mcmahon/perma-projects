@@ -6,19 +6,11 @@ moduleForComponent('facebook-like', 'Integration | Component | facebook like', {
 });
 
 test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });"
-
-  this.render(hbs`{{facebook-like}}`);
-
-  assert.equal(this.$().text().trim(), '');
-
+  //TODO: Make this test less WEAK!
   // Template block usage:"
   this.render(hbs`
-    {{#facebook-like}}
-      template block text
-    {{/facebook-like}}
+    {{#facebook-like}}{{/facebook-like}}
   `);
 
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.equal(this.$().text().trim(), '');
 });

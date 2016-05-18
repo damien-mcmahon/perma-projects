@@ -8,17 +8,10 @@ moduleForComponent('current-location', 'Integration | Component | current locati
 test('it renders', function(assert) {
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });"
-
-  this.render(hbs`{{current-location}}`);
-
-  assert.equal(this.$().text().trim(), '');
-
   // Template block usage:"
   this.render(hbs`
-    {{#current-location}}
-      template block text
-    {{/current-location}}
+    {{#current-location}}{{/current-location}}
   `);
 
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.equal(this.$('.fa').length, 1, 'it shows an icon');
 });

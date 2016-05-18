@@ -6,19 +6,12 @@ moduleForComponent('search-results-box', 'Integration | Component | search resul
 });
 
 test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });"
+  this.set('results', {'projects':[{title: 'test-1'}, {title: 'test-2'}]});
+  this.render(hbs`{{search-results-box results=results}}`);
 
-  this.render(hbs`{{search-results-box}}`);
-
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:"
-  this.render(hbs`
-    {{#search-results-box}}
-      template block text
-    {{/search-results-box}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.equal(
+    this.$('li.search-results-box--item').length,
+    2,
+    'displays correct number of results'
+  );
 });

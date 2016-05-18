@@ -33,7 +33,7 @@ export default Ember.Component.extend({
     this._super(...arguments);
     let newAttrs = attrs.newAttrs;
     let newProjects = newAttrs.projects.value;
-    setTimeout(()=>{
+    Ember.run.debounce(()=>{
       this.set('visibleProjects', newProjects.slice(0, this.get('pageSize')));
     }, 100);
   },

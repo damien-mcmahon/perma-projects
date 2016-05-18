@@ -8,17 +8,11 @@ moduleForComponent('user-button', 'Integration | Component | user button', {
 test('it renders', function(assert) {
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });"
+  this.set('user', {
+    displayName: 'Test User'
+  });
 
-  this.render(hbs`{{user-button}}`);
+  this.render(hbs`{{user-button user=user}}`);
 
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:"
-  this.render(hbs`
-    {{#user-button}}
-      template block text
-    {{/user-button}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.equal(this.$('.user-button--name').text(), 'Test User', 'displays the username');
 });

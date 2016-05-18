@@ -8,17 +8,22 @@ moduleForComponent('display-errors', 'Integration | Component | display errors',
 test('it renders', function(assert) {
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });"
-
-  this.render(hbs`{{display-errors}}`);
-
-  assert.equal(this.$().text().trim(), '');
-
   // Template block usage:"
+  this.setProperties({
+    'errors': ["something went wrong"],
+    showErrors: true
+  });
+  
   this.render(hbs`
-    {{#display-errors}}
-      template block text
-    {{/display-errors}}
-  `);
+    {{#display-errors
+      errors=errors
+      showErrors=showErrors
+    }}{{/display-errors}}`);
 
-  assert.equal(this.$().text().trim(), 'template block text');
+
+  assert.equal(
+    this.$('span.input-error').text().trim(),
+    'something went wrong',
+    'error messages are displayed'
+  );
 });

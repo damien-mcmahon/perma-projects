@@ -8,17 +8,15 @@ moduleForComponent('search-box', 'Integration | Component | search box', {
 test('it renders', function(assert) {
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });"
-
-  this.render(hbs`{{search-box}}`);
-
-  assert.equal(this.$().text().trim(), '');
-
+  this.setProperties('placeholderText', 'Search For Projects or places');
   // Template block usage:"
   this.render(hbs`
-    {{#search-box}}
-      template block text
-    {{/search-box}}
+    {{#search-box placeholderText=placeholderText}}{{/search-box}}
   `);
 
-  assert.equal(this.$().text().trim(), 'template block text');
+  //TODO: Stop with the weak tests
+  assert.equal(
+    this.$('input.search-box--query').text().trim(),
+    ''
+  );
 });
