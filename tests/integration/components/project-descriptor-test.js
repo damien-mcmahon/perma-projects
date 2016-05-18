@@ -1,24 +1,22 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('event-descriptor', 'Integration | Component | event descriptor', {
+moduleForComponent('project-descriptor', 'Integration | Component | event descriptor', {
   integration: true
 });
 
 test('it renders', function(assert) {
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });"
+  this.set('project', {
+    title: 'A test project',
+    clippedDescription: 'lorem dolor sit amet'
+  });
 
-  this.render(hbs`{{event-descriptor}}`);
+  this.render(hbs`{{project-descriptor project=project}}`);
 
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:"
-  this.render(hbs`
-    {{#event-descriptor}}
-      template block text
-    {{/event-descriptor}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.equal(
+    this.$('h2.project--title').text().trim(),
+    'A test project'
+  );
 });
